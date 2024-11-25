@@ -1,14 +1,39 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<title>Mon graphique</title>
-<link rel="stylesheet" type="text/css" href="./inspector.css">
-<body>
-<script type="module">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar Chart Animation</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
 
-import define from "./index.js";
-import {Runtime, Library, Inspector} from "./runtime.js";
-
-const runtime = new Runtime();
-const main = runtime.module(define, Inspector.into(document.body));
-
-</script>
+  <body>
+    <button id="replay-button" style="
+      position: absolute;
+      top: 800px;
+      left: 1300px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;">
+      Replay
+  </button>
+  <div class="containeur" >
+    <div id="chart-container"></div>
+    
+    <script type="module" src="script2.js"></script>  
+    </div>
+  </body>
+  
+</html>
