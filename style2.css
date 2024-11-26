@@ -1,0 +1,29 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: white;
+    margin: 0;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-family: 'Navada', sans-serif;
+    /* font-family: 'Navada Demo', sans-serif; */
+    font-size: 4rem;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 8vh;
+}
+
+header {
+    height: 100vh;
+    background: radial-gradient(#383838, #000000 60%);
+}
+
+section {
+    height: 100vh;
+}
