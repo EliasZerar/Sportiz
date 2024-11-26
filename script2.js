@@ -33,12 +33,16 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       .rangeRound([marginTop, marginTop + barSize * (n + 1 + 0.1)])
       .padding(0.1);
 
-const color = (() => {
-  const scale = d3.scaleOrdinal(["#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#FFD633", "#8D33FF", "#33FFF6", "#FF6F33", "#33FFB5", "#FF3333", "#33A1FF"]); // Palette personnalisée
-  const categoryByName = new Map(data.map((d) => [d.name, d.category]));
-  scale.domain(categoryByName.values());
-  return (d) => scale(categoryByName.get(d.name));
-})();
+    const color = (() => {
+      const scale = d3.scaleOrdinal([
+        "#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#FFD633",
+        "#8D33FF", "#33FFF6", "#FF6F33", "#33FFB5", "#FF3333",
+        "#33A1FF"
+      ]);
+      const categoryByName = new Map(data.map((d) => [d.name, d.category]));
+      scale.domain(categoryByName.values());
+      return (d) => scale(categoryByName.get(d.name));
+    })();
 
     const keyframes = (() => {
       const keyframes = [];
@@ -90,15 +94,15 @@ const color = (() => {
       .attr("width", width)
       .attr("height", height)
       .attr("style", "max-width: 100%; height: auto;");
-      
-      svg
+
+    svg
       .append("text")
       .attr("x", width / 2)
       .attr("y", marginTop / 2)
       .attr("text-anchor", "middle")
       .style("font-size", "24px")
       .style("font-weight", "bold")
-      .text("Nombre de licencié en France");
+      .text("Nombre de licenciés en France");
 
     const updateBars = bars(svg);
     const updateAxis = axis(svg);
@@ -227,6 +231,7 @@ const color = (() => {
       };
     }
 
+  
     function ticker(svg) {
       const now = svg
         .append("text")
@@ -236,24 +241,21 @@ const color = (() => {
         .attr("x", width - 6)
         .attr("y", marginTop + barSize * (n - 0.45))
         .attr("dy", "0.32em")
-        .text(formatDate);
+        .text(formatDate(keyframes[0][0]));
 
       return ([date], transition) => {
         transition.end().then(() => now.text(formatDate(date)));
       };
     }
 
-    return { svg, runAnimation };
+    // Lancer l'animation au chargement de la page
+    runAnimation();
+
+    // Rejouer l'animation au clic sur le bouton
+    d3.select("#replay-button").on("click", async () => {
+      await runAnimation();
+    });
   }
 
-  let { svg, runAnimation } = initializeChart();
-
-  // Initialisation du bouton replay
-  d3.select("#replay-button").on("click", () => {
-    svg.remove(); // Supprimer l'ancien graphique
-    ({ svg, runAnimation } = initializeChart()); // Réinitialiser
-    runAnimation(); // Relancer l'animation
-  });
-
-  runAnimation();
+  initializeChart();
 })();
