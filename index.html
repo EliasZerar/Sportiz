@@ -1,163 +1,177 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bar Chart Animation</title>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/navada" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Sportiz</title>
 </head>
-
 <body>
-    <div class="container">
-      <div id="chart-container"></div>
-      <script type="module" src="script2.js"></script>
-    </div>
-    <button id="replay-button">
-      Replay
-    </button>
-    <div class="footer">
-      <footer>
-        <a href="#" id="openPopup">Mentions légales</a>
-        <div id="popup" class="popup">
-          <div class="popup-content">
-            <span class="close">&times;</span>
-            <h2>Mentions Légales</h2>
-            <p>
-              Editeur<br>
-              Le site est conçu au sein de l’Université Gustave Eiffel :<br>
-              Adresse : 5 Boulevard Descartes, 77420 Champs-sur-Marne, France<br>
-              Numéro de téléphone : +33 1 60 95 75 00<br>
-              Page de contact : Contacts en ligne ?<br>
-              Numéro SIREN : 130 026 123<br>
-              Code APE : 8542Z<br>
-              Représentant de l’éditeur : Gilles Roussel<br>
-              DPO : Véronique Juge, mail : vjuge@univ-gustave-eiffel.fr, adresse : 5 Boulevard Descartes, 77420
-              Champs-sur-Marne, France<br><br>
-
-              Hébergement du Site<br>
-              Le projet est hébergé par GitHub :<br>
-              Adresse : PRIUS BERNHARDPLEIN 200 PAYS-BAS<br>
-              Numéro de contact : +1 877 448 4820<br>
-              Email pour la confidentialité : privacy@github.com<br>
-              Site officiel : www.github.com<br><br>
-
-              Ce projet a été conçu et développé par:<br>
-              Elias Zerar, Mila Duperrier, et Thomas Veber, étudiants inscrits en BUT Métiers du Multimédia et de
-              l'Internet (MMI)<br>
-              Illustrations et Design : Thomas Veber<br>
-              Développement Web : Mila Duperrier et Elias Zerar<br>
-              Textes : Mila Duperrier, Elias Zerar et Thomas Veber<br><br>
-
-              Politique de Confidentialité<br>
-              Dans le cadre de ce projet, aucune donnée personnelle ou information sur les utilisateurs n’est collectée
-              ni partagée. Notre approche se fonde uniquement sur l’utilisation de données issues de sources
-              officielles, dans le but de concevoir des graphiques et analyses informatifs. Nous nous engageons à
-              utiliser exclusivement des données provenant de sources externes fiables, telles que celles fournies par
-              l'INJEP, pour la création de contenus à visée pédagogique. Aucune information individuelle ou donnée
-              additionnelle n’est donc ni collectée ni exploitée.<br><br>
-
-              Sources :<br>
-              Les données utilisées dans ce projet proviennent exclusivement de sources fiables, notamment le site de
-              l’INJEP. Elles sont employées uniquement dans un but éducatif et informatif, dans le cadre d’un projet
-              étudiant réalisé à l’IUT de l'Université Gustave Eiffel à Champs-sur-Marne. Ces informations sont
-              strictement réservées à un usage pédagogique et ne sont pas destinées à des fins commerciales.<br><br>
-
-              Tous les éléments graphiques de ce projet ont été conçus par Thomas Veber. Les polices d’écritures
-              “Navada” (par SabrCreative) et Helvetica Neue sont des polices libres d’utilisation pour des usages
-              personnels.<br><br>
-
-              L'INPI a vérifié les antériorités pour le nom "Sportiz" : celui-ci est disponible et d’utilisation, une
-              marque ayant été déposée, mais expirée en 2011 et non renouvelée.<br><br>
-
-              Le présent site ne traitant aucune données personnalisées, le RGPD ne s'applique pas.<br><br>
-
-              L’image que nous utilisons pour le football est une image du photographe D. Vojinovic, pour le journal
-              L’équipe. Le stade Santiago Bernabéu a été construit par les architectes Luis Alemany Soler et Manuel
-              Muñoz Monasterio.<br>
-              https://www.lequipe.fr/Football/Article/Un-but-un-trophee-et-des-attentes-mbappe-des-debuts-marquants-avec-le-real-madrid/1501458<br>
-              https://www.barcelo.com/guia-turismo/en/spain/madrid/things-to-do/santiago-bernabeu-stadium/<br><br>
-
-              L’image que nous utilisons pour le tennis est une image de Fengshui Tips, sur le site Kindpng.com. La
-              deuxième photographie est issue de Cynthiamcastro sur pixabay.<br>
-              https://www.kindpng.com/imgv/imiTobi_roger-federer-png-transparent-png/<br>
-              https://pixabay.com/photos/tennis-sport-tennis-ball-1671852/<br><br>
-
-              L’image que nous utilisons pour l’équitation est une image de la photographe Elodie MULLER, pour le cheval
-              magazine.<br>
-              https://www.chevalmag.com/sports/isabell-werth-reste-la-reine-a-lyon/<br>
-              https://www.leparisien.fr/sports/JO/paris-2024/paris-2024-a-deux-ans-des-jeux-olympiques-versailles-devient-un-stade-multisports-a-ciel-ouvert-27-07-2022-USBNWDQ5CRFD7HRRJZSVYITIHA.php
-              Jardins de Versaille par André Le Nôtre<br><br>
-
-              L’image que nous utilisons pour le Basketball est une image du photographe Harry How, sur getty images
-              récupéré sur le site sfgate.com. La deuxième photographie est issue de KaiPilger sur pixabay.<br>
-              https://www.sfgate.com/warriors/article/lebron-james-probably-not-joining-warriors-18121630.php<br>
-              https://pixabay.com/photos/basketball-court-basketball-sport-4158462/<br><br>
-
-              L’image que nous utilisons pour le handball est une image du photographe Odd Andersen, pour l’AFP, publiée
-              sur le journal l’Alsace. La deuxième photographie est une image du photographe Maxppp.<br>
-              https://www.lalsace.fr/sport/2019/01/19/place-aux-grands-hommes<br>
-              https://www.francebleu.fr/sports/basket-handball-volley/mondial-2017-de-handball-les-huit-salles-qui-accueillent-la-competition-aux-quatre-coins-de-la-france-1484056389<br><br>
-
-              L’image que nous utilisons pour le judo est une image du photographe Arlette Bashizi, pour le journal
-              Courrier international. L’architecte de l’arena du champs de mars est Jean-Michel Wilemotte et la photo a
-              été extraite du journal Le Parisien édition du 24/07/2024.<br>
-              https://www.courrierinternational.com/article/a-quoi-reve-teddy-riner_220934<br>
-              https://www.leparisien.fr/jo-paris-2024/judo/jo-2024-judo-tatamis-cheap-logistique-a-revoir-la-colere-de-la-fede-internationale-contre-larena-champ-de-mars-24-07-2024-RYDCSC7S2ZELTKCDI3ZN75UCRM.php<br><br>
-
-              L’image que nous utilisons pour le golf est une image du photographe Abacai, pour PurePeople. L’architecte
-              du Golf National est Hubert Chesneau et la photo a été extraite du site des Jeux Olympiques.<br>
-              https://www.purepeople.com/media/united-states-team-members-tiger-woods_m1260143<br>
-              https://olympics.com/fr/paris-2024/sites/le-golf-national<br><br>
-
-              L’image que nous utilisons pour la natation est une image de la photographe Ashley Landis, pour le journal
-              Vosgesmatin. L’architecte de Paris La Défense Arena est Christian de Portzamparc et la photo a été
-              extraite du journal Ouest-France édition du 28/07/2024.<br>
-              https://www.vosgesmatin.fr/sport/2024/08/01/leon-marchand-une-polyvalence-rarissime-en-natation<br>
-              https://www.ouest-france.fr/jeux-olympiques/reportage-jo-2024-une-ambiance-de-folie-a-paris-les-decibels-montent-pour-la-natation-6a5c493a-4cdc-11ef-a622-0126aa35ae01<br><br>
-
-              L’image que nous utilisons pour le rugby est une image du photographe Patrick T. Fallon, pour l’AFP,
-              publié sur le site challenges.fr. Les architectes du Stade De France sont Claude Constantini, Michel
-              Macary, Michel Regembal et Aymeric Zublena et la photo a été extraite du site de sortir à Paris.<br>
-              https://www.challenges.fr/entreprise/sports/rugby-a-vii-les-bleus-de-dupont-triomphent-a-los-angeles-l-objectif-olympique-est-bien-lance_885590<br>
-              https://www.sortiraparis.com/loisirs/sport/articles/315330-le-stade-de-france-le-lieu-d-accueil-de-concerts-et-evenements-sportifs-a-saint-denis-93<br><br>
-
-              L’image que nous utilisons pour la gymnastique est une image du photographe Francisco Seco, pour le
-              journal Libération. Les architectes de l’Accor Arena sont Michel Andrault, Gauvan, Pierre Parat et Jean
-              Prouvé et la photo a été extraite du site des Jeux Olympiques côté presse, édition du 17/07/2024.<br>
-              https://www.liberation.fr/idees-et-debats/editorial/jo-de-paris-2024-simone-biles-un-mental-dacier-20240804_CFWKRYNP5JDOJEM3F6MMXHFMX4/<br>
-              https://presse.paris2024.org/diffusis/actualites-1/paris-2024-dernier-jeudi-billetterie-1440-e0190.html<br><br>
-
-              L’image que nous utilisons pour l'athlétisme est une image du photographe Ian Walton, pour la revue
-              Vanityfair. La deuxième image est une photographie de Maja Hitij, cette photographie à été trouvée sur le
-              site des Jeux Olympiques.<br>
-              https://www.vanityfair.fr/actualites/article/usain-bolt-veut-deposer-une-marque-pour-sa-celebre-pose-de-la-victoire<br>
-              https://olympics.com/fr/infos/jeux-olympiques-paralympiques-paris-2024-pourquoi-piste-athletisme-stade-de-france-violette<br><br>
-
-              Les données que nous utilisons sont disponibles à cette adresse :<br>
-              https://injep.fr/donnee/recensement-des-licences-et-clubs-sportifs-2023/#tab03<br><br>
-
-              Le graphique que nous utilisons est issu de la bibliothèque D3.js, et est trouvable à cette adresse :<br>
-              https://observablehq.com/@d3/bar-chart-race<br><br>
-
-              Polices utilisées :<br>
-              Navada<br>
-              https://www.1001fonts.com/navada-font.html#license<br>
-              Helvetica Neue<br>
-              https://www.cufonfonts.com/font/helvetica-neue-5<br><br>
-
-              Collecte de données par github : 
-              Ce site est hébergé sur GitHub Pages, un service fourni par GitHub. GitHub peut collecter certaines données personnelles des visiteurs, telles que l'adresse IP, le type de navigateur, le système d'exploitation, et les interactions avec le site. Ces données sont utilisées par GitHub pour assurer le fonctionnement du service et améliorer ses performances.
-              
-              Pour plus d'informations sur les pratiques de collecte et d'utilisation des données par GitHub, veuillez consulter leur Déclaration de confidentialité. <br>
-            </p>
-          </div>
+    <header>
+        <h1>Sportiz</h1>
+        <div class="container">
+          <div id="chart-container"></div>
+          <script type="module" src="graphique.js"></script>
         </div>
-        
-        <script src="script.js"></script>
-      </footer>
-  </div>
-</body>
+        <button id="replay-button">
+          Replay
+        </button>
+    </header>
+    
+      <section class="section" id="football"></section>
+      <section class="section" id="tennis"></section>
+      <section class="section" id="equitation"></section>
+      <section class="section" id="judo"></section>
+      <section class="section" id="basketball"></section>
+      <section class="section" id="handball"></section>
+      <section class="section" id="golf"></section>
+      <section class="section" id="rugby"></section>
+      <section class="section" id="natation"></section>
+      <section class="section" id="athletisme"></section>
+      <section class="section" id="gymnastique"></section>
+      <div class="footer">
+        <footer>
+          <a href="#" id="openPopup">Mentions légales</a>
+          <div id="popup" class="popup">
+            <div class="popup-content">
+              <span class="close">&times;</span>
+              <h2>Mentions Légales</h2>
+              <p>
+                Editeur<br>
+                Le site est conçu au sein de l’Université Gustave Eiffel :<br>
+                Adresse : 5 Boulevard Descartes, 77420 Champs-sur-Marne, France<br>
+                Numéro de téléphone : +33 1 60 95 75 00<br>
+                Page de contact : Contacts en ligne ?<br>
+                Numéro SIREN : 130 026 123<br>
+                Code APE : 8542Z<br>
+                Représentant de l’éditeur : Gilles Roussel<br>
+                DPO : Véronique Juge, mail : vjuge@univ-gustave-eiffel.fr, adresse : 5 Boulevard Descartes, 77420
+                Champs-sur-Marne, France<br><br>
+  
+                Hébergement du Site<br>
+                Le projet est hébergé par GitHub :<br>
+                Adresse : PRIUS BERNHARDPLEIN 200 PAYS-BAS<br>
+                Numéro de contact : +1 877 448 4820<br>
+                Email pour la confidentialité : privacy@github.com<br>
+                Site officiel : www.github.com<br><br>
+  
+                Ce projet a été conçu et développé par:<br>
+                Elias Zerar, Mila Duperrier, et Thomas Veber, étudiants inscrits en BUT Métiers du Multimédia et de
+                l'Internet (MMI)<br>
+                Illustrations et Design : Thomas Veber<br>
+                Développement Web : Mila Duperrier et Elias Zerar<br>
+                Textes : Mila Duperrier, Elias Zerar et Thomas Veber<br><br>
+  
+                Politique de Confidentialité<br>
+                Dans le cadre de ce projet, aucune donnée personnelle ou information sur les utilisateurs n’est collectée
+                ni partagée. Notre approche se fonde uniquement sur l’utilisation de données issues de sources
+                officielles, dans le but de concevoir des graphiques et analyses informatifs. Nous nous engageons à
+                utiliser exclusivement des données provenant de sources externes fiables, telles que celles fournies par
+                l'INJEP, pour la création de contenus à visée pédagogique. Aucune information individuelle ou donnée
+                additionnelle n’est donc ni collectée ni exploitée.<br><br>
+  
+                Sources :<br>
+                Les données utilisées dans ce projet proviennent exclusivement de sources fiables, notamment le site de
+                l’INJEP. Elles sont employées uniquement dans un but éducatif et informatif, dans le cadre d’un projet
+                étudiant réalisé à l’IUT de l'Université Gustave Eiffel à Champs-sur-Marne. Ces informations sont
+                strictement réservées à un usage pédagogique et ne sont pas destinées à des fins commerciales.<br><br>
+  
+                Tous les éléments graphiques de ce projet ont été conçus par Thomas Veber. Les polices d’écritures
+                “Navada” (par SabrCreative) et Helvetica Neue sont des polices libres d’utilisation pour des usages
+                personnels.<br><br>
+  
+                L'INPI a vérifié les antériorités pour le nom "Sportiz" : celui-ci est disponible et d’utilisation, une
+                marque ayant été déposée, mais expirée en 2011 et non renouvelée.<br><br>
+  
+                Le présent site ne traitant aucune données personnalisées, le RGPD ne s'applique pas.<br><br>
+  
+                L’image que nous utilisons pour le football est une image du photographe D. Vojinovic, pour le journal
+                L’équipe. Le stade Santiago Bernabéu a été construit par les architectes Luis Alemany Soler et Manuel
+                Muñoz Monasterio.<br>
+                https://www.lequipe.fr/Football/Article/Un-but-un-trophee-et-des-attentes-mbappe-des-debuts-marquants-avec-le-real-madrid/1501458<br>
+                https://www.barcelo.com/guia-turismo/en/spain/madrid/things-to-do/santiago-bernabeu-stadium/<br><br>
+  
+                L’image que nous utilisons pour le tennis est une image de Fengshui Tips, sur le site Kindpng.com. La
+                deuxième photographie est issue de Cynthiamcastro sur pixabay.<br>
+                https://www.kindpng.com/imgv/imiTobi_roger-federer-png-transparent-png/<br>
+                https://pixabay.com/photos/tennis-sport-tennis-ball-1671852/<br><br>
+  
+                L’image que nous utilisons pour l’équitation est une image de la photographe Elodie MULLER, pour le cheval
+                magazine.<br>
+                https://www.chevalmag.com/sports/isabell-werth-reste-la-reine-a-lyon/<br>
+                https://www.leparisien.fr/sports/JO/paris-2024/paris-2024-a-deux-ans-des-jeux-olympiques-versailles-devient-un-stade-multisports-a-ciel-ouvert-27-07-2022-USBNWDQ5CRFD7HRRJZSVYITIHA.php
+                Jardins de Versaille par André Le Nôtre<br><br>
+  
+                L’image que nous utilisons pour le Basketball est une image du photographe Harry How, sur getty images
+                récupéré sur le site sfgate.com. La deuxième photographie est issue de KaiPilger sur pixabay.<br>
+                https://www.sfgate.com/warriors/article/lebron-james-probably-not-joining-warriors-18121630.php<br>
+                https://pixabay.com/photos/basketball-court-basketball-sport-4158462/<br><br>
+  
+                L’image que nous utilisons pour le handball est une image du photographe Odd Andersen, pour l’AFP, publiée
+                sur le journal l’Alsace. La deuxième photographie est une image du photographe Maxppp.<br>
+                https://www.lalsace.fr/sport/2019/01/19/place-aux-grands-hommes<br>
+                https://www.francebleu.fr/sports/basket-handball-volley/mondial-2017-de-handball-les-huit-salles-qui-accueillent-la-competition-aux-quatre-coins-de-la-france-1484056389<br><br>
+  
+                L’image que nous utilisons pour le judo est une image du photographe Arlette Bashizi, pour le journal
+                Courrier international. L’architecte de l’arena du champs de mars est Jean-Michel Wilemotte et la photo a
+                été extraite du journal Le Parisien édition du 24/07/2024.<br>
+                https://www.courrierinternational.com/article/a-quoi-reve-teddy-riner_220934<br>
+                https://www.leparisien.fr/jo-paris-2024/judo/jo-2024-judo-tatamis-cheap-logistique-a-revoir-la-colere-de-la-fede-internationale-contre-larena-champ-de-mars-24-07-2024-RYDCSC7S2ZELTKCDI3ZN75UCRM.php<br><br>
+  
+                L’image que nous utilisons pour le golf est une image du photographe Abacai, pour PurePeople. L’architecte
+                du Golf National est Hubert Chesneau et la photo a été extraite du site des Jeux Olympiques.<br>
+                https://www.purepeople.com/media/united-states-team-members-tiger-woods_m1260143<br>
+                https://olympics.com/fr/paris-2024/sites/le-golf-national<br><br>
+  
+                L’image que nous utilisons pour la natation est une image de la photographe Ashley Landis, pour le journal
+                Vosgesmatin. L’architecte de Paris La Défense Arena est Christian de Portzamparc et la photo a été
+                extraite du journal Ouest-France édition du 28/07/2024.<br>
+                https://www.vosgesmatin.fr/sport/2024/08/01/leon-marchand-une-polyvalence-rarissime-en-natation<br>
+                https://www.ouest-france.fr/jeux-olympiques/reportage-jo-2024-une-ambiance-de-folie-a-paris-les-decibels-montent-pour-la-natation-6a5c493a-4cdc-11ef-a622-0126aa35ae01<br><br>
+  
+                L’image que nous utilisons pour le rugby est une image du photographe Patrick T. Fallon, pour l’AFP,
+                publié sur le site challenges.fr. Les architectes du Stade De France sont Claude Constantini, Michel
+                Macary, Michel Regembal et Aymeric Zublena et la photo a été extraite du site de sortir à Paris.<br>
+                https://www.challenges.fr/entreprise/sports/rugby-a-vii-les-bleus-de-dupont-triomphent-a-los-angeles-l-objectif-olympique-est-bien-lance_885590<br>
+                https://www.sortiraparis.com/loisirs/sport/articles/315330-le-stade-de-france-le-lieu-d-accueil-de-concerts-et-evenements-sportifs-a-saint-denis-93<br><br>
+  
+                L’image que nous utilisons pour la gymnastique est une image du photographe Francisco Seco, pour le
+                journal Libération. Les architectes de l’Accor Arena sont Michel Andrault, Gauvan, Pierre Parat et Jean
+                Prouvé et la photo a été extraite du site des Jeux Olympiques côté presse, édition du 17/07/2024.<br>
+                https://www.liberation.fr/idees-et-debats/editorial/jo-de-paris-2024-simone-biles-un-mental-dacier-20240804_CFWKRYNP5JDOJEM3F6MMXHFMX4/<br>
+                https://presse.paris2024.org/diffusis/actualites-1/paris-2024-dernier-jeudi-billetterie-1440-e0190.html<br><br>
+  
+                L’image que nous utilisons pour l'athlétisme est une image du photographe Ian Walton, pour la revue
+                Vanityfair. La deuxième image est une photographie de Maja Hitij, cette photographie à été trouvée sur le
+                site des Jeux Olympiques.<br>
+                https://www.vanityfair.fr/actualites/article/usain-bolt-veut-deposer-une-marque-pour-sa-celebre-pose-de-la-victoire<br>
+                https://olympics.com/fr/infos/jeux-olympiques-paralympiques-paris-2024-pourquoi-piste-athletisme-stade-de-france-violette<br><br>
+  
+                Les données que nous utilisons sont disponibles à cette adresse :<br>
+                https://injep.fr/donnee/recensement-des-licences-et-clubs-sportifs-2023/#tab03<br><br>
+  
+                Le graphique que nous utilisons est issu de la bibliothèque D3.js, et est trouvable à cette adresse :<br>
+                https://observablehq.com/@d3/bar-chart-race<br><br>
+  
+                Polices utilisées :<br>
+                Navada<br>
+                https://www.1001fonts.com/navada-font.html#license<br>
+                Helvetica Neue<br>
+                https://www.cufonfonts.com/font/helvetica-neue-5<br><br>
+  
+                Collecte de données par github : 
+                Ce site est hébergé sur GitHub Pages, un service fourni par GitHub. GitHub peut collecter certaines données personnelles des visiteurs, telles que l'adresse IP, le type de navigateur, le système d'exploitation, et les interactions avec le site. Ces données sont utilisées par GitHub pour assurer le fonctionnement du service et améliorer ses performances.
+                
+                Pour plus d'informations sur les pratiques de collecte et d'utilisation des données par GitHub, veuillez consulter leur Déclaration de confidentialité. <br>
+              </p>
+            </div>
+          </div>
+          
+          <script src="script.js"></script>
+        </footer>
+ 
 
+<script src="script3.js"></script>
+</body>
 </html>

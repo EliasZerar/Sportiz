@@ -1,15 +1,43 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
     margin: 0;
-    padding: 0;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-family: 'Navada', sans-serif;
+    /* font-family: 'Navada Demo', sans-serif; */
+    font-size: 4rem;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 8vh;
+}
+
+header {
+    height: 100vh;
+    background: radial-gradient(#383838, #000000 60%);
+}
+
+section {
+    height: 100vh;
+}
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f5f5f5;
-  }
- 
-  #popup {
+    
+}
+#chart-container {
+    width: 900px;
+}
+
+#popup {
     display: none;
     position: fixed;
     z-index: 1;
