@@ -9,16 +9,25 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
   const width = 1000;
   const height = marginTop + barSize * 12 + marginBottom;
   const n = 12;
-  const duration = 800;
+  const duration = 1000;
+  let animation;
+  let isRunning = false;
+  let currentFrameIndex = 0;
 
   const formatNumber = d3.format(",d");
   const formatDate = d3.utcFormat("%Y");
+  
+  const slider = d3.select("#timeline-slider")
+  .on("input", function () {
+    const frameIndex = +this.value;
+    currentFrameIndex = frameIndex;
+    updateChart(keyframes[currentFrameIndex]);
+  });
+  
 
   // Chargement des données
   const data = await d3.csv("./data.csv", d3.autoType);
- var log = d3.scaleLog() 
-            .domain([1, 2000000]) 
-            .range([10, 100, 1000, 100000, 100000, 1000000, 1000]); 
+
   function initializeChart() {
     const datevalues = Array.from(
       d3.rollup(data, ([d]) => d.value, (d) => +d.date, (d) => d.name)
@@ -28,8 +37,8 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
     const names = new Set(data.map((d) => d.name));
 
-     const x = d3.scaleLinear([0, 1], [marginLeft, width - marginRight]);
-    
+    const x = d3.scaleLinear([0, 0.6], [marginLeft, width - marginRight]);
+
     const y = d3
       .scaleBand()
       .domain(d3.range(n + 1))
@@ -107,20 +116,29 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       .style("font-size", "24px")
       .style("font-weight", "bold")
       .text("Nombre de licenciés en France");
-    
 
     const updateBars = bars(svg);
     const updateAxis = axis(svg);
     const updateLabels = labels(svg);
     const updateTicker = ticker(svg);
 
-    async function runAnimation() {
-      for (const keyframe of keyframes) {
-        const transition = svg
-          .transition()
-          .duration(duration)
-          .ease(d3.easeLinear);
 
+
+    function updateChart([date, data]) {
+      x.domain([0, data[0].value]);
+      updateBars([date, data], d3.transition().duration(0)); // Pas de transition lors de la mise à jour instantanée
+      updateLabels([date, data], d3.transition().duration(0));
+      updateTicker([date], d3.transition().duration(0)); // Mise à jour du ticker pour afficher la date
+    }
+    
+  
+ 
+    async function runAnimation(startIndex = 0) {
+      let i = startIndex;
+      while (true) {
+        slider.property("value", i).dispatch("input"); // Synchroniser le slider avec l'animation
+        const keyframe = keyframes[i];
+        const transition = svg.transition().duration(duration).ease(d3.easeLinear);
         x.domain([0, keyframe[1][0].value]);
 
         updateAxis(keyframe, transition);
@@ -129,51 +147,85 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
         updateTicker(keyframe, transition);
 
         await transition.end();
+        i = (i + 1) % keyframes.length; 
+        currentFrameIndex = i;
+        if (!isRunning) break; 
       }
     }
+  
 
-    function bars(svg) {
-      let bar = svg
-        .append("g")
-        .attr("fill-opacity", 5)
-        .selectAll("rect");
+  
+  d3.select("#start-button").on("click", togglePausePlay);
+  d3.select("#replay-button").on("click", replayAnimation);
 
-      return ([date, data], transition) =>
-        (bar = bar
+
+
+  function startAnimation() {
+    if (isRunning) return;
+    isRunning = true;
+    runAnimation(currentFrameIndex);
+}
+
+function stopAnimation() {
+    isRunning = false;
+}
+
+
+function replayAnimation() {
+    stopAnimation();
+    currentFrameIndex = 0; // Réinitialise l'index à la première frame
+    startAnimation();
+}
+
+function bars(svg) {
+  let bar = svg
+      .append("g")
+      .attr("fill-opacity", 0.7)
+      .selectAll("rect");
+
+  return ([date, data], transition) => {
+      bar = bar
           .data(data.slice(0, n), (d) => d.name)
           .join(
-            (enter) =>
-              enter
-                .append("rect")
-                .attr("fill", color)
-                .attr("x", x())
-                .attr("y", (d) => y((prev.get(d) || d).rank))
-                .attr("height", y.bandwidth())
-                .attr("width", (d) => x((prev.get(d) || d).value) - x(0)),
-            (update) => update,
-            (exit) =>
-              exit
-                .transition(transition)
-                .remove()
-                .attr("y", (d) => y((next.get(d) || d).rank))
-                .attr("width", (d) => x((next.get(d) || d).value) - x(0))
-          )
-          .call((bar) =>
-            bar
-              .transition(transition)
-              .attr("y", (d) => y(d.rank))
-              .attr("width", (d) => x(d.value) - x(0))
-          ));
-    }
-    // étiquette des barres 
+              (enter) =>
+                  enter
+                      .append("rect")
+                      .attr("fill", color)
+                      .attr("x", x(0)) // Initialisation correcte à gauche
+                      .attr("y", (d) => y((prev.get(d) || d).rank))
+                      .attr("height", y.bandwidth())
+                      .attr("width", 0) // Barres démarrent à 0 largeur
+                      .call((enter) =>
+                          enter
+                              .transition(transition)
+                              .attr("width", (d) => x(d.value) - x(0))
+                      ),
+              (update) =>
+                  update.call((update) =>
+                      update
+                          .transition(transition)
+                          .attr("y", (d) => y(d.rank))
+                          .attr("width", (d) => x(d.value) - x(0))
+                  ),
+              (exit) =>
+                  exit
+                      .transition(transition)
+                      .attr("width", 0)
+                      .attr("y", (d) => y((next.get(d) || d).rank))
+                      .remove()
+          );
+  };
+}
+
+
     function labels(svg) {
       let label = svg
         .append("g")
         .style("font", "bold 12px var(--sans-serif)")
         .style("font-variant-numeric", "tabular-nums")
-        .attr("text-anchor", "start") // Alignement à gauche
+        .attr("text-anchor", "start")
         .selectAll("text");
-    
+
       return ([date, data], transition) =>
         (label = label
           .data(data.slice(0, n), (d) => d.name)
@@ -188,18 +240,18 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
                       (prev.get(d) || d).rank
                     )})`
                 )
-                .attr("y", y.bandwidth() / 2) // Centré verticalement sur la barre
-                .attr("x", 6) // Position à droite de la barre
-                .text((d) => d.name) // Affiche uniquement le nom
+                .attr("y", y.bandwidth() / 2)
+                .attr("x", 6)
+                .text((d) => d.name)
                 .attr("fill", "white")
                 .call((text) =>
                   text
                     .append("tspan")
-                    .attr("x", 6) // Maintient l'alignement à droite
-                    .attr("dy", "1.2em") // Positionne le texte en dessous
+                    .attr("x", 6)
+                    .attr("dy", "1.2em")
                     .attr("font-weight", "normal")
-                    .attr("fill", "white") // Couleur blanche pour la valeur
-                    .text((d) => formatNumber(d.value)) // Affiche la valeur en dessous
+                    .attr("fill", "white")
+                    .text((d) => formatNumber(d.value))
                 ),
             (update) =>
               update.call((update) =>
@@ -226,21 +278,16 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
                     (next.get(d) || d).rank
                   )})`
                 )
-          )
-        );
+          ));
     }
-    
-
 
     function axis(svg) {
       const g = svg
         .append("g")
         .attr("transform", `translate(0,${marginTop})`);
 
-      const axis = d3
-        .axisTop(x)
-        .ticks(width / 150) // nombre de graduations
-        .tickSizeOuter(100)
+        const axis = d3.axisTop(x).ticks(width / 150).tickSizeOuter(0);
+
 
       return (_, transition) => {
         g.transition(transition).call(axis);
@@ -250,7 +297,6 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       };
     }
 
-  // affichage de la date 
     function ticker(svg) {
       const now = svg
         .append("text")
@@ -261,20 +307,38 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
         .attr("x", width - 6)
         .attr("y", marginTop + barSize * (n - 0.45))
         .attr("dy", "0.32em")
-        .text(formatDate(keyframes[0][0]));
-
+        .text(formatDate(keyframes[0][0])); // Affiche la première date au départ
+    
       return ([date], transition) => {
-        transition.end().then(() => now.text(formatDate(date))); 
+        transition.end().then(() => now.text(formatDate(date))); // Met à jour la date sur le ticker
       };
     }
+    
 
-    // Lancer l'animation au chargement de la page
     runAnimation();
 
-    // Rejouer l'animation au clic sur le bouton
-    d3.select("#replay-button").on("click", async () => {
-      await runAnimation();
-    });
+  function stopAnimation() {
+      isRunning = false;
+  }
+  
+  // Bouton pause/marche combiné
+  function togglePausePlay() {
+      if (isRunning) {
+          stopAnimation();
+          d3.select("#start-button").text("Marche");
+      } else {
+          startAnimation();
+          d3.select("#start-button").text("Pause");
+      }
+  }
+  
+  // Ajouter les événements aux boutons
+  d3.select("#start-button").on("click", togglePausePlay);
+  d3.select("#pause-button").on("click", stopAnimation);
+  d3.select("#replay-button").on("click", replayAnimation);
+ 
+
+  
   }
 
   initializeChart();
