@@ -7,7 +7,9 @@ body {
     color: white;
     margin: 0;
 }
-
+.gigaconteneur {
+    height: 100vh;
+}
 h1 {
     text-transform: uppercase;
     font-family: 'Navada', sans-serif;
@@ -20,23 +22,23 @@ h1 {
 }
 
 header {
-    height: 100vh;
+    
     background: radial-gradient(#383838, #000000 60%);
 }
-
-section {
+.section {
     height: 100vh;
 }
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     
 }
-#chart-container {
-    width: 900px;
-}
 
+#replay-button {
+    padding: 5px;
+}
 #popup {
     display: none;
     position: fixed;
@@ -49,9 +51,11 @@ section {
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
-
+#chart-containeur {
+  position: relative;
+}
 .popup-content {
-    background-color: #fefefe;
+    background-color: #000000;
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;

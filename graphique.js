@@ -9,7 +9,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
   const width = 1000;
   const height = marginTop + barSize * 12 + marginBottom;
   const n = 12;
-  const duration = 600;
+  const duration = 800;
   let animation;
   let isRunning = false;
   let currentFrameIndex = 0;
@@ -48,6 +48,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       scale.domain(categoryByName.values());
       return (d) => scale(categoryByName.get(d.name));
     })();
+    startAnimation()
 
     const keyframes = (() => {
       const keyframes = [];
@@ -89,12 +90,26 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
     .attr("min", 0)
     .attr("step", 1)
     .on("input", function() {
-      const frameIndex = +this.value;
-      currentFrameIndex = frameIndex;
-      stopAnimation(); // Arrête l'animation en cours
-      updateChart(keyframes[frameIndex]);
+        const frameIndex = +this.value;
+        currentFrameIndex = frameIndex;
+        stopAnimation();
+        updateChart(keyframes[frameIndex]);
     });
-  
+
+    function updateSliderPosition(index) {
+      slider
+          .transition()  // Transition fluide du slider
+          .duration(duration)  // Correspond au temps de chaque frame (600ms)
+          .ease(d3.easeLinear)
+          .tween("value", () => {
+              const interpolate = d3.interpolateNumber(+slider.property("value"), index);
+              return (t) => {
+                  slider.property("value", interpolate(t));  // Met à jour la position du slider en douceur
+              };
+          });
+    }
+    
+
     function rank(value) {
       const data = Array.from(names, (name) => ({ name, value: value(name) }));
       data.sort((a, b) => d3.descending(a.value, b.value));
@@ -128,42 +143,48 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 
     function updateChart([date, data]) {
-      x.domain([0, data[0].value]);
-      
-      // Mettre à jour les éléments visuels sans transition
-      const transition = d3.transition().duration(0);
-      updateAxis([date, data], transition);
-      updateBars([date, data], transition);
-      updateLabels([date, data], transition);
-      updateTicker([date], transition);
-      
-      // Mettre à jour la position du slider
-      slider.property("value", currentFrameIndex);
+      if (!isRunning) {
+        // Mise à jour immédiate sans attendre une transition coûteuse
+        x.domain([0, data[0].value]);
+        updateAxis([date, data]);
+        updateBars([date, data]);
+        updateLabels([date, data]);
+        updateTicker([date]);
+        slider.property("value", currentFrameIndex);
+      } else {
+        // Transition normale pour l'animation automatique
+        const transition = d3.transition().duration(600).ease(d3.easeLinear);
+        updateAxis([date, data], transition);
+        updateBars([date, data], transition);
+        updateLabels([date, data], transition);
+        updateTicker([date], transition);
+      }
     }
-  
- 
+    
     async function runAnimation(startIndex = 0) {
       let i = startIndex;
       while (isRunning && i < keyframes.length) {
-        slider.property("value", i);
-        const keyframe = keyframes[i];
-        const transition = svg.transition()
-          .duration(duration)
-          .ease(d3.easeLinear);
+          updateSliderPosition(i);  // Mise à jour fluide du slider
+          const keyframe = keyframes[i];
+          const transition = svg.transition()
+              .duration(duration)  // Garder la même durée que le slider
+              .ease(d3.easeLinear);  // Transition linéaire pour uniformité
     
-        x.domain([0, keyframe[1][0].value]);
-        updateAxis(keyframe, transition);
-        updateBars(keyframe, transition);
-        updateLabels(keyframe, transition);
-        updateTicker(keyframe, transition);
+          x.domain([0, keyframe[1][0].value]);
+          updateAxis(keyframe, transition);
+          updateBars(keyframe, transition);
+          updateLabels(keyframe, transition);
+          updateTicker(keyframe, transition);
     
-        await transition.end();
-        
-        if (!isRunning) break;
-        i = (i + 1) % keyframes.length;
-        currentFrameIndex = i;
+          await transition.end();  // Attendre la fin de la transition
+    
+          if (!isRunning) break;
+          i = (i + 1) % keyframes.length;
+          currentFrameIndex = i;
       }
-    }
+    }    
+  
+  
   
 
   function startAnimation() {
@@ -188,6 +209,7 @@ function bars(svg) {
       .append("g")
       .attr("fill-opacity", 0.7)
       .selectAll("rect");
+      
 
   return ([date, data], transition) => {
       bar = bar
@@ -201,6 +223,8 @@ function bars(svg) {
                       .attr("y", (d) => y((prev.get(d) || d).rank))
                       .attr("height", y.bandwidth())
                       .attr("width", 0) // Barres démarrent à 0 largeur
+                      .attr ("id", (d) => d.name)
+                      
                       .call((enter) =>
                           enter
                               .transition(transition)
@@ -222,7 +246,6 @@ function bars(svg) {
           );
   };
 }
-
 
     function labels(svg) {
       let label = svg
@@ -340,11 +363,13 @@ function bars(svg) {
   
   // Ajouter les événements aux boutons
   d3.select("#start-button").on("click", togglePausePlay);
-  d3.select("#pause-button").on("click", stopAnimation);
   d3.select("#replay-button").on("click", replayAnimation);
  
 
-  
+  svg.selectAll("rect").on("click", function(event){
+    console.log (event)
+    location.replace("index.html#");
+  });
   }
 
   initializeChart();
