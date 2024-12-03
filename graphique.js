@@ -365,17 +365,23 @@ function bars(svg) {
   d3.select("#start-button").on("click", togglePausePlay);
   d3.select("#replay-button").on("click", replayAnimation);
  
-
-  svg.selectAll("rect").on("click", function(event, d) {
-    const sectionId = d.name.toLowerCase();  // Le nom de la barre doit correspondre à l'ID de la section
+  svg.selectAll("rect").on("click", function (event, d) {
+    const sectionId = d.name.toLowerCase(); // Le nom de la barre doit correspondre à l'ID de la section
     const targetSection = document.getElementById(sectionId);
-    
+  
+    // Masquer toutes les sections avant d'afficher la section cible
+    document.querySelectorAll('.section').forEach(section => {
+      section.classList.remove('active');
+    });
+  
     if (targetSection) {
-        location.replace(`#${sectionId}`);  // Redirige vers la section correspondante
+      targetSection.classList.add('active'); // Affiche la section correspondante
+      location.replace(`#${sectionId}`);     // Redirige vers la section
     } else {
-        console.warn(`Section #${sectionId} introuvable.`);
+      console.warn(`Section #${sectionId} introuvable.`);
     }
-});
+  });
+  
 
   }
 

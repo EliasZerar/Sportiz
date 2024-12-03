@@ -63,7 +63,12 @@ header {
     max-height: 80%;
     overflow-y: auto;
 }
-
+.section {
+    display: none;
+  }
+  .section.active {
+    display: block;
+  }
 .close {
     color: #aaa;
     float: right;
