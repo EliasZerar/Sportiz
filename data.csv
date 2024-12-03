@@ -1,7 +1,7 @@
 date,name,category,value
 2016-01-01,Football,Football,2106972
 2016-01-01,Tennis,Tennis,1039352
-2016-01-01,Équitation,Equitation,663194
+2016-01-01,Equitation,Equitation,663194
 2016-01-01,Basketball,Basketball,535687
 2016-01-01,Handball,Handball,519716
 2016-01-01,Judo,Judo,559111
@@ -12,7 +12,7 @@ date,name,category,value
 2016-01-01,Athlétisme,Athletics,301976
 2017-01-01,Football,Football,2131165
 2017-01-01,Tennis,Tennis,1019816
-2017-01-01,Équitation,Equitation,644800
+2017-01-01,Equitation,Equitation,644800
 2017-01-01,Basketball,Basketball,538295
 2017-01-01,Handball,Handball,549295
 2017-01-01,Judo,Judo,563580
@@ -23,7 +23,7 @@ date,name,category,value
 2017-01-01,Athlétisme,Athletics,307018
 2018-01-01,Football,Football,2108811
 2018-01-01,Tennis,Tennis,985551
-2018-01-01,Équitation,Equitation,628262
+2018-01-01,Equitation,Equitation,628262
 2018-01-01,Basketball,Basketball,525040
 2018-01-01,Handball,Handball,527841
 2018-01-01,Judo,Judo,546954
@@ -34,7 +34,7 @@ date,name,category,value
 2018-01-01,Athlétisme,Athletics,314692
 2019-01-01,Football,Football,2198835
 2019-01-01,Tennis,Tennis,978895
-2019-01-01,Équitation,Equitation,617524
+2019-01-01,Equitation,Equitation,617524
 2019-01-01,Basketball,Basketball,516387
 2019-01-01,Handball,Handball,492101
 2019-01-01,Judo,Judo,524425
@@ -45,7 +45,7 @@ date,name,category,value
 2019-01-01,Athlétisme,Athletics,316749
 2020-01-01,Football,Football,2109844
 2020-01-01,Tennis,Tennis,972007
-2020-01-01,Équitation,Equitation,601166
+2020-01-01,Equitation,Equitation,601166
 2020-01-01,Basketball,Basketball,520235
 2020-01-01,Handball,Handball,464955
 2020-01-01,Judo,Judo,512036
@@ -56,7 +56,7 @@ date,name,category,value
 2020-01-01,Athlétisme,Athletics,305914
 2021-01-01,Football,Football,1902036
 2021-01-01,Tennis,Tennis,947288
-2021-01-01,Équitation,Equitation,665873
+2021-01-01,Equitation,Equitation,665873
 2021-01-01,Basketball,Basketball,423482
 2021-01-01,Handball,Handball,340974
 2021-01-01,Judo,Judo,368661
@@ -67,7 +67,7 @@ date,name,category,value
 2021-01-01,Athlétisme,Athletics,259652
 2022-01-01,Football,Football,2130095
 2022-01-01,Tennis,Tennis,1044574
-2022-01-01,Équitation,Equitation,692396
+2022-01-01,Equitation,Equitation,692396
 2022-01-01,Basketball,Basketball,527913
 2022-01-01,Handball,Handball,454086
 2022-01-01,Judo,Judo,469076
@@ -78,7 +78,7 @@ date,name,category,value
 2022-01-01,Athlétisme,Athletics,302583
 2023-01-01,Football,Football,2215848
 2023-01-01,Tennis,Tennis,1106989
-2023-01-01,Équitation,Equitation,675186
+2023-01-01,Equitation,Equitation,675186
 2023-01-01,Basketball,Basketball,594408
 2023-01-01,Handball,Handball,531864
 2023-01-01,Judo,Judo,529244

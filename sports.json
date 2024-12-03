@@ -4,7 +4,7 @@
     
     {"sport":"tennis", "sportif": "Roger Federer", "description":"lalala", "image":"media/tennis.png", "id":"tennis", "alt":""},
 
-    {"sport":"équitation", "sportif": "Isabell Werth", "description":"lalala", "image":"media/équitation.png", "id":"equitation", "alt":""},
+    {"sport":"equitation", "sportif": "Isabell Werth", "description":"lalala", "image":"media/équitation.png", "id":"equitation", "alt":""},
 
     {"sport":"judo", "sportif": "Teddy Riner", "description":"lalala", "image":"media/judo.png", "id":"judo", "alt":""},
 

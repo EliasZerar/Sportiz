@@ -366,10 +366,17 @@ function bars(svg) {
   d3.select("#replay-button").on("click", replayAnimation);
  
 
-  svg.selectAll("rect").on("click", function(event){
-    console.log (event)
-    location.replace("index.html#");
-  });
+  svg.selectAll("rect").on("click", function(event, d) {
+    const sectionId = d.name.toLowerCase();  // Le nom de la barre doit correspondre à l'ID de la section
+    const targetSection = document.getElementById(sectionId);
+    
+    if (targetSection) {
+        location.replace(`#${sectionId}`);  // Redirige vers la section correspondante
+    } else {
+        console.warn(`Section #${sectionId} introuvable.`);
+    }
+});
+
   }
 
   initializeChart();
