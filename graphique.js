@@ -40,7 +40,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
     const color = (() => {
       const scale = d3.scaleOrdinal([
-        "#5A5A5A", "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3",
+        "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3",
         "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3",
         "#A3A3A3"
       ]);
@@ -89,7 +89,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
     .attr("max", keyframes.length - 1)
     .attr("min", 0)
     .attr("step", 1)
-    .on("input", function() {
+     .on("input", function() {
         const frameIndex = +this.value;
         currentFrameIndex = frameIndex;
         stopAnimation();
@@ -224,7 +224,12 @@ function bars(svg) {
                       .attr("height", y.bandwidth())
                       .attr("width", 0) // Barres démarrent à 0 largeur
                       .attr ("id", (d) => d.name)
-                      
+                      .on("mouseover", function (event, d) {
+                        d3.select(this).attr("fill", "#353535"); // Change couleur au survol (doré)
+                      })
+                      .on("mouseout", function (event, d) {
+                        d3.select(this).attr("fill", color(d)); // Restaure la couleur initiale
+                      })
                       .call((enter) =>
                           enter
                               .transition(transition)
@@ -328,15 +333,18 @@ function bars(svg) {
 
     function ticker(svg) {
       const now = svg
-        .append("text")
-        .style("font", `bold ${barSize}px var(--sans-serif)`)
-        .style("font-variant-numeric", "tabular-nums")
-        .style("fill", "white")
-        .attr("text-anchor", "end")
-        .attr("x", width - 6)
-        .attr("y", marginTop + barSize * (n - 0.45))
-        .attr("dy", "0.32em")
-        .text(formatDate(keyframes[0][0])); // Affiche la première date au départ
+      .append("text")
+      .attr("style", "fill: white;")
+      .style("font-size", "40px")  // Définir la taille ici
+      .style("font-weight", "bold")
+      .style("font-family", "var(--sans-serif)")
+      .style("font-variant-numeric", "tabular-nums")
+      .attr("text-anchor", "end")
+      .attr("x", width - 6)
+      .attr("y", marginTop + barSize * (n - 0.45))
+      .attr("dy", "0.32em")
+      .text(formatDate(keyframes[0][0]));
+    
     
       return ([date], transition) => {
         transition.end().then(() => now.text(formatDate(date))); // Met à jour la date sur le ticker
@@ -379,6 +387,7 @@ function bars(svg) {
       location.replace(`#${sectionId}`);     // Redirige vers la section
     } else {
       console.warn(`Section #${sectionId} introuvable.`);
+      
     }
   });
   

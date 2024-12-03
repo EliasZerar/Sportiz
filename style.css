@@ -66,6 +66,10 @@ header {
 .section {
     display: none;
   }
+#chart-containeur:hover{
+    color: white;
+    
+}
   .section.active {
     display: block;
   }
