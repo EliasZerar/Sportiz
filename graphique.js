@@ -245,7 +245,7 @@ function updateImagePosition(event) {
                       .on("mouseover", function (event, d) {
 
                         d3.select(this).attr("fill", "#5A5A5A"); // Change couleur au survol
-                        const idBar = d3.select(this).attr("id").toLowerCase()
+                        const idBar = d3.select(this).attr("id").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                         const imgSrc = "media/" + idBar + ".png";
                         showImage(imgSrc, event)
 
