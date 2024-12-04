@@ -2,9 +2,9 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 (async function () {
   const marginTop = 90;
-  const marginRight = 110;
+  const marginRight = 100;
   const marginBottom = 15;
-  const marginLeft = 0;
+  const marginLeft = 10;
   const barSize = 50;
   const width = 1000;
   const height = marginTop + barSize * 12 + marginBottom;
