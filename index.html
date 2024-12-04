@@ -16,6 +16,10 @@
         <div class="container">
           <div id="chart-container"></div>
         </div>  
+        <div id="preview-container" style="position: absolute; display: none; z-index: 10;">
+          <img id="preview-image" src="" alt="Preview" style="width: 100px; height: auto;">
+        </div>
+        
         <!-- Barre de défilement sous le graphique -->
         <div class="slider-container">
           <input type="range" id="timeline-slider" min="0" max="100" value="0" style="width: 30%; margin: 0 auto; display: block; transition: all 0.2s ease-in-out;">
