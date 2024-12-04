@@ -114,7 +114,9 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       stopAnimation();  // Arrête l'animation
       d3.select("#start-button").text("Marche"); // Met à jour le bouton en "Marche"
       updateChart(keyframes[frameIndex]); // Met à jour le graphique instantanément
-  });
+      updateTicker(keyframes[frameIndex]); // Met à jour l'année dans le ticker
+    });
+
   
 
     function rank(value) {
@@ -347,25 +349,28 @@ function bars(svg) {
     }    
 
     function ticker(svg) {
-      const now = svg
-      .append("text")
-      .attr("style", "fill: white;")
-      .style("font-size", "40px")  // Définir la taille ici
-      .style("font-weight", "bold")
-      .style("font-family", "var(--sans-serif)")
-      .style("font-variant-numeric", "tabular-nums")
-      .attr("text-anchor", "end")
-      .attr("x", width - 6)
-      .attr("y", marginTop + barSize * (n - 0.45))
-      .attr("dy", "0.32em")
-      .text(formatDate(keyframes[0][0]));
-    
-    
-      return ([date], transition) => {
-        transition.end().then(() => now.text(formatDate(date))); // Met à jour la date sur le ticker
-      };
+  const now = svg
+    .append("text")
+    .attr("style", "fill: white;")
+    .style("font-size", "40px")
+    .style("font-weight", "bold")
+    .style("font-family", "var(--sans-serif)")
+    .style("font-variant-numeric", "tabular-nums")
+    .attr("text-anchor", "end")
+    .attr("x", width - 6)
+    .attr("y", marginTop + barSize * (n - 0.45))
+    .attr("dy", "0.32em")
+    .text(formatDate(keyframes[0][0]));
+
+  return ([date], transition = null) => {
+    if (transition) {
+      transition.end().then(() => now.text(formatDate(date)));
+    } else {
+      now.text(formatDate(date)); // Mise à jour immédiate sans transition
     }
-    
+  };
+}
+
 
     runAnimation();
 
