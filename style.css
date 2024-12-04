@@ -10,6 +10,7 @@ body {
 .gigaconteneur {
     height: 100vh;
 }
+
 h1 {
     text-transform: uppercase;
     font-family: 'Navada', sans-serif;
@@ -18,7 +19,7 @@ h1 {
     margin: 0;
     display: flex;
     justify-content: center;
-    padding-top: 8vh;
+    padding-top: 4vh;
 }
 
 header {

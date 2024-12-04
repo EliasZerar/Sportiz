@@ -5,7 +5,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
   const marginRight = 110;
   const marginBottom = 15;
   const marginLeft = 0;
-  const barSize = 48;
+  const barSize = 50;
   const width = 1000;
   const height = marginTop + barSize * 12 + marginBottom;
   const n = 12;
@@ -316,20 +316,27 @@ function bars(svg) {
     }
 
     function axis(svg) {
+
+      const tickLength = -barSize * 11;
       const g = svg
+
         .append("g")
         .attr("transform", `translate(0,${marginTop})`);
-
-        const axis = d3.axisTop(x).ticks(width / 150).tickSizeOuter(0);
-
-
+    
+      const axis = d3
+        .axisTop(x)
+        .ticks(width / 160) // Adaptez le nombre de ticks si nécessaire
+        .tickSize(tickLength) // Longueur des ticks vers le haut (-10 pixels)
+        .tickSizeOuter(0) // Pas de tick à l'extrémité de l'axe
+    
       return (_, transition) => {
         g.transition(transition).call(axis);
-        g.select(".tick:first-of-type text").remove();
-        g.selectAll(".tick:not(:first-of-type) line").attr("stroke", "white");
-        g.select(".domain").remove();
+        g.selectAll(".tick line") // Sélection de tous les éléments de ligne de tick pour modifier leur style
+          .attr("stroke", "grey") // Couleur des ticks
+          .attr("stroke-width", 0.5); // Épaisseur des ticks
+        g.select(".domain").remove(); // Enlève la ligne de domaine de l'axe
       };
-    }
+    }    
 
     function ticker(svg) {
       const now = svg
