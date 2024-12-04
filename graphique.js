@@ -38,16 +38,14 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       .rangeRound([marginTop, marginTop + barSize * (n + 1 + 0.1)])
       .padding(0.1);
 
-    const color = (() => {
-      const scale = d3.scaleOrdinal([
-        "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3",
-        "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3",
-        "#A3A3A3"
-      ]);
-      const categoryByName = new Map(data.map((d) => [d.name, d.category]));
-      scale.domain(categoryByName.values());
-      return (d) => scale(categoryByName.get(d.name));
-    })();
+      const color = (() => {
+        // Définition d'une couleur unique (par exemple, 'steelblue')
+        const singleColor = d3.color("#A6A6A6");
+        singleColor.opacity = 0.6;
+        
+        // Retourne une fonction qui renvoie toujours la même couleur
+        return () => singleColor;
+      })();
     startAnimation()
 
     const keyframes = (() => {
@@ -210,7 +208,6 @@ function stopAnimation() {
 function bars(svg) {
   let bar = svg
       .append("g")
-      .attr("fill-opacity", 0.7)
       .selectAll("rect");
       
 
