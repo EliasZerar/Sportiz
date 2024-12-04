@@ -209,11 +209,29 @@ function bars(svg) {
   let bar = svg
       .append("g")
       .selectAll("rect");
-      
+
+const previewContainer = document.getElementById('preview-container');
+const previewImage = document.getElementById('preview-image');
+
+function showImage(src, event) {
+    previewImage.src = src;
+    previewContainer.style.display = 'block';
+    previewContainer.style.left = event.clientX + 10 + 'px';
+    previewContainer.style.top = event.clientY + 10 + 'px';
+}
+
+function hideImage() {
+    previewContainer.style.display = 'none';
+}
+
+function updateImagePosition(event) {
+    previewContainer.style.left = event.clientX + 10 + 'px';
+    previewContainer.style.top = event.clientY + 10 + 'px';
+}
 
   return ([date, data], transition) => {
       bar = bar
-          .data(data.slice(0, n), (d) => d.name)
+      .data(data.slice(0, n), (d) => d.name)
           .join(
               (enter) =>
                   enter
@@ -225,16 +243,25 @@ function bars(svg) {
                       .attr("width", 0) // Barres démarrent à 0 largeur
                       .attr ("id", (d) => d.name)
                       .on("mouseover", function (event, d) {
+
+                        d3.select(this).attr("fill", "#5A5A5A"); // Change couleur au survol
+                        const idBar = d3.select(this).attr("id").toLowerCase()
+                        const imgSrc = "media/" + idBar + ".png";
+                        showImage(imgSrc, event)
+
                         d3.select(this).attr("fill","#353535"); // Change couleur au survol (doré)
+
                       })
                       .on("mouseout", function (event, d) {
                         d3.select(this).attr("fill", color(d)); // Restaure la couleur initiale
+                        hideImage();
                       })
                       .call((enter) =>
                           enter
                               .transition(transition)
                               .attr("width", (d) => x(d.value) - x(0))
-                      ),
+                      )
+                      .on("mousemove", updateImagePosition),
               (update) =>
                   update.call((update) =>
                       update
