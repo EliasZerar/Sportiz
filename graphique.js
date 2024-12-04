@@ -108,7 +108,14 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
               };
           });
     }
-    
+    slider.on("input", function() {
+      const frameIndex = +this.value;
+      currentFrameIndex = frameIndex;
+      stopAnimation();  // Arrête l'animation
+      d3.select("#start-button").text("Marche"); // Met à jour le bouton en "Marche"
+      updateChart(keyframes[frameIndex]); // Met à jour le graphique instantanément
+  });
+  
 
     function rank(value) {
       const data = Array.from(names, (name) => ({ name, value: value(name) }));
@@ -167,22 +174,23 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
           updateSliderPosition(i);  // Mise à jour fluide du slider
           const keyframe = keyframes[i];
           const transition = svg.transition()
-              .duration(duration)  // Garder la même durée que le slider
-              .ease(d3.easeLinear);  // Transition linéaire pour uniformité
-    
+              .duration(duration) 
+              .ease(d3.easeLinear);
+          
           x.domain([0, keyframe[1][0].value]);
           updateAxis(keyframe, transition);
           updateBars(keyframe, transition);
           updateLabels(keyframe, transition);
           updateTicker(keyframe, transition);
-    
-          await transition.end();  // Attendre la fin de la transition
-    
+          
+          await transition.end();
+          
           if (!isRunning) break;
           i = (i + 1) % keyframes.length;
           currentFrameIndex = i;
       }
-    }    
+  }
+  
   
   
   
@@ -367,14 +375,16 @@ function bars(svg) {
   
   // Bouton pause/marche combiné
   function togglePausePlay() {
-      if (isRunning) {
-          stopAnimation();
-          d3.select("#start-button").text("Marche");
-      } else {
-          startAnimation();
-          d3.select("#start-button").text("Pause");
-      }
-  }
+    if (isRunning) {
+        stopAnimation();
+        d3.select("#start-button").text("Marche");
+    } else {
+        isRunning = true;
+        runAnimation(currentFrameIndex);  // Reprend depuis la frame actuelle
+        d3.select("#start-button").text("Pause");
+    }
+}
+
   
   // Ajouter les événements aux boutons
   d3.select("#start-button").on("click", togglePausePlay);
