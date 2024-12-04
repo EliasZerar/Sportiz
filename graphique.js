@@ -112,7 +112,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       const frameIndex = +this.value;
       currentFrameIndex = frameIndex;
       stopAnimation();  // Arrête l'animation
-      d3.select("#start-button").text("Marche"); // Met à jour le bouton en "Marche"
+      d3.select("#start-button").text("⏵"); // Met à jour le bouton en "Marche"
       updateChart(keyframes[frameIndex]); // Met à jour le graphique instantanément
       updateTicker(keyframes[frameIndex]); // Met à jour l'année dans le ticker
     });
@@ -142,7 +142,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       .attr("fill", "white")
       .style("font-size", "24px")
       .style("font-weight", "bold")
-      .text("Nombre de licenciés en France");
+      .text("Quels sont les sports les plus pratiqués par les français entre 2016 et 2023 ?");
 
     const updateBars = bars(svg);
     const updateAxis = axis(svg);
@@ -207,13 +207,6 @@ function stopAnimation() {
     isRunning = false;
 }
 
-
-function replayAnimation() {
-    stopAnimation();
-    currentFrameIndex = 0; // Réinitialise l'index à la première frame
-    startAnimation();
-}
-
 function bars(svg) {
   let bar = svg
       .append("g")
@@ -235,7 +228,7 @@ function bars(svg) {
                       .attr("width", 0) // Barres démarrent à 0 largeur
                       .attr ("id", (d) => d.name)
                       .on("mouseover", function (event, d) {
-                        d3.select(this).attr("fill", "#353535"); // Change couleur au survol (doré)
+                        d3.select(this).attr("fill","#353535"); // Change couleur au survol (doré)
                       })
                       .on("mouseout", function (event, d) {
                         d3.select(this).attr("fill", color(d)); // Restaure la couleur initiale
@@ -382,18 +375,17 @@ function bars(svg) {
   function togglePausePlay() {
     if (isRunning) {
         stopAnimation();
-        d3.select("#start-button").text("Marche");
+        d3.select("#start-button").text("⏵");
     } else {
         isRunning = true;
         runAnimation(currentFrameIndex);  // Reprend depuis la frame actuelle
-        d3.select("#start-button").text("Pause");
+        d3.select("#start-button").text("⏸");
     }
 }
 
   
   // Ajouter les événements aux boutons
-  d3.select("#start-button").on("click", togglePausePlay);
-  d3.select("#replay-button").on("click", replayAnimation);
+  d3.select("#start-button").on("click", togglePausePlay);  
 // Fonction pour normaliser les chaînes avec accents
 function normalizeString(str) {
   return str
