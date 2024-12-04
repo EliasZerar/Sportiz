@@ -379,24 +379,32 @@ function bars(svg) {
   // Ajouter les événements aux boutons
   d3.select("#start-button").on("click", togglePausePlay);
   d3.select("#replay-button").on("click", replayAnimation);
- 
-  svg.selectAll("rect").on("click", function (event, d) {
-    const sectionId = d.name.toLowerCase(); // Le nom de la barre doit correspondre à l'ID de la section
-    const targetSection = document.getElementById(sectionId);
+// Fonction pour normaliser les chaînes avec accents
+function normalizeString(str) {
+  return str
+    .normalize("NFD") // Sépare les lettres des accents
+    .replace(/[\u0300-\u036f]/g, "") // Supprime les accents
+    .toLowerCase() // Convertit en minuscules
+    .replace(/[^a-z0-9]/g, ""); // Supprime les caractères spéciaux
+}
+
+svg.selectAll("rect").on("click", function (event, d) {
+  const sectionId = normalizeString(d.name); // Utilisation de la fonction de normalisation
+  const targetSection = document.getElementById(sectionId);
   
-    // Masquer toutes les sections avant d'afficher la section cible
-    document.querySelectorAll('.section').forEach(section => {
-      section.classList.remove('active');
-    });
-  
-    if (targetSection) {
-      targetSection.classList.add('active'); // Affiche la section correspondante
-      location.replace(`#${sectionId}`);     // Redirige vers la section
-    } else {
-      console.warn(`Section #${sectionId} introuvable.`);
-      
-    }
+  // Masquer toutes les sections avant d'afficher la section cible
+  document.querySelectorAll('.section').forEach(section => {
+    section.classList.remove('active');
   });
+
+  if (targetSection) {
+    targetSection.classList.add('active'); // Affiche la section correspondante
+    location.replace(`#${sectionId}`);     // Redirige vers la section
+  } else {
+    console.warn(`Section #${sectionId} introuvable.`);
+  }
+});
+
   
 
   }
