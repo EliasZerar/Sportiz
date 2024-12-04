@@ -2,7 +2,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 (async function () {
   const marginTop = 90;
-  const marginRight = 110;
+  const marginRight = 100;
   const marginBottom = 15;
   const marginLeft = 10;
   const barSize = 50;
@@ -38,16 +38,14 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       .rangeRound([marginTop, marginTop + barSize * (n + 1 + 0.1)])
       .padding(0.1);
 
-    const color = (() => {
-      const scale = d3.scaleOrdinal([
-        "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3",
-        "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3", "#A3A3A3",
-        "#A3A3A3"
-      ]);
-      const categoryByName = new Map(data.map((d) => [d.name, d.category]));
-      scale.domain(categoryByName.values());
-      return (d) => scale(categoryByName.get(d.name));
-    })();
+      const color = (() => {
+        // Définition d'une couleur unique (par exemple, 'steelblue')
+        const singleColor = d3.color("#A6A6A6");
+        singleColor.opacity = 0.6;
+        
+        // Retourne une fonction qui renvoie toujours la même couleur
+        return () => singleColor;
+      })();
     startAnimation()
 
     const keyframes = (() => {
@@ -108,7 +106,16 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
               };
           });
     }
-    
+    slider.on("input", function() {
+      const frameIndex = +this.value;
+      currentFrameIndex = frameIndex;
+      stopAnimation();  // Arrête l'animation
+      d3.select("#start-button").text("⏵"); // Met à jour le bouton en "Marche"
+      updateChart(keyframes[frameIndex]); // Met à jour le graphique instantanément
+      updateTicker(keyframes[frameIndex]); // Met à jour l'année dans le ticker
+    });
+
+  
 
     function rank(value) {
       const data = Array.from(names, (name) => ({ name, value: value(name) }));
@@ -133,7 +140,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       .attr("fill", "white")
       .style("font-size", "24px")
       .style("font-weight", "bold")
-      .text("Nombre de licenciés en France");
+      .text("Quels sont les sports les plus pratiqués par les français entre 2016 et 2023 ?");
 
     const updateBars = bars(svg);
     const updateAxis = axis(svg);
@@ -167,22 +174,23 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
           updateSliderPosition(i);  // Mise à jour fluide du slider
           const keyframe = keyframes[i];
           const transition = svg.transition()
-              .duration(duration)  // Garder la même durée que le slider
-              .ease(d3.easeLinear);  // Transition linéaire pour uniformité
-    
+              .duration(duration) 
+              .ease(d3.easeLinear);
+          
           x.domain([0, keyframe[1][0].value]);
           updateAxis(keyframe, transition);
           updateBars(keyframe, transition);
           updateLabels(keyframe, transition);
           updateTicker(keyframe, transition);
-    
-          await transition.end();  // Attendre la fin de la transition
-    
+          
+          await transition.end();
+          
           if (!isRunning) break;
           i = (i + 1) % keyframes.length;
           currentFrameIndex = i;
       }
-    }    
+  }
+  
   
   
   
@@ -197,17 +205,9 @@ function stopAnimation() {
     isRunning = false;
 }
 
-
-function replayAnimation() {
-    stopAnimation();
-    currentFrameIndex = 0; // Réinitialise l'index à la première frame
-    startAnimation();
-}
-
 function bars(svg) {
   let bar = svg
       .append("g")
-      .attr("fill-opacity", 0.6)
       .selectAll("rect");
 
 const previewContainer = document.getElementById('preview-container');
@@ -243,10 +243,14 @@ function updateImagePosition(event) {
                       .attr("width", 0) // Barres démarrent à 0 largeur
                       .attr ("id", (d) => d.name)
                       .on("mouseover", function (event, d) {
+
                         d3.select(this).attr("fill", "#5A5A5A"); // Change couleur au survol
                         const idBar = d3.select(this).attr("id").toLowerCase()
                         const imgSrc = "media/" + idBar + ".png";
                         showImage(imgSrc, event)
+
+                        d3.select(this).attr("fill","#353535"); // Change couleur au survol (doré)
+
                       })
                       .on("mouseout", function (event, d) {
                         d3.select(this).attr("fill", color(d)); // Restaure la couleur initiale
@@ -362,25 +366,28 @@ function updateImagePosition(event) {
     }    
 
     function ticker(svg) {
-      const now = svg
-      .append("text")
-      .attr("style", "fill: white;")
-      .style("font-size", "40px")  // Définir la taille ici
-      .style("font-weight", "bold")
-      .style("font-family", "var(--sans-serif)")
-      .style("font-variant-numeric", "tabular-nums")
-      .attr("text-anchor", "end")
-      .attr("x", width - 6)
-      .attr("y", marginTop + barSize * (n - 0.45))
-      .attr("dy", "0.32em")
-      .text(formatDate(keyframes[0][0]));
-    
-    
-      return ([date], transition) => {
-        transition.end().then(() => now.text(formatDate(date))); // Met à jour la date sur le ticker
-      };
+  const now = svg
+    .append("text")
+    .attr("style", "fill: white;")
+    .style("font-size", "40px")
+    .style("font-weight", "bold")
+    .style("font-family", "var(--sans-serif)")
+    .style("font-variant-numeric", "tabular-nums")
+    .attr("text-anchor", "end")
+    .attr("x", width - 6)
+    .attr("y", marginTop + barSize * (n - 0.45))
+    .attr("dy", "0.32em")
+    .text(formatDate(keyframes[0][0]));
+
+  return ([date], transition = null) => {
+    if (transition) {
+      transition.end().then(() => now.text(formatDate(date)));
+    } else {
+      now.text(formatDate(date)); // Mise à jour immédiate sans transition
     }
-    
+  };
+}
+
 
     runAnimation();
 
@@ -390,36 +397,45 @@ function updateImagePosition(event) {
   
   // Bouton pause/marche combiné
   function togglePausePlay() {
-      if (isRunning) {
-          stopAnimation();
-          d3.select("#start-button").text("Marche");
-      } else {
-          startAnimation();
-          d3.select("#start-button").text("Pause");
-      }
-  }
+    if (isRunning) {
+        stopAnimation();
+        d3.select("#start-button").text("⏵");
+    } else {
+        isRunning = true;
+        runAnimation(currentFrameIndex);  // Reprend depuis la frame actuelle
+        d3.select("#start-button").text("⏸");
+    }
+}
+
   
   // Ajouter les événements aux boutons
-  d3.select("#start-button").on("click", togglePausePlay);
-  d3.select("#replay-button").on("click", replayAnimation);
- 
-  svg.selectAll("rect").on("click", function (event, d) {
-    const sectionId = d.name.toLowerCase(); // Le nom de la barre doit correspondre à l'ID de la section
-    const targetSection = document.getElementById(sectionId);
+  d3.select("#start-button").on("click", togglePausePlay);  
+// Fonction pour normaliser les chaînes avec accents
+function normalizeString(str) {
+  return str
+    .normalize("NFD") // Sépare les lettres des accents
+    .replace(/[\u0300-\u036f]/g, "") // Supprime les accents
+    .toLowerCase() // Convertit en minuscules
+    .replace(/[^a-z0-9]/g, ""); // Supprime les caractères spéciaux
+}
+
+svg.selectAll("rect").on("click", function (event, d) {
+  const sectionId = normalizeString(d.name); // Utilisation de la fonction de normalisation
+  const targetSection = document.getElementById(sectionId);
   
-    // Masquer toutes les sections avant d'afficher la section cible
-    document.querySelectorAll('.section').forEach(section => {
-      section.classList.remove('active');
-    });
-  
-    if (targetSection) {
-      targetSection.classList.add('active'); // Affiche la section correspondante
-      location.replace(`#${sectionId}`);     // Redirige vers la section
-    } else {
-      console.warn(`Section #${sectionId} introuvable.`);
-      
-    }
+  // Masquer toutes les sections avant d'afficher la section cible
+  document.querySelectorAll('.section').forEach(section => {
+    section.classList.remove('active');
   });
+
+  if (targetSection) {
+    targetSection.classList.add('active'); // Affiche la section correspondante
+    location.replace(`#${sectionId}`);     // Redirige vers la section
+  } else {
+    console.warn(`Section #${sectionId} introuvable.`);
+  }
+});
+
   
 
   }
