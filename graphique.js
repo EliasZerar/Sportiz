@@ -4,7 +4,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
   const marginTop = 90;
   const marginRight = 110;
   const marginBottom = 15;
-  const marginLeft = 0;
+  const marginLeft = 10;
   const barSize = 50;
   const width = 1000;
   const height = marginTop + barSize * 12 + marginBottom;
@@ -207,13 +207,31 @@ function replayAnimation() {
 function bars(svg) {
   let bar = svg
       .append("g")
-      .attr("fill-opacity", 0.7)
+      .attr("fill-opacity", 0.6)
       .selectAll("rect");
-      
+
+const previewContainer = document.getElementById('preview-container');
+const previewImage = document.getElementById('preview-image');
+
+function showImage(src, event) {
+    previewImage.src = src;
+    previewContainer.style.display = 'block';
+    previewContainer.style.left = event.clientX + 10 + 'px';
+    previewContainer.style.top = event.clientY + 10 + 'px';
+}
+
+function hideImage() {
+    previewContainer.style.display = 'none';
+}
+
+function updateImagePosition(event) {
+    previewContainer.style.left = event.clientX + 10 + 'px';
+    previewContainer.style.top = event.clientY + 10 + 'px';
+}
 
   return ([date, data], transition) => {
       bar = bar
-          .data(data.slice(0, n), (d) => d.name)
+      .data(data.slice(0, n), (d) => d.name)
           .join(
               (enter) =>
                   enter
@@ -225,16 +243,21 @@ function bars(svg) {
                       .attr("width", 0) // Barres démarrent à 0 largeur
                       .attr ("id", (d) => d.name)
                       .on("mouseover", function (event, d) {
-                        d3.select(this).attr("fill", "#353535"); // Change couleur au survol (doré)
+                        d3.select(this).attr("fill", "#5A5A5A"); // Change couleur au survol
+                        const idBar = d3.select(this).attr("id").toLowerCase()
+                        const imgSrc = "media/" + idBar + ".png";
+                        showImage(imgSrc, event)
                       })
                       .on("mouseout", function (event, d) {
                         d3.select(this).attr("fill", color(d)); // Restaure la couleur initiale
+                        hideImage();
                       })
                       .call((enter) =>
                           enter
                               .transition(transition)
                               .attr("width", (d) => x(d.value) - x(0))
-                      ),
+                      )
+                      .on("mousemove", updateImagePosition),
               (update) =>
                   update.call((update) =>
                       update
