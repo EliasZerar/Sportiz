@@ -1,6 +1,6 @@
 [
 
-    {"sport":"football", "sportif": "Kylian Mbappé", "description":"lalala", "image":"media/foot.png", "id":"football", "alt":""},
+    {"sport":"football", "sportif": "Kylian Mbappé", "description":"lalala", "image":"media/football.png", "id":"football", "alt":""},
     
     {"sport":"tennis", "sportif": "Roger Federer", "description":"lalala", "image":"media/tennis.png", "id":"tennis", "alt":""},
 
