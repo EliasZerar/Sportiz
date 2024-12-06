@@ -4,7 +4,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
   const marginTop = 90;
   const marginRight = 100;
   const marginBottom = 15;
-  const marginLeft = 10;
+  const marginLeft = 3;
   const barSize = 50;
   const width = 1000;
   const height = marginTop + barSize * 12 + marginBottom;
@@ -205,11 +205,6 @@ function stopAnimation() {
     isRunning = false;
 }
 
-function bars(svg) {
-  let bar = svg
-      .append("g")
-      .selectAll("rect");
-
 const previewContainer = document.getElementById('preview-container');
 const previewImage = document.getElementById('preview-image');
 
@@ -225,59 +220,197 @@ function hideImage() {
 }
 
 function updateImagePosition(event) {
-    previewContainer.style.left = event.clientX + 10 + 'px';
-    previewContainer.style.top = event.clientY + 10 + 'px';
+    previewContainer.style.left = event.clientX + 15 + 'px';
+    previewContainer.style.top = event.clientY + 15 + 'px';
 }
+
+function bars(svg) {
+  let bar = svg.append("g").selectAll("path");
 
   return ([date, data], transition) => {
-      bar = bar
+    bar = bar
       .data(data.slice(0, n), (d) => d.name)
-          .join(
-              (enter) =>
-                  enter
-                      .append("rect")
-                      .attr("fill", color)
-                      .attr("x", x(0)) // Initialisation correcte à gauche
-                      .attr("y", (d) => y((prev.get(d) || d).rank))
-                      .attr("height", y.bandwidth())
-                      .attr("width", 0) // Barres démarrent à 0 largeur
-                      .attr ("id", (d) => d.name)
-                      .on("mouseover", function (event, d) {
+      .join(
+        (enter) =>
+          enter
+            .append("path")
+            .attr("d", (d) => {
+              // Barres avec largeur initiale 0 pour animation
+              const radius = 5;
+              const x0 = Math.max(x(0), marginLeft); // S'assure que le point de départ est au moins égal à la marge gauche
+              const x1 = x(0) + 3;
+              const y0 = y(d.rank);
+              const height = y.bandwidth();
 
-                        d3.select(this).attr("fill", "#5A5A5A"); // Change couleur au survol
-                        const idBar = d3.select(this).attr("id").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                        const imgSrc = "media/" + idBar + ".png";
-                        showImage(imgSrc, event)
+              return `
+                M${x0},${y0} 
+                h${x1 - x0} 
+                v${height} 
+                h${x1 + x0} 
+                Z
+              `;
+            })
+            .attr("fill", color)
+            .attr("id", (d) => d.name)
+            .on("mouseover", function (event, d) {
+              // Change la couleur au survol
+              d3.select(this).attr("fill", "#4A4A4A");
+              const idBar = d3
+                .select(this)
+                .attr("id")
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
+              const imgSrc = "media/" + idBar + ".png";
+              showImage(imgSrc, event);
+            })
+            .on("mouseout", function (event, d) {
+              // Restaure la couleur initiale
+              d3.select(this).attr("fill", color(d));
+              hideImage();
+            })
+            .on("mousemove", updateImagePosition)
+            .on("click", function (event, d) {
+              const sectionId = normalizeString(d.name);
+              const targetSection = document.getElementById(sectionId);
 
-                        d3.select(this).attr("fill","#353535"); // Change couleur au survol (doré)
+              // Masquer toutes les sections avant d'afficher la section cible
+              document.querySelectorAll(".section").forEach((section) => {
+                section.classList.remove("active");
+              });
 
-                      })
-                      .on("mouseout", function (event, d) {
-                        d3.select(this).attr("fill", color(d)); // Restaure la couleur initiale
-                        hideImage();
-                      })
-                      .call((enter) =>
-                          enter
-                              .transition(transition)
-                              .attr("width", (d) => x(d.value) - x(0))
-                      )
-                      .on("mousemove", updateImagePosition),
-              (update) =>
-                  update.call((update) =>
-                      update
-                          .transition(transition)
-                          .attr("y", (d) => y(d.rank))
-                          .attr("width", (d) => x(d.value) - x(0))
-                  ),
-              (exit) =>
-                  exit
-                      .transition(transition)
-                      .attr("width", 0)
-                      .attr("y", (d) => y((next.get(d) || d).rank))
-                      .remove()
-          );
+              if (targetSection) {
+                targetSection.classList.add("active"); // Affiche la section correspondante
+                location.replace(`#${sectionId}`); // Redirige vers la section
+              } else {
+                console.warn(`Section #${sectionId} introuvable.`);
+              }
+            })
+            .call((enter) =>
+              enter
+                .transition(transition) // Animation d'apparition
+                .duration(800)
+                .ease(d3.easeLinear)
+                .attr("d", (d) => {
+                  // Chemin final avec la largeur correcte
+                  const radius = 5;
+                  const x0 = x(0);
+                  const x1 = x(d.value);
+                  const y0 = y(d.rank);
+                  const height = y.bandwidth();
+
+                  return `
+                    M${x0},${y0} 
+                    h${x1 - x0 - radius} 
+                    a${radius},${radius} 0 0 1 ${radius},${radius} 
+                    v${height - 2 * radius} 
+                    a${radius},${radius} 0 0 1 -${radius},${radius} 
+                    h${-x1 + x0 + radius} 
+                    Z
+                  `;
+                })
+            ),
+        (update) =>
+          update.call((update) =>
+            update
+              .transition(transition)
+              .attr("d", (d) => {
+                const radius = 5;
+                const x0 = x(0);
+                const x1 = x(d.value);
+                const y0 = y(d.rank);
+                const height = y.bandwidth();
+
+                return `
+                  M${x0},${y0} 
+                  h${x1 - x0 - radius} 
+                  a${radius},${radius} 0 0 1 ${radius},${radius} 
+                  v${height - 2 * radius} 
+                  a${radius},${radius} 0 0 1 -${radius},${radius} 
+                  h${-x1 + x0 + radius} 
+                  Z
+                `;
+              })
+          ),
+        (exit) =>
+          exit
+            .transition(transition)
+            .attr("d", (d) => {
+              // Barres disparaissent vers largeur 0
+              const x0 = x(0);
+              const x1 = x(0) + 3;
+              const y0 = y(d.rank);
+              const height = y.bandwidth();
+
+              return `
+                M${x0},${y0} 
+                h${x1 - x0} 
+                v${height} 
+                h${-x1 + x0} 
+                Z
+              `;
+            })
+            .remove()
+      );
   };
 }
+
+
+// function bars(svg) {
+//   let bar = svg
+//       .append("g")
+//       .selectAll("rect");
+
+//   return ([date, data], transition) => {
+//       bar = bar
+//       .data(data.slice(0, n), (d) => d.name)
+//           .join(
+//               (enter) =>
+//                   enter
+//                       .append("rect")
+//                       .attr("fill", color)
+//                       .style("border-radius", "10px")
+//                       .attr("x", x(0)) // Initialisation correcte à gauche
+//                       .attr("y", (d) => y((prev.get(d) || d).rank))
+//                       .attr("height", y.bandwidth())
+//                       .attr("width", 0) // Barres démarrent à 0 largeur
+//                       .attr ("id", (d) => d.name)
+//                       .on("mouseover", function (event, d) {
+
+//                         d3.select(this).attr("fill", "#5A5A5A"); // Change couleur au survol
+//                         const idBar = d3.select(this).attr("id").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+//                         const imgSrc = "media/" + idBar + ".png";
+//                         showImage(imgSrc, event)
+
+//                         d3.select(this).attr("fill","#353535"); // Change couleur au survol (doré)
+
+//                       })
+//                       .on("mouseout", function (event, d) {
+//                         d3.select(this).attr("fill", color(d)); // Restaure la couleur initiale
+//                         hideImage();
+//                       })
+//                       .call((enter) =>
+//                           enter
+//                               .transition(transition)
+//                               .attr("width", (d) => x(d.value) - x(0))
+//                       )
+//                       .on("mousemove", updateImagePosition),
+//               (update) =>
+//                   update.call((update) =>
+//                       update
+//                           .transition(transition)
+//                           .attr("y", (d) => y(d.rank))
+//                           .attr("width", (d) => x(d.value) - x(0))
+//                   ),
+//               (exit) =>
+//                   exit
+//                       .transition(transition)
+//                       .attr("width", 0)
+//                       .attr("y", (d) => y((next.get(d) || d).rank))
+//                       .remove()
+//           );
+//   };
+// }
 
     function labels(svg) {
       let label = svg
@@ -419,7 +552,7 @@ function normalizeString(str) {
     .replace(/[^a-z0-9]/g, ""); // Supprime les caractères spéciaux
 }
 
-svg.selectAll("rect").on("click", function (event, d) {
+svg.selectAll("path").on("click", function (event, d) {
   const sectionId = normalizeString(d.name); // Utilisation de la fonction de normalisation
   const targetSection = document.getElementById(sectionId);
   
