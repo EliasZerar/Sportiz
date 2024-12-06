@@ -225,7 +225,19 @@ function updateImagePosition(event) {
 }
 
 function bars(svg) {
-  let bar = svg.append("g").selectAll("path");
+  svg.append("defs")
+  .append("clipPath")
+  .attr("id", "clip")
+  .append("rect")
+  .attr("x", marginLeft) // Début du clip correspondant à la marge gauche
+  .attr("y", 0)
+  .attr("width", width - marginLeft) // Largeur limitée à la zone visible
+  .attr("height", height);
+
+  let bar = svg
+    .append("g")
+    .attr("clip-path", "url(#clip)")
+    .selectAll("path");
 
   return ([date, data], transition) => {
     bar = bar
@@ -237,8 +249,9 @@ function bars(svg) {
             .attr("d", (d) => {
               // Barres avec largeur initiale 0 pour animation
               const radius = 5;
-              const x0 = Math.max(x(0), marginLeft); // S'assure que le point de départ est au moins égal à la marge gauche
-              const x1 = x(0) + 3;
+              const x = d3.scaleLinear([0, 0.6], [marginLeft, width - marginRight]);
+              const x0 = x(0) + marginLeft;
+              const x1 = x(0) + marginLeft;
               const y0 = y(d.rank);
               const height = y.bandwidth();
 
@@ -294,7 +307,7 @@ function bars(svg) {
                 .attr("d", (d) => {
                   // Chemin final avec la largeur correcte
                   const radius = 5;
-                  const x0 = x(0);
+                  const x0 = marginLeft;
                   const x1 = x(d.value);
                   const y0 = y(d.rank);
                   const height = y.bandwidth();
@@ -338,7 +351,7 @@ function bars(svg) {
             .attr("d", (d) => {
               // Barres disparaissent vers largeur 0
               const x0 = x(0);
-              const x1 = x(0) + 3;
+              const x1 = x(0) + marginLeft;
               const y0 = y(d.rank);
               const height = y.bandwidth();
 
