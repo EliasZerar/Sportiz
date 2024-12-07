@@ -5,7 +5,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
   const marginRight = 100;
   const marginBottom = 15;
   const marginLeft = 3;
-  const barSize = 50;
+  const barSize = 48;
   const width = 1000;
   const height = marginTop + barSize * 12 + marginBottom;
   const n = 12;
@@ -35,12 +35,12 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
     const y = d3
       .scaleBand()
       .domain(d3.range(n + 1))
-      .rangeRound([marginTop, marginTop + barSize * (n + 1 + 0.1)])
-      .padding(0.1);
+      .rangeRound([marginTop, marginTop + barSize * (n + 1 + 0.15)])
+      .padding(0.15);
 
       const color = (() => {
         // Définition d'une couleur unique (par exemple, 'steelblue')
-        const singleColor = d3.color("#A6A6A6");
+        const singleColor = d3.color("#CACACA");
         singleColor.opacity = 0.6;
         
         // Retourne une fonction qui renvoie toujours la même couleur
@@ -139,9 +139,10 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       .attr("y", marginTop / 2)
       .attr("text-anchor", "middle")
       .attr("fill", "white")
-      .style("font-size", "24px")
+      .style("font-size", "1.3em")
       .style("font-weight", "bold")
-      .text("Quels sont les sports les plus pratiqués par les français entre 2016 et 2023 ?");
+      .style("font-family", "HelveticaNeue, sans-serif")
+      .text("QUELS SONT LES SPORTS LES PLUS PRATIQUÉS PAR LES FRANÇAIS ENTRE 2016 ET 2023 ?");
 
     const updateBars = bars(svg);
     const updateAxis = axis(svg);
@@ -268,7 +269,7 @@ function bars(svg) {
             .attr("id", (d) => d.name)
             .on("mouseover", function (event, d) {
               // Change la couleur au survol
-              d3.select(this).attr("fill", "#4A4A4A");
+              d3.select(this).attr("fill", "#ddd374");
               const idBar = d3
                 .select(this)
                 .attr("id")
@@ -369,67 +370,10 @@ function bars(svg) {
   };
 }
 
-
-// function bars(svg) {
-//   let bar = svg
-//       .append("g")
-//       .selectAll("rect");
-
-//   return ([date, data], transition) => {
-//       bar = bar
-//       .data(data.slice(0, n), (d) => d.name)
-//           .join(
-//               (enter) =>
-//                   enter
-//                       .append("rect")
-//                       .attr("fill", color)
-//                       .style("border-radius", "10px")
-//                       .attr("x", x(0)) // Initialisation correcte à gauche
-//                       .attr("y", (d) => y((prev.get(d) || d).rank))
-//                       .attr("height", y.bandwidth())
-//                       .attr("width", 0) // Barres démarrent à 0 largeur
-//                       .attr ("id", (d) => d.name)
-//                       .on("mouseover", function (event, d) {
-
-//                         d3.select(this).attr("fill", "#5A5A5A"); // Change couleur au survol
-//                         const idBar = d3.select(this).attr("id").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-//                         const imgSrc = "media/" + idBar + ".png";
-//                         showImage(imgSrc, event)
-
-//                         d3.select(this).attr("fill","#353535"); // Change couleur au survol (doré)
-
-//                       })
-//                       .on("mouseout", function (event, d) {
-//                         d3.select(this).attr("fill", color(d)); // Restaure la couleur initiale
-//                         hideImage();
-//                       })
-//                       .call((enter) =>
-//                           enter
-//                               .transition(transition)
-//                               .attr("width", (d) => x(d.value) - x(0))
-//                       )
-//                       .on("mousemove", updateImagePosition),
-//               (update) =>
-//                   update.call((update) =>
-//                       update
-//                           .transition(transition)
-//                           .attr("y", (d) => y(d.rank))
-//                           .attr("width", (d) => x(d.value) - x(0))
-//                   ),
-//               (exit) =>
-//                   exit
-//                       .transition(transition)
-//                       .attr("width", 0)
-//                       .attr("y", (d) => y((next.get(d) || d).rank))
-//                       .remove()
-//           );
-//   };
-// }
-
     function labels(svg) {
       let label = svg
         .append("g")
-        .style("font", "bold 12px var(--sans-serif)")
+        .style("font-family", "Nutgame, serif")
         .style("font-variant-numeric", "tabular-nums")
         .attr("text-anchor", "start")
         .selectAll("text");
@@ -458,7 +402,7 @@ function bars(svg) {
                     .attr("x", 6)
                     .attr("dy", "1.2em")
                     .attr("font-weight", "normal")
-                    .attr("fill", "white")
+                    .attr("fill", "lightgrey")
                     .text((d) => formatNumber(d.value))
                 ),
             (update) =>
@@ -505,6 +449,8 @@ function bars(svg) {
     
       return (_, transition) => {
         g.transition(transition).call(axis);
+        g.selectAll("text")
+          .style("font-family", "HelveticaNeue, sans-serif");
         g.selectAll(".tick line") // Sélection de tous les éléments de ligne de tick pour modifier leur style
           .attr("stroke", "grey") // Couleur des ticks
           .attr("stroke-width", 0.5); // Épaisseur des ticks
@@ -513,27 +459,28 @@ function bars(svg) {
     }    
 
     function ticker(svg) {
-  const now = svg
-    .append("text")
-    .attr("style", "fill: white;")
-    .style("font-size", "40px")
-    .style("font-weight", "bold")
-    .style("font-family", "var(--sans-serif)")
-    .style("font-variant-numeric", "tabular-nums")
-    .attr("text-anchor", "end")
-    .attr("x", width - 6)
-    .attr("y", marginTop + barSize * (n - 0.45))
-    .attr("dy", "0.32em")
-    .text(formatDate(keyframes[0][0]));
-
-  return ([date], transition = null) => {
-    if (transition) {
-      transition.end().then(() => now.text(formatDate(date)));
-    } else {
-      now.text(formatDate(date)); // Mise à jour immédiate sans transition
+      const now = svg
+        .append("text")
+        .attr("style", "fill: white") // Couleur dorée
+        .style("font-size", "40px")
+        .style("font-weight", "bold")
+        .style("font-family", "HelveticaNeue, sans-serif")
+        .style("font-variant-numeric", "tabular-nums")
+        .attr("text-anchor", "end") // Aligné à droite
+        .attr("x", width - 50) // Position horizontale (dans le graphique)
+        .attr("y", height - 50) // Position verticale (dans le graphique)
+        .attr("dy", "-0.32em") // Ajuste la ligne de base pour un meilleur alignement
+        .text(formatDate(keyframes[0][0]));
+    
+      return ([date], transition = null) => {
+        if (transition) {
+          transition.end().then(() => now.text(formatDate(date)));
+        } else {
+          now.text(formatDate(date)); // Mise à jour immédiate sans transition
+        }
+      };
     }
-  };
-}
+    
 
 
     runAnimation();
