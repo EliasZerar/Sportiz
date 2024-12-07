@@ -10,7 +10,10 @@ body {
     margin: 0;
 }
 
-.gigaconteneur,
+.section-graph {
+    height: 100vh;
+}
+
 .section {
     height: 100vh;
 }
