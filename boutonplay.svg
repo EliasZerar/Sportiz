@@ -3,11 +3,11 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #a6a6a6;
+        fill: #A6A6A6;
       }
 
       .cls-2 {
-        opacity: .55;
+        opacity: 1;
       }
     </style>
   </defs>

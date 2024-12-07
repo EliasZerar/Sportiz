@@ -110,7 +110,8 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       const frameIndex = +this.value;
       currentFrameIndex = frameIndex;
       stopAnimation();  // Arrête l'animation
-      d3.select("#start-button").text("⏵"); // Met à jour le bouton en "Marche"
+      d3.select("#start-button img")
+      .attr("src", "boutonplay.svg") 
       updateChart(keyframes[frameIndex]); // Met à jour le graphique instantanément
       updateTicker(keyframes[frameIndex]); // Met à jour l'année dans le ticker
     });
@@ -506,14 +507,22 @@ function bars(svg) {
   // Bouton pause/marche combiné
   function togglePausePlay() {
     if (isRunning) {
-        stopAnimation();
-        d3.select("#start-button").text("⏵");
+     
+      stopAnimation();
+      
+      d3.select("#start-button img")
+        .attr("src", "boutonplay.svg")  
+       
     } else {
-        isRunning = true;
-        runAnimation(currentFrameIndex);  // Reprend depuis la frame actuelle
-        d3.select("#start-button").text("⏸");
+      
+      isRunning = true;
+      runAnimation(currentFrameIndex);
+      
+      d3.select("#start-button img")
+        .attr("src", "boutonpause.svg")  // L'image du bouton 'pause'
+      
     }
-}
+  }
 
   
   // Ajouter les événements aux boutons
