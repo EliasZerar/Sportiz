@@ -229,16 +229,16 @@ function updateImagePosition(event) {
 const hoverColorScale = d3.scaleOrdinal()
   .domain([...names]) // Les noms uniques des barres
   .range
-  (["#C8C172", //foot
+  (["#A09B5B", //foot
     "#852D2D", //tennis
     "#6F4B38", //equitation
     "#533C80", //basket
-    "#CC7C51", //hand
+    "#AA6D4C", //hand
     "#364EA1", //judo
-    "#B13838", //golf
+    "#9C3535", //golf
     "#394B77", //natation
-    "#82B8B5", //rugby
-    "#AE597A", //gym
+    "#80A4A2", //rugby
+    "#A56B81", //gym
     "#4E876A"]); //athle
 
 function bars(svg) {
@@ -482,7 +482,7 @@ function bars(svg) {
         .style("font-family", "HelveticaNeue, sans-serif")
         .style("font-variant-numeric", "tabular-nums")
         .attr("text-anchor", "end") // Aligné à droite
-        .attr("x", width - 50) // Position horizontale (dans le graphique)
+        .attr("x", width - 30) // Position horizontale (dans le graphique)
         .attr("y", height - 50) // Position verticale (dans le graphique)
         .attr("dy", "-0.32em") // Ajuste la ligne de base pour un meilleur alignement
         .text(formatDate(keyframes[0][0]));
