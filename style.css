@@ -41,7 +41,7 @@ header {
 .slider-container {
     display: flex;
     flex-grow: 1;
-    max-width: 1000px; /* Ajuste selon tes besoins */
+    max-width: 950px; /* Ajuste selon tes besoins */
 }
 
 .bar {
