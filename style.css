@@ -10,10 +10,7 @@ body {
     margin: 0;
 }
 
-.section-graph {
-    height: 100vh;
-}
-
+.gigaconteneur,
 .section {
     height: 100vh;
 }
@@ -44,7 +41,7 @@ header {
 .slider-container {
     display: flex;
     flex-grow: 1;
-    max-width: 600px; /* Ajuste selon tes besoins */
+    max-width: 1000px; /* Ajuste selon tes besoins */
 }
 
 .bar {
@@ -66,7 +63,6 @@ header {
 
 #timeline-slider {
     width: 100%;
-    max-width: 600px;
 }
 
 #popup {
