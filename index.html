@@ -12,24 +12,27 @@
 
   <body>
     <header>
-      <h1>Sportiz</h1>
-      <div class="gigaconteneur">
-        <div class="container">
-          <div id="chart-container"></div>
-        </div>  
-        <div id="preview-container" style="position: absolute; display: none; z-index: 10; pointer-events: none;">
-          <img id="preview-image" src="" alt="Preview" style="width: 100px; height: auto; border-radius: 5px;">
-        </div>
-        
-        <!-- Barre de défilement sous le graphique -->
-        <div class="bar">
-          <div id="controls">
-            <button id="start-button">⏸</button>
+      <div class="container-all">
+        <section class="section-graph">
+          <h1>Sportiz</h1>
+          <div class="container">
+            <div id="chart-container"></div>
+          </div>  
+          <div id="preview-container" style="position: absolute; display: none; z-index: 10; pointer-events: none;">
+            <img id="preview-image" src="" alt="Preview" style="width: 100px; height: auto; border-radius: 5px;">
           </div>
-          <div class="slider-container">
-            <input type="range" id="timeline-slider" min="0" max="100" value="0">
+          <!-- Barre de défilement sous le graphique -->
+          <div class="bar">
+            <div id="controls">
+              <button id="start-button">
+                <img src="boutonpause.svg" alt="Pause Button" width="15" height="auto">
+              </button>
+            </div>
+            <div class="slider-container">
+              <input type="range" id="timeline-slider" min="0" max="100" value="0">
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     </header>
     <script type="module" src="graphique.js"></script>
