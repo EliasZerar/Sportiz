@@ -225,6 +225,21 @@ function updateImagePosition(event) {
     previewContainer.style.top = event.clientY + 15 + 'px';
 }
 
+const hoverColorScale = d3.scaleOrdinal()
+  .domain([...names]) // Les noms uniques des barres
+  .range
+  (["#C8C172", //foot
+    "#852D2D", //tennis
+    "#6F4B38", //equitation
+    "#533C80", //basket
+    "#CC7C51", //hand
+    "#364EA1", //judo
+    "#B13838", //golf
+    "#394B77", //natation
+    "#82B8B5", //rugby
+    "#AE597A", //gym
+    "#4E876A"]); //athle
+
 function bars(svg) {
   svg.append("defs")
   .append("clipPath")
@@ -268,7 +283,7 @@ function bars(svg) {
             .attr("id", (d) => d.name)
             .on("mouseover", function (event, d) {
               // Change la couleur au survol
-              d3.select(this).attr("fill", "#ddd374");
+              d3.select(this).attr("fill", hoverColorScale(d.name));
               const idBar = d3
                 .select(this)
                 .attr("id")
@@ -372,7 +387,7 @@ function bars(svg) {
     function labels(svg) {
       let label = svg
         .append("g")
-        .style("font-family", "Nutgame, serif")
+        .style("font-family", "HelveticaNeue, sans-serif")
         .style("font-variant-numeric", "tabular-nums")
         .attr("text-anchor", "start")
         .selectAll("text");
@@ -400,7 +415,7 @@ function bars(svg) {
                     .append("tspan")
                     .attr("x", 6)
                     .attr("dy", "1.2em")
-                    .attr("font-weight", "normal")
+                    .attr("font-weight", "light")
                     .attr("fill", "lightgrey")
                     .text((d) => formatNumber(d.value))
                 ),
@@ -461,7 +476,7 @@ function bars(svg) {
       const now = svg
         .append("text")
         .attr("style", "fill: white") // Couleur dorée
-        .style("font-size", "40px")
+        .style("font-size", "35px")
         .style("font-weight", "bold")
         .style("font-family", "HelveticaNeue, sans-serif")
         .style("font-variant-numeric", "tabular-nums")
