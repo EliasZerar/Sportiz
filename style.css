@@ -16,6 +16,35 @@ body {
 
 .accueil {
     height: 100vh;
+    background-image: url(media/accueil_DTZ.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.explication {
+    max-width: 720px;
+    padding-bottom: 25px;
+}
+
+.link {
+    text-decoration: none;
+    border-radius: 0 8px 8px 0;
+    font-size: 1.1em;
+    background-color: #3b3737;
+    color: white;
+    padding: 8px;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+.link:hover {
+    color: #3b3737;
+    background-color: rgb(223, 223, 223);
+    transition: 0.3s;
+}
+
+.content-sportiz {
+    margin: 54vh 15vh 0 15vh;
 }
 
 .section-graph {
@@ -37,16 +66,21 @@ body {
 
 h1 {
     text-transform: uppercase;
-    font-family: 'Navada Demo', sans-serif;
-    font-size: 4rem;
+    font-family: 'Navada Demo';
+    font-size: 6rem;
     margin: 0;
     display: flex;
     justify-content: center;
-    padding-top: 4vh;
+    padding-top: 3.5vh;
+}
+
+.iz {
+    font-family: 'Navada';
+    font-style: normal;
 }
 
 .section-graph {
-    background: radial-gradient(#383838, #000000 60%);
+    background: radial-gradient(#242424, #000000 60%);
 }
 
 .container, .bar {
@@ -153,10 +187,11 @@ input[type="range"] {
     font-size: 9em;
     margin: 0;
     font-family: 'Navada Demo', sans-serif;
-    color: #CEBD60;
+    /* color: #CEBD60; */
+    color: white;
 }
 
-.description {
+.description, .explication {
     font-size: 1.2em;
     margin: 0;
     font-family: "Helvetica Neue", sans-serif;
