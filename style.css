@@ -27,7 +27,7 @@ body {
 
 h1 {
     text-transform: uppercase;
-    font-family: 'Navada', sans-serif;
+    font-family: 'Navada Demo', sans-serif;
     font-size: 4rem;
     margin: 0;
     display: flex;
@@ -132,4 +132,23 @@ input[type="range"] {
     color: rgb(64, 0, 0);
     text-decoration: none;
     cursor: pointer;
+}
+
+.content {
+    transform: translate(30%, 70%);
+    max-width: fit-content;
+}
+
+.sport-name {
+    font-size: 9em;
+    margin: 0;
+    font-family: 'Navada Demo', sans-serif;
+    color: #CEBD60;
+}
+
+.description {
+    font-size: 1.2em;
+    margin: 0;
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: 300;
 }

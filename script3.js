@@ -1,4 +1,4 @@
-//récupérer les éléments de sports.json avec fetch pour avoir le sport, sportif/ve, description, image
+//récupérer les éléments de sports.json avec fetch pour avoir le sport, la description, l'image
 //mettre chaque analogie dans chaque section
 fetch('sports.json')
     .then(function (response) {
@@ -18,13 +18,13 @@ fetch('sports.json')
                 section.style.backgroundImage = `url(${element.image})`;
                 section.style.backgroundRepeat = 'no-repeat';
                 section.style.backgroundSize = 'cover';
+                section.style.backgroundPosition = 'center';
 
                 // Ajouter le contenu textuel
                 section.innerHTML = `
                     <div class="content">
-                        <h2>${element.sport}</h2>
-                        <h3>${element.sportif}</h3>
-                        <p>${element.description}</p>
+                        <h2 class="sport-name">${element.sport}</h2>
+                        <p class="description">${element.description}</p>
                     </div>
                 `;
             }

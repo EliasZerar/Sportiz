@@ -1,25 +1,25 @@
 [
 
-    {"sport":"football", "sportif": "Kylian Mbappé", "description":"lalala", "image":"media/football.png", "id":"football", "alt":""},
+    {"sport":"FOOTBALL", "description":"Le football, né en Angleterre au XIXe siècle, est devenu un sport mondial. <br>Codifié en 1863, il s'inspire de jeux anciens pratiqués dans plusieurs pays. <br>Rapidement, il s'est répandu grâce à sa simplicité et son attrait collectif. <br>La création de la FIFA en 1904 a unifié les règles et organisé les compétitions. <br>Aujourd'hui, c'est le sport le plus populaire, symbole de culture et passion.", "image":"media/football.png", "id":"football", "alt":""},
     
-    {"sport":"tennis", "sportif": "Roger Federer", "description":"lalala", "image":"media/tennis.png", "id":"tennis", "alt":""},
+    {"sport":"TENNIS", "description":"Le tennis trouve ses origines dans le jeu de paume, pratiqué au Moyen Âge. <br>Il a évolué en Angleterre au XIXe siècle avec des règles modernes fixées. <br>Le premier tournoi de Wimbledon, créé en 1877, reste une référence majeure. <br>Ce sport, exigeant et stratégique, mêle technique, endurance et mental fort. <br>Aujourd'hui, il brille à travers des stars mondiales et des tournois légendaires.", "image":"media/tennis.png", "id":"tennis", "alt":""},
 
-    {"sport":"equitation", "sportif": "Isabell Werth", "description":"lalala", "image":"media/equitation.png", "id":"equitation", "alt":""},
+    {"sport":"EQUITATION", "description":"L'équitation, art ancestral, remonte aux premières domestications du cheval. <br>Elle a évolué de pratique utilitaire à discipline sportive et artistique noble. <br>Codifiée au XIXe siècle, elle inclut dressage, saut d’obstacles et concours. <br>Symbole de complicité entre cavalier et monture, elle exige finesse et maîtrise. <br>Aujourd’hui, l’équitation incarne autant le loisir que la compétition équestre.", "image":"media/equitation.png", "id":"equitation", "alt":""},
 
-    {"sport":"judo", "sportif": "Teddy Riner", "description":"lalala", "image":"media/judo.png", "id":"judo", "alt":""},
+    {"sport":"JUDO", "description":"Le judo, créé par Jigoro Kano en 1882 au Japon, est un art martial moderne. <br>Il repose sur des principes de souplesse, de contrôle et de respect mutuel. <br>Inspiré du ju-jitsu, il vise à projeter ou immobiliser l’adversaire au sol. <br>Devenu sport olympique en 1964, il valorise discipline, technique et courage. <br>Aujourd'hui, le judo est pratiqué mondialement, promouvant ses valeurs fortes.", "image":"media/judo.png", "id":"judo", "alt":""},
 
-    {"sport":"basketball", "sportif": "Lebron James", "description":"lalala", "image":"media/basketball.png", "id":"basketball", "alt":""},
+    {"sport":"BASKETBALL", "description":"Le basketball a été inventé en 1891 par James Naismith aux États-Unis. <br>Créé pour occuper les étudiants en hiver, il a vite conquis le monde entier. <br>Ce sport rapide et stratégique repose sur l’adresse et l’esprit d’équipe. <br>La NBA, fondée en 1946, a popularisé le jeu avec des joueurs légendaires. <br>Aujourd’hui, le basketball incarne passion, spectacle et dépassement de soi.", "image":"media/basketball.png", "id":"basketball", "alt":""},
 
-    {"sport":"handball", "sportif": "Nikola Karabatic", "description":"lalala", "image":"media/handball.png", "id":"handball", "alt":""},
+    {"sport":"HANDBALL", "description":"Le handball, né au XIXe siècle en Europe, combine vitesse, force et précision.<br>Codifié en Allemagne, il s'est joué à 11 joueurs avant d'évoluer à 7 joueurs.<br>Introduit aux Jeux Olympiques en 1936, il est devenu un sport incontournable.<br>Il se distingue par son intensité, ses passes rapides et ses tirs spectaculaires.<br>Aujourd’hui, le handball brille grâce à des compétitions et équipes prestigieuses.", "image":"media/handball.png", "id":"handball", "alt":""},
 
-    {"sport":"golf", "sportif": "Tiger Woods", "description":"lalala", "image":"media/golf.png", "id":"golf", "alt":""},
+    {"sport":"GOLF", "description":"Le golf, dont les origines remontent au Moyen Âge en Écosse, est un sport noble.<br>Il consiste à envoyer une balle dans des trous avec un minimum de coups.<br>Codifié au XVIIIe siècle, il allie précision, stratégie et maîtrise mentale.<br>Des tournois prestigieux comme le Masters ou l’Open font rayonner le golf.<br>Aujourd'hui, il symbolise l’élégance et attire des passionnés dans le monde entier.", "image":"media/golf.png", "id":"golf", "alt":""},
 
-    {"sport":"rugby", "sportif": "Antoine Dupont", "description":"lalala", "image":"media/rugby.png", "id":"rugby", "alt":""},
+    {"sport":"RUGBY", "description":"Le rugby, né en Angleterre au XIXe siècle, trouve ses racines dans le football.<br>Selon la légende, William Webb Ellis aurait inventé ce sport en portant le ballon.<br>Il se distingue par son intensité, son esprit d’équipe et ses valeurs de respect.<br>Le rugby à XV et à XIII, puis à VII, se sont imposés sur la scène internationale.<br>Aujourd'hui, il fascine par ses grandes compétitions comme la Coupe du Monde.", "image":"media/rugby.png", "id":"rugby", "alt":""},
 
-    {"sport":"natation", "sportif": "Léon Marchand", "description":"lalala", "image":"media/natation.png", "id":"natation", "alt":""},
+    {"sport":"NATATION", "description":"La natation, pratiquée depuis l’Antiquité, est l’un des sports les plus anciens.<br>Codifiée au XIXe siècle, elle devient discipline olympique dès 1896 à Athènes.<br>Elle allie endurance, technique et grâce, avec des styles variés comme le crawl.<br>La natation synchronisée et le water-polo enrichissent son univers aquatique.<br>Aujourd’hui, elle symbolise santé, dépassement de soi et exploits sportifs.", "image":"media/natation.png", "id":"natation", "alt":""},
 
-    {"sport":"athlétisme", "sportif": "Usain Bolt", "description":"lalala", "image":"media/athletisme.png", "id":"athletisme", "alt":""},
+    {"sport":"ATHLETISME", "description":"L'athlétisme, pratiqué depuis l’Antiquité, est le sport des Jeux Olympiques originels.<br>Il regroupe des disciplines comme la course, le saut, le lancer et la marche.<br>Ses compétitions majeures, comme le 100m ou le marathon, sont des événements phares. <br>L'athlétisme valorise la vitesse, la force, l'endurance et la technique pure.<br>Aujourd'hui, il demeure un symbole d'excellence et de records mondiaux.", "image":"media/athletisme.png", "id":"athletisme", "alt":""},
 
-    {"sport":"gymnastique", "sportif": "Simone Biles", "description":"lalala", "image":"media/gymnastique.png", "id":"gymnastique", "alt":""}
+    {"sport":"GYMNASTIQUE", "description":"La gymnastique, pratiquée depuis l’Antiquité, est un sport alliant souplesse et force.<br>Elle comprend des disciplines variées comme la gymnastique artistique et rythmique.<br>Les Jeux Olympiques en ont fait une discipline majeure depuis leur origine.<br>La gymnastique développe équilibre, coordination et maîtrise du corps.<br>Aujourd'hui, elle incarne la précision, l'élégance et le dépassement de soi.", "image":"media/gymnastique.png", "id":"gymnastique", "alt":""}
 
 ]
