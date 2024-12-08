@@ -18,6 +18,13 @@ body {
     height: 100vh;
 }
 
+.container {
+    width: fit-content;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
 h1 {
     text-transform: uppercase;
     font-family: 'Navada', sans-serif;
@@ -44,14 +51,17 @@ header {
 .slider-container {
     display: flex;
     flex-grow: 1;
-    max-width: 950px; /* Ajuste selon tes besoins */
+    max-width: 930px; /* Ajuste selon tes besoins */
+    width: 100%;
 }
 
 .bar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px; /* Espace entre le bouton et la barre */
+    justify-content: flex-start;
+    gap: 20px; /* Espace entre le bouton et la barre */
+    width: 100%;
+    transform: translateY(-30px);
 }
 
 #start-button {
@@ -60,7 +70,7 @@ header {
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
-    padding: 5px 10px;
+    padding-left: 3px;
 }
 
 
