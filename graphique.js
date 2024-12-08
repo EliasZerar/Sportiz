@@ -102,10 +102,12 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
           .tween("value", () => {
               const interpolate = d3.interpolateNumber(+slider.property("value"), index);
               return (t) => {
-                  slider.property("value", interpolate(t));  // Met à jour la position du slider en douceur
+                  slider.property("value", interpolate(t));  // Met à jour la position du slider
+                  // Mise à jour de la variable --value pour le pseudo-élément ::before
+                  slider.style("--value", `${(interpolate(t) / (keyframes.length - 1)) * 100}%`);
               };
           });
-    }
+  }  
     slider.on("input", function() {
       const frameIndex = +this.value;
       currentFrameIndex = frameIndex;

@@ -43,7 +43,16 @@
         </section>
       </div>
     </header>
-    
+    <script>
+      // Met à jour la valeur de la variable CSS lors du déplacement du slider
+      const slider = document.getElementById('timeline-slider');
+  
+      slider.addEventListener('input', function() {
+          const value = (this.value - this.min) / (this.max - this.min) * 100;
+          this.style.setProperty('--value', `${value}%`);
+      });
+  </script>
+  
   <div class="image">
       <section class="section" id="football"></section>
       <section class="section" id="tennis"></section>

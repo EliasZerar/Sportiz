@@ -78,6 +78,70 @@ h1 {
     font-family: 'Navada';
     font-style: normal;
 }
+#timeline-slider {
+    -webkit-appearance: none; 
+    appearance: none;
+    width: 100%; 
+    height: 10px;
+    background: #CACACA; 
+    opacity: 0.6;
+    border-radius: 5px; 
+    outline: none; 
+    transition: background 0.3s ease; 
+}
+
+#timeline-slider::before {
+    content: '';
+    width: var(--value, 0%);
+    height: 10px;
+    background: #A09B5B;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    z-index: -1;
+}
+
+/* Personnalisation pour Firefox */
+#timeline-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #5f5f5f;
+    border-radius: 50%;
+    cursor: pointer;
+}
+/* Personnalisation pour les barres de défilement sur d'autres navigateurs */
+#timeline-slider::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background: #CEBD60;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+/* Partie du slider déjà défilée pour les navigateurs WebKit (Chrome, Safari) */
+#timeline-slider::-webkit-slider-runnable-track {
+    background: blue;
+    border-radius: 5px;
+    height: 10px;
+}
+
+/* Pour les navigateurs Firefox */
+#timeline-slider::-moz-range-track {
+    background: linear-gradient(to right, #2319b9 0%, #2319b9 var(--value, 0%), #CACACA var(--value, 0%), #CACACA 100%);
+    border-radius: 5px;
+    height: 10px;
+}
+
+/* Pour les navigateurs Internet Explorer et Edge */
+#timeline-slider::-ms-track {
+    background: linear-gradient(to right, #A09B5B 0%, #A09B5B var(--value, 0%), #CACACA var(--value, 0%), #CACACA 100%);
+    border-radius: 5px;
+    height: 10px;
+    border-color: transparent; /* Supprime les bordures par défaut */
+    color: transparent; /* Supprime la couleur par défaut */
+}
 
 .section-graph {
     background: radial-gradient(#242424, #000000 60%);
