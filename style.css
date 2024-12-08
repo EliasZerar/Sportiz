@@ -14,8 +14,14 @@ body {
     margin: 0;
 }
 
+.accueil {
+    height: 100vh;
+}
+
 .section-graph {
     height: 100vh;
+    display: flex;
+    margin: auto;
 }
 
 .section {
@@ -39,7 +45,7 @@ h1 {
     padding-top: 4vh;
 }
 
-header {
+.section-graph {
     background: radial-gradient(#383838, #000000 60%);
 }
 

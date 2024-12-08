@@ -210,20 +210,24 @@ function stopAnimation() {
 const previewContainer = document.getElementById('preview-container');
 const previewImage = document.getElementById('preview-image');
 
-function showImage(src, event) {
-    previewImage.src = src;
-    previewContainer.style.display = 'block';
-    previewContainer.style.left = event.clientX + 10 + 'px';
-    previewContainer.style.top = event.clientY + 10 + 'px';
+function hideImage() {
+  previewContainer.style.display = 'none';
 }
 
-function hideImage() {
-    previewContainer.style.display = 'none';
+function showImage(src, event) {
+  previewImage.src = src; // Définit la source de l'image
+  previewContainer.style.display = 'block'; // Affiche le conteneur de l'image
+  const offsetX = 20; // Décalage horizontal (par rapport à la souris)
+  const offsetY = 20; // Décalage vertical (par rapport à la souris)
+  previewContainer.style.left = event.pageX + offsetX + 'px'; // Utiliser pageX pour inclure le défilement
+  previewContainer.style.top = event.pageY + offsetY + 'px'; // Utiliser pageY pour inclure le défilement
 }
 
 function updateImagePosition(event) {
-    previewContainer.style.left = event.clientX + 15 + 'px';
-    previewContainer.style.top = event.clientY + 15 + 'px';
+  const offsetX = 15; // Décalage horizontal
+  const offsetY = 15; // Décalage vertical
+  previewContainer.style.left = event.pageX + offsetX + 'px'; // Mise à jour de la position horizontale
+  previewContainer.style.top = event.pageY + offsetY + 'px'; // Mise à jour de la position verticale
 }
 
 const hoverColorScale = d3.scaleOrdinal()
