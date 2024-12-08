@@ -23,7 +23,7 @@ fetch('sports.json')
                 // Ajouter le contenu textuel
                 section.innerHTML = `
                     <div class="content">
-                        <h2 class="sport-name">${element.sport}</h2>
+                        <h2 class="sport-name ${element.id}-title">${element.sport}</h2>
                         <p class="description">${element.description}</p>
                     </div>
                 `;

@@ -187,7 +187,6 @@ input[type="range"] {
     font-size: 9em;
     margin: 0;
     font-family: 'Navada Demo', sans-serif;
-    /* color: #CEBD60; */
     color: white;
 }
 
@@ -196,4 +195,48 @@ input[type="range"] {
     margin: 0;
     font-family: "Helvetica Neue", sans-serif;
     font-weight: 300;
+}
+
+.football-title {
+    color: #CEBD60;
+}
+
+.tennis-title {
+    color: #852D2D; 
+}
+
+.equitation-title {
+    color: #6F4B38; 
+}
+
+.judo-title {
+    color: #173497;
+}
+
+.basketball-title {
+    color: #533C80;
+}
+
+.handball-title {
+    color: #AA6D4C;
+}
+
+.golf-title {
+    color: #9C3535;
+}
+
+.rugby-title {
+    color: #75A29F;
+}
+
+.natation-title {
+    color: #394B77;
+}
+
+.athletisme-title {
+    color: #4E876A;
+}
+
+.gymnastique-title {
+    color: #A56B81;
 }

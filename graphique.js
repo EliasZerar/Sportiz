@@ -142,7 +142,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
       .style("font-size", "1.3em")
       .style("font-weight", "bold")
       .style("font-family", "HelveticaNeue, sans-serif")
-      .text("QUELS SONT LES SPORTS LES PLUS PRATIQUÉS PAR LES FRANÇAIS ENTRE 2016 ET 2023 ?");
+      .text("SPORTS LES PLUS PRATIQUÉS PAR LES FRANÇAIS ENTRE 2016 ET 2023");
 
     const updateBars = bars(svg);
     const updateAxis = axis(svg);
