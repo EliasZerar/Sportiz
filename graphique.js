@@ -16,8 +16,6 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
   const formatNumber = d3.format(",d");
   const formatDate = d3.utcFormat("%Y");
-  
- 
   // Chargement des données
   const data = await d3.csv("./data.csv", d3.autoType);
 
@@ -574,9 +572,6 @@ svg.selectAll("path").on("click", function (event, d) {
     console.warn(`Section #${sectionId} introuvable.`);
   }
 });
-
-  
-
   }
 
   initializeChart();
