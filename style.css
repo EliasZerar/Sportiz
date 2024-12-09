@@ -266,7 +266,7 @@ input[type="range"] {
 }
 
 .tennis-title {
-    color: #852D2D; 
+    color: #8f2929; 
 }
 
 .equitation-title {
@@ -274,7 +274,7 @@ input[type="range"] {
 }
 
 .judo-title {
-    color: #173497;
+    color: #1c3995;
 }
 
 .basketball-title {
@@ -282,15 +282,15 @@ input[type="range"] {
 }
 
 .handball-title {
-    color: #AA6D4C;
+    color: #a4623e;
 }
 
 .golf-title {
-    color: #9C3535;
+    color: #9a2828;
 }
 
 .rugby-title {
-    color: #75A29F;
+    color: #9a2828;
 }
 
 .natation-title {
@@ -303,4 +303,9 @@ input[type="range"] {
 
 .gymnastique-title {
     color: #A56B81;
+}
+
+.footer {
+    height: 100px;
+    background-color: #131313;
 }
