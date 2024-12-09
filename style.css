@@ -186,31 +186,34 @@ h1 {
     width: 100%;
 }
 
-#popup {
-    display: none;
-    position: fixed;
-    z-index: 1;
+.popup {
+    display: none; /* Caché par défaut */
+    position: fixed; /* Fixé en haut de la page */
+    z-index: 1; /* Au-dessus des autres éléments */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto; /* Défilement si nécessaire */
+    background-color: rgba(0, 0, 0, 0.4); /* Fond sombre */
 }
+
 
 #chart-containeur {
     position: relative;
 }
 
 .popup-content {
-    background-color: #000;
-    margin: 5% auto;
+    background-color: #1a1a1a; /* Fond sombre pour le contenu */
+    margin: 5% auto; /* Marge de 5% depuis le haut */
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-height: 80%;
-    overflow-y: auto;
+    border: 1px solid #888; /* Bordure gris clair */
+    width: 80%; /* Largeur de 80% de la fenêtre */
+    max-height: 80%; /* Hauteur maximale de 80% de la fenêtre */
+    overflow-y: auto; /* Défilement vertical si nécessaire */
+    text-align: left; /* Texte aligné à gauche */
 }
+
 
 .section {
     display: none;
@@ -225,8 +228,8 @@ h1 {
 }
 
 .close {
-    color: #aaa;
-    float: right;
+    color: #aaa; /* Couleur gris clair */
+    float: right; /* Aligner à droite */
     font-size: 28px;
     font-weight: bold;
 }
@@ -237,11 +240,10 @@ input[type="range"] {
 
 .close:hover,
 .close:focus {
-    color: rgb(64, 0, 0);
+    color: rgb(64, 0, 0); /* Couleur au survol */
     text-decoration: none;
     cursor: pointer;
 }
-
 .content {
     transform: translate(30%, 70%);
     max-width: fit-content;
@@ -306,6 +308,61 @@ input[type="range"] {
 }
 
 .footer {
-    height: 100px;
     background-color: #131313;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    height: 130px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 90px;
+}
+.footer-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.footer-left h3 {
+    text-transform: uppercase;
+    font-family: 'Navada Demo';
+    font-size: 3rem;
+    margin: 0;
+  
+}
+.footer-left a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    gap: 50px;
+}
+
+
+.popupstyle a {
+    text-decoration: none; 
+    color: #ddd;
+    font-size: 18px;
+    margin-bottom: 0;
+   font-family: "Helvetica Neue", sans-serif;
+}
+
+.popupstyle a:hover {
+    text-decoration: underline;
+}
+.separator {
+    display: inline-block;
+    color: #fff; 
+    font-size: 1.3rem; 
+    margin: 0; 
+    line-height: 1; 
 }
