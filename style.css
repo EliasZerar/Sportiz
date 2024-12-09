@@ -78,69 +78,69 @@ h1 {
     font-family: 'Navada';
     font-style: normal;
 }
-#timeline-slider {
-    -webkit-appearance: none; 
-    appearance: none;
-    width: 100%; 
-    height: 10px;
-    background: #CACACA; 
-    opacity: 0.6;
-    border-radius: 5px; 
-    outline: none; 
-    transition: background 0.3s ease; 
-}
 
-#timeline-slider::before {
+#timeline-slider {
+    -webkit-appearance: none; /* Chrome/Safari */
+    -moz-appearance: none; /* Firefox */
+    appearance: none; /* Standard */
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, #cacaca, #cacaca);
+    border-radius: 4px;
+    outline: none;
+    position: relative;
+    --progress-color: #555555;
+    --thumb-color: #ffffff;
+    --value: 0%;
+}
+#timeline-slider::before /* obligé de faire ça pour que la barre de défilement s'affiche avant le bouton sur chrome*/ {
     content: '';
-    width: var(--value, 0%);
-    height: 10px;
-    background: #A09B5B;
     position: absolute;
     top: 0;
     left: 0;
-    border-radius: 5px;
-    z-index: -1;
+    height: 8px;
+    width: var(--value);
+    background: var(--progress-color);
+    border-radius: 4px;
+    pointer-events: none; /* Empêche d'interagir avec cette barre */
+    z-index: 0; 
+}
+/* Curseur pour Chrome/Safari/Edge*/
+#timeline-slider::-webkit-slider-thumb {
+ -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    background: var(--thumb-color);
+    border: 2px solid var(--progress-color);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    
 }
 
-/* Personnalisation pour Firefox */
+/* Curseur pour Firefox */
 #timeline-slider::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    background: #5f5f5f;
+    width: 19px;
+    height: 19px;
+    background: var(--thumb-color);
+    border: 2px solid var(--progress-color);
     border-radius: 50%;
     cursor: pointer;
-}
-/* Personnalisation pour les barres de défilement sur d'autres navigateurs */
-#timeline-slider::-ms-thumb {
-    width: 20px;
-    height: 20px;
-    background: #CEBD60;
-    border-radius: 50%;
-    cursor: pointer;
+    position: relative;
+    z-index: 1;
 }
 
-
-/* Partie du slider déjà défilée pour les navigateurs WebKit (Chrome, Safari) */
-#timeline-slider::-webkit-slider-runnable-track {
-    background: blue;
-    border-radius: 5px;
-    height: 10px;
+/* Supprimer les marges par défaut pour Firefox, obligé de faire ça sinon ça marche pas  */
+#timeline-slider::-moz-range-progress {
+    background: var(--progress-color);
+    height: 8px;
+    border-radius: 4px;
 }
 
-/* Pour les navigateurs Firefox */
-#timeline-slider::-moz-range-track {
-    background: linear-gradient(to right, #2319b9 0%, #2319b9 var(--value, 0%), #CACACA var(--value, 0%), #CACACA 100%);
-    border-radius: 5px;
-    height: 10px;
-}
-
-/* Pour les navigateurs Internet Explorer et Edge */
-#timeline-slider::-ms-track {
-    background: linear-gradient(to right, #A09B5B 0%, #A09B5B var(--value, 0%), #CACACA var(--value, 0%), #CACACA 100%);
-    border-radius: 5px;
-    height: 10px;
-    border-color: transparent; /* Supprime les bordures par défaut */
-    color: transparent; /* Supprime la couleur par défaut */
+/* Effet d'agrandissement au survol pour Firefox */
+#timeline-slider:hover::-moz-range-thumb {
+    transform: scale(1.2);
 }
 
 .section-graph {

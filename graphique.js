@@ -95,28 +95,42 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
     });
 
     function updateSliderPosition(index) {
+      const maxFrames = keyframes.length - 1; 
       slider
-          .transition()  // Transition fluide du slider
-          .duration(duration)  // Correspond au temps de chaque frame (600ms)
+          .transition()
+          .duration(duration)
           .ease(d3.easeLinear)
           .tween("value", () => {
               const interpolate = d3.interpolateNumber(+slider.property("value"), index);
               return (t) => {
-                  slider.property("value", interpolate(t));  // Met à jour la position du slider
-                  // Mise à jour de la variable --value pour le pseudo-élément ::before
-                  slider.style("--value", `${(interpolate(t) / (keyframes.length - 1)) * 100}%`);
+                  const value = interpolate(t);
+                  slider.property("value", value);
+                  slider.style("--value", `${(value / maxFrames) * 100}%`);
+                  
+                  // Forcer le reflow dans Chrome
+                  slider.offsetWidth; // Lecture du layout
               };
           });
-  }  
-    slider.on("input", function() {
-      const frameIndex = +this.value;
-      currentFrameIndex = frameIndex;
-      stopAnimation();  // Arrête l'animation
-      d3.select("#start-button img")
-      .attr("src", "boutonplay.svg") 
-      updateChart(keyframes[frameIndex]); // Met à jour le graphique instantanément
-      updateTicker(keyframes[frameIndex]); // Met à jour l'année dans le ticker
-    });
+  }
+  
+   slider.on("input", function () {
+    const frameIndex = +this.value;
+    currentFrameIndex = frameIndex;
+    stopAnimation(); // Arrête l'animation
+    d3.select("#start-button img").attr("src", "boutonplay.svg");
+
+    // Mise à jour graphique et ticker
+    updateChart(keyframes[frameIndex]);
+    updateTicker(keyframes[frameIndex]);
+
+    // Mise à jour de la barre orange
+    const maxFrames = keyframes.length - 1;
+    const progress = (frameIndex / maxFrames) * 100;
+    slider.style("--value", `${progress}%`);
+
+    // Forcer Chrome à recalculer les styles
+    slider.offsetHeight; // Relecture du layout
+});
 
   
 

@@ -31,8 +31,8 @@
                 </button>
               </div>
               <div class="slider-container">
-                <input type="range" id="timeline-slider" min="0" max="100" value="0">
-              </div>
+                <input id="timeline-slider" type="range" min="0" max="100" value="0" />
+            </div>
             </div>
           </div>  
           <div id="preview-container" style="position: absolute; display: none; z-index: 10; pointer-events: none;">
@@ -43,16 +43,6 @@
         </section>
       </div>
     </header>
-    <script>
-      // Met à jour la valeur de la variable CSS lors du déplacement du slider
-      const slider = document.getElementById('timeline-slider');
-  
-      slider.addEventListener('input', function() {
-          const value = (this.value - this.min) / (this.max - this.min) * 100;
-          this.style.setProperty('--value', `${value}%`);
-      });
-  </script>
-  
   <div class="image">
       <section class="section" id="football"></section>
       <section class="section" id="tennis"></section>
