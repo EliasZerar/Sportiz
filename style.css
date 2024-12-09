@@ -304,3 +304,8 @@ input[type="range"] {
 .gymnastique-title {
     color: #A56B81;
 }
+
+.footer {
+    height: 100px;
+    background-color: #131313;
+}
