@@ -243,7 +243,7 @@ const hoverColorScale = d3.scaleOrdinal()
     "#324894", //judo
     "#9C3535", //golf
     "#394B77", //natation
-    "#75A29F", //rugby
+    "#9C3535", //rugby
     "#A56B81", //gym
     "#4E876A"]); //athle
 
