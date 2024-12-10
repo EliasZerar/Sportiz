@@ -209,7 +209,7 @@ h1 {
 .popup-content {
     position: relative;    
     background-color: #131313;/* Fond sombre pour le contenu */
-    padding: 15px 30px 30px 30px;
+    padding: 20px 30px 30px 30px;
     border: 1px solid #888; /* Bordure gris clair */
     width: 60%; /* Largeur de 60% de la fenêtre */
     max-height: 80%; /* Hauteur maximale de 80% de la fenêtre */
