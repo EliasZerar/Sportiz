@@ -85,11 +85,11 @@ h1 {
     appearance: none; /* Standard */
     width: 100%;
     height: 8px;
-    background: linear-gradient(to right, #cacaca, #cacaca);
+    background: rgb(243, 240, 240);
     border-radius: 4px;
     outline: none;
     position: relative;
-    --progress-color: #555555;
+    --progress-color: #908f8f;
     --thumb-color: #ffffff;
     --value: 0%;
 }
@@ -108,8 +108,8 @@ h1 {
 /* Curseur pour Chrome/Safari/Edge*/
 #timeline-slider::-webkit-slider-thumb {
  -webkit-appearance: none;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     background: var(--thumb-color);
     border: 2px solid var(--progress-color);
     border-radius: 50%;
@@ -121,8 +121,8 @@ h1 {
 
 /* Curseur pour Firefox */
 #timeline-slider::-moz-range-thumb {
-    width: 19px;
-    height: 19px;
+    width: 18px;
+    height: 18px;
     background: var(--thumb-color);
     border: 2px solid var(--progress-color);
     border-radius: 50%;
@@ -140,7 +140,11 @@ h1 {
 
 /* Effet d'agrandissement au survol pour Firefox */
 #timeline-slider:hover::-moz-range-thumb {
-    transform: scale(1.2);
+    transform: scale(1.1);
+}
+
+#timeline-slider:hover::-webkit-slider-thumb {
+    transform: scale(1.1);
 }
 
 .section-graph {
@@ -175,12 +179,11 @@ h1 {
 #start-button {
     background-color: transparent;
     border: none;
-    color: white;
     font-size: 1.5rem;
     cursor: pointer;
     padding-left: 3px;
+    color: white;
 }
-
 
 #timeline-slider {
     width: 100%;
@@ -198,22 +201,21 @@ h1 {
     background-color: rgba(0, 0, 0, 0.4); /* Fond sombre */
 }
 
-
 #chart-containeur {
     position: relative;
 }
 
 .popup-content {
-    background-color: #1a1a1a; /* Fond sombre pour le contenu */
+    background-color: #131313;/* Fond sombre pour le contenu */
     margin: 5% auto; /* Marge de 5% depuis le haut */
-    padding: 20px;
+    padding: 20px 30px 30px 30px;
     border: 1px solid #888; /* Bordure gris clair */
     width: 80%; /* Largeur de 80% de la fenêtre */
     max-height: 80%; /* Hauteur maximale de 80% de la fenêtre */
     overflow-y: auto; /* Défilement vertical si nécessaire */
     text-align: left; /* Texte aligné à gauche */
+    border-radius: 8px;
 }
-
 
 .section {
     display: none;
@@ -228,10 +230,11 @@ h1 {
 }
 
 .close {
-    color: #aaa; /* Couleur gris clair */
+    color: white; /* Couleur gris clair */
     float: right; /* Aligner à droite */
     font-size: 28px;
     font-weight: bold;
+    transition: 0.2s;
 }
 
 input[type="range"] {
@@ -240,7 +243,7 @@ input[type="range"] {
 
 .close:hover,
 .close:focus {
-    color: rgb(64, 0, 0); /* Couleur au survol */
+    color: #aaa; /* Couleur au survol */
     text-decoration: none;
     cursor: pointer;
 }
@@ -310,9 +313,9 @@ input[type="range"] {
 .footer {
     background-color: #131313;
     color: #fff;
-    font-family: Arial, sans-serif;
+    font-family: "Helvetica Neue", sans-serif;
     padding: 20px;
-    height: 130px;
+    height: 120px;
 }
 
 .footer-container {
@@ -321,6 +324,7 @@ input[type="range"] {
     align-items: center;
     padding: 10px 90px;
 }
+
 .footer-left {
     display: flex;
     align-items: center;
@@ -339,25 +343,24 @@ input[type="range"] {
     color: inherit;
 }
 
-
 .footer-right {
     display: flex;
     align-items: center;
     justify-content: flex-end; 
-    gap: 50px;
+    gap: 30px;
 }
-
 
 .popupstyle a {
     text-decoration: none; 
-    color: #ddd;
+    color: white;
     font-size: 18px;
     margin-bottom: 0;
-   font-family: "Helvetica Neue", sans-serif;
+    font-family: "Helvetica Neue", sans-serif;
 }
 
 .popupstyle a:hover {
-    text-decoration: underline;
+    color: #ddd;
+    transition: 0.2s;
 }
 .separator {
     display: inline-block;
@@ -365,4 +368,8 @@ input[type="range"] {
     font-size: 1.3rem; 
     margin: 0; 
     line-height: 1; 
+}
+
+.h3 {
+    margin-top: 10px;
 }

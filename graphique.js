@@ -86,7 +86,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
     const slider = d3.select("#timeline-slider")
     .attr("max", keyframes.length - 1)
     .attr("min", 0)
-    .attr("step", 1)
+    .attr("step", 0.01)
      .on("input", function() {
         const frameIndex = +this.value;
         currentFrameIndex = frameIndex;
@@ -114,7 +114,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
   }
   
    slider.on("input", function () {
-    const frameIndex = +this.value;
+    const frameIndex = Math.round(+this.value);
     currentFrameIndex = frameIndex;
     stopAnimation(); // Arrête l'animation
     d3.select("#start-button img").attr("src", "boutonplay.svg");
@@ -485,6 +485,7 @@ function bars(svg) {
       return (_, transition) => {
         g.transition(transition).call(axis);
         g.selectAll("text")
+          .attr("fill", "grey")
           .style("font-family", "HelveticaNeue, sans-serif");
         g.selectAll(".tick line") // Sélection de tous les éléments de ligne de tick pour modifier leur style
           .attr("stroke", "grey") // Couleur des ticks
