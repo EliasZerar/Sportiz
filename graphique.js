@@ -240,8 +240,8 @@ function showImage(src, event) {
 }
 
 function updateImagePosition(event) {
-  const offsetX = 15; // Décalage horizontal
-  const offsetY = 15; // Décalage vertical
+  const offsetX = 10; // Décalage horizontal
+  const offsetY = 12; // Décalage vertical
   previewContainer.style.left = event.pageX + offsetX + 'px'; // Mise à jour de la position horizontale
   previewContainer.style.top = event.pageY + offsetY + 'px'; // Mise à jour de la position verticale
 }
@@ -304,7 +304,8 @@ function bars(svg) {
             .attr("id", (d) => d.name)
             .on("mouseover", function (event, d) {
               // Change la couleur au survol
-              d3.select(this).attr("fill", hoverColorScale(d.name));
+              d3.select(this).attr("fill", hoverColorScale(d.name))
+              .style("cursor", "pointer");
               const idBar = d3
                 .select(this)
                 .attr("id")

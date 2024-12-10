@@ -29,7 +29,7 @@ body {
 }
 
 .explication {
-    max-width: 720px;
+    max-width: 770px;
     padding-bottom: 25px;
 }
 
@@ -40,7 +40,7 @@ body {
     background-color: #3b3737;
     color: white;
     padding: 8px;
-    font-family: "Helvetica Neue", sans-serif;
+    font-family: "HelveticaNeue", sans-serif;
 }
 
 .link:hover {
@@ -49,7 +49,7 @@ body {
 }
 
 .content-sportiz {
-    margin: 54vh 15vh 0 15vh;
+    margin: 54vh 15vh 0 20vh;
 }
 
 .section {
@@ -265,9 +265,9 @@ input[type="range"] {
 }
 
 .description, .explication {
-    font-size: 1.2em;
+    font-size: 1.3em;
     margin: 0;
-    font-family: "Helvetica Neue", sans-serif;
+    font-family: "HelveticaNeue", sans-serif;
     font-weight: 300;
 }
 
@@ -318,7 +318,7 @@ input[type="range"] {
 .footer {
     background-color: #131313;
     color: #fff;
-    font-family: "Helvetica Neue", sans-serif;
+    font-family: "HelveticaNeue", sans-serif;
     padding: 20px;
     height: 120px;
 }
@@ -360,7 +360,7 @@ input[type="range"] {
     color: white;
     font-size: 18px;
     margin-bottom: 0;
-    font-family: "Helvetica Neue", sans-serif;
+    font-family: "HelveticaNeue", sans-serif;
 }
 
 .popupstyle a:hover {
@@ -381,8 +381,11 @@ input[type="range"] {
     font-weight: 700;
 }
 
-.h4 {
-    font-weight: 700;
+h4 {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 0;
+    margin-top: 40px;
 }
 
 a {
@@ -392,4 +395,9 @@ a {
 a:hover {
     color: #d2d1d1;
     transition: 0.2s;
+}
+
+p {
+    line-height: 1.2;
+    margin-top: 10px;
 }
