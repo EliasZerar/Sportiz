@@ -44,8 +44,7 @@ body {
 }
 
 .link:hover {
-    color: #3b3737;
-    background-color: rgb(223, 223, 223);
+    background-color: #4c4747;
     transition: 0.3s;
 }
 
@@ -192,7 +191,7 @@ h1 {
 }
 
 .popup {
-    display: none; /* Caché par défaut */
+    display: none;
     position: fixed; /* Fixé en haut de la page */
     z-index: 1; /* Au-dessus des autres éléments */
     left: 0;
@@ -208,15 +207,17 @@ h1 {
 }
 
 .popup-content {
+    position: relative;    
     background-color: #131313;/* Fond sombre pour le contenu */
-    margin: 5% auto; /* Marge de 5% depuis le haut */
-    padding: 20px 30px 30px 30px;
+    padding: 15px 30px 30px 30px;
     border: 1px solid #888; /* Bordure gris clair */
-    width: 80%; /* Largeur de 80% de la fenêtre */
+    width: 60%; /* Largeur de 60% de la fenêtre */
     max-height: 80%; /* Hauteur maximale de 80% de la fenêtre */
-    overflow-y: auto; /* Défilement vertical si nécessaire */
-    text-align: left; /* Texte aligné à gauche */
+    overflow-y: auto; /* Défilement vertical si nécessaire */ 
     border-radius: 8px;
+    margin: auto;
+    top: 50%; /* Déplace le haut du contenu à 50% de la hauteur du parent */
+    transform: translateY(-50%);
 }
 
 .section {
@@ -233,10 +234,12 @@ h1 {
 
 .close {
     color: white; /* Couleur gris clair */
-    float: right; /* Aligner à droite */
     font-size: 28px;
     font-weight: bold;
     transition: 0.2s;
+    position: sticky;
+    top: 0;
+    float: right;
 }
 
 input[type="range"] {
@@ -374,4 +377,19 @@ input[type="range"] {
 
 .h3 {
     margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.h4 {
+    font-weight: 700;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: #d2d1d1;
+    transition: 0.2s;
 }
