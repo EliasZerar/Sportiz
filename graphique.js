@@ -240,8 +240,8 @@ function showImage(src, event) {
 }
 
 function updateImagePosition(event) {
-  const offsetX = 10; // Décalage horizontal
-  const offsetY = 12; // Décalage vertical
+  const offsetX = 12; // Décalage horizontal
+  const offsetY = 15; // Décalage vertical
   previewContainer.style.left = event.pageX + offsetX + 'px'; // Mise à jour de la position horizontale
   previewContainer.style.top = event.pageY + offsetY + 'px'; // Mise à jour de la position verticale
 }
