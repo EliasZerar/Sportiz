@@ -255,7 +255,7 @@ input[type="range"] {
 }
 
 .content {
-    transform: translate(25%, 70%);
+    transform: translate(25%, 65%);
     width: 50%;
 }
 
@@ -274,7 +274,7 @@ input[type="range"] {
 }
 
 .description, .explication {
-    font-size: 1.3em;
+    font-size: 1.2em;
     margin: 0;
     font-family: "HelveticaNeue", sans-serif;
     font-weight: 300;

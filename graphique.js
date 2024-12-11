@@ -150,13 +150,13 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
     svg
       .append("text")
       .attr("x", width / 2)
-      .attr("y", marginTop / 3)
+      .attr("y", marginTop / 2)
       .attr("text-anchor", "middle")
       .attr("fill", "white")
       .style("font-size", "1.5em")
       .style("font-weight", "bold")
       .style("font-family", "HelveticaNeue, sans-serif")
-      .text("SPORTS LES PLUS PRATIQUÉS PAR LES FRANÇAIS ENTRE 2016 ET 2023");
+      .text("SPORTS LES PLUS PRATIQUÉS PAR LES FRANÇAIS ENTRE 2001 ET 2023");
 
     const updateBars = bars(svg);
     const updateAxis = axis(svg);
@@ -249,15 +249,15 @@ const hoverColorScale = d3.scaleOrdinal()
   .range
   (["#A09B5B", //foot
     "#852D2D", //tennis
-    "#6F4B38", //equitation
-    "#533C80", //basket
-    "#AA6D4C", //hand
-    "#324894", //judo
     "#9C3535", //golf
+    "#324894", //judo
+    "#533C80", //basketball
+    "#AA6D4C", //handball
+    "#4E876A", //athle
     "#394B77", //natation
-    "#9C3535", //rugby
     "#A56B81", //gym
-    "#4E876A"]); //athle
+    "#6F4B38", //equitation
+    "#9C3535"]); //rugby
 
 function bars(svg) {
   svg.append("defs")
