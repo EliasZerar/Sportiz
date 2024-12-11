@@ -218,6 +218,7 @@ h1 {
     margin: auto;
     top: 50%; /* Déplace le haut du contenu à 50% de la hauteur du parent */
     transform: translateY(-50%);
+    min-width: 800px;
 }
 
 .section {
@@ -252,10 +253,18 @@ input[type="range"] {
     text-decoration: none;
     cursor: pointer;
 }
+
 .content {
     transform: translate(30%, 70%);
     max-width: fit-content;
 }
+
+@media (max-width: 1200px) {
+
+    .content {
+        transform: translate(15%, 70%);
+    }
+} 
 
 .sport-name {
     font-size: 9em;
@@ -400,4 +409,9 @@ a:hover {
 p {
     line-height: 1.2;
     margin-top: 10px;
+}
+
+.popup-contact {
+    width: 30%;
+    min-width: 600px;
 }
