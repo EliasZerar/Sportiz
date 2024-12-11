@@ -18,14 +18,14 @@
           <h1>Sport<span class="iz">iz</span></h1>
           <div class="content-sportiz">
             <p class="explication">Sportiz est une plateforme de visualisation de données dédiée au sport en France. Elle recense le nombre de  licenciés pour chaque fédération sportive entre 2016 et 2023. Grâce à des graphiques et des outils interactifs, Sportiz permet   d'explorer facilement les tendances et l'évolution de la pratique sportive en France.</p>
-            <a href="#graph" class="link">Visualiser les données</a>
+            <a href="#graph" class="link" aria-label="Visualiser les données">Visualiser les données</a>
           </div>
         </section>
           <div class="container" id="graph">
             <div id="chart-container"></div>
             <div class="bar">
               <div id="controls">
-                <button id="start-button">
+                <button aria-label="Mettre en pause ou en marche la vidéo" id="start-button">
                   <img src="boutonpause.svg" alt="Pause Button" width="15" height="auto">
                 </button>
               </div>
@@ -58,7 +58,7 @@
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-left">
-          <a href="#accueil" class="footer-title"><h3>Sport<span class="iz">iz</span></h3></a>
+          <a href="#accueil" class="footer-title" title="retour à l'accueil"><h3>Sport<span class="iz">iz</span></h3></a>
         </div>
 
       <div class="footer-right">
@@ -67,7 +67,7 @@
         </div>
         <div id="popupContact" class="popup">
             <div class="popup-content popup-contact">
-                <span class="close">&times;</span>
+                <span class="close" aria-label="Fermer" >&times;</span>
                 <h3 class="h3">Contacts</h3>
                 <p>Vous pouvez nous contacter via les informations suivantes :</p>
                 <h4>Mila Duperrier, développeuse : </h4>
@@ -100,7 +100,7 @@
     </div>
       <div id="popupLegal" class="popup">
           <div class="popup-content">
-          <span class="close">&times;</span>
+          <span class="close" aria-label="Fermer">&times;</span>
        
           <h3 class="h3">Mentions Légales</h3>
      
