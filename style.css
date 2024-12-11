@@ -21,7 +21,7 @@ body {
 }
 
 .accueil {
-    height: 100vh;
+    min-height: 100vh;
     background-image: url(media/accueil_DTZ.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -61,7 +61,7 @@ body {
     margin: auto;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     padding: 50px;
 }
 
