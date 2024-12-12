@@ -36,3 +36,5 @@ fetch('sports.json')
     .catch(error => {
         console.error('Erreur lors du chargement des données :', error);
     });
+
+    
