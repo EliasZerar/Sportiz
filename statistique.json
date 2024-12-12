@@ -1,0 +1,92 @@
+{
+    "data": [
+        {
+            "sport": "Football",
+            "distribution": [
+                { "label": "Femmes", "value": 173440 },
+                { "label": "Hommes", "value": 1597335 }
+            ],
+            "annees": ["2022/2023"]
+        },
+        {
+            "sport": "Tennis",
+            "distribution": [
+                { "label": "Femmes", "value": 314524 },
+                { "label": "Hommes", "value": 730050 }
+            ],
+            "annees": ["2022/2023"]
+        },
+        {
+            "sport": "Equitation",
+            "distribution": [
+                { "label": "Femmes", "value": 582690 },
+                { "label": "Hommes", "value": 105456 }
+            ],
+            "annees": ["2022/2023"]
+        },
+        {
+            "sport": "Judo",
+            "distribution": [
+                { "label": "Femmes", "value": 180200 },
+                { "label": "Hommes", "value": 349800 }
+            ],
+            "annees": ["2023/2024"]
+        },
+        {
+            "sport": "Basketball",
+            "distribution": [
+                { "label": "Femmes", "value": 237469 },
+                { "label": "Hommes", "value": 441013 }
+            ],
+            "annees": ["2021/2022"]
+        },
+        {
+            "sport": "Handball",
+            "distribution": [
+                { "label": "Femmes", "value": 172693 },
+                { "label": "Hommes", "value": 281393 }
+            ],
+            "annees": ["2022/2023"]
+        },
+        {
+            "sport": "Golf",
+            "distribution": [
+                { "label": "Femmes", "value": 118717 },
+                { "label": "Hommes", "value": 326589 }
+            ],
+            "annees": ["2023/2024"]
+        },
+        {
+            "sport": "Gymnastique",
+            "distribution": [
+                { "label": "Femmes", "value": 205010 },
+                { "label": "Hommes", "value": 41990 }
+            ],
+            "annees": ["2021/2022"]
+        },
+        {
+            "sport": "Natation",
+            "distribution": [
+                { "label": "Femmes", "value": 153000 },
+                { "label": "Hommes", "value": 133516 }
+            ],
+            "annees": ["2021/2022"]
+        },
+        {
+            "sport": "Athletisme",
+            "distribution": [
+                { "label": "Femmes", "value": 142439 },
+                { "label": "Hommes", "value": 160429 }
+            ],
+            "annees": ["2021/2022"]
+        },
+        {
+            "sport": "Rugby",
+            "distribution": [
+                { "label": "Femmes", "value": 34641 },
+                { "label": "Hommes", "value": 280279 }
+            ],
+            "annees": ["2021/2022"]
+        }
+    ]
+}

@@ -1,227 +1,363 @@
-  <!DOCTYPE html>
-  <html lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.cdnfonts.com/css/navada" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>SportIz</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.cdnfonts.com/css/navada" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>SportIz</title>
+</head>
 
-  <body>
-    <header>
-      <div class="container-all">
-        <section class="accueil" id ="accueil">
-          <h1>Sport<span class="iz">iz</span></h1>
-          <div class="content-sportiz">
-            <p class="explication">SportIz est une plateforme de visualisation de données dédiée au sport en France. Elle recense le nombre de  licenciés pour chaque fédération sportive entre 2001 et 2023. Grâce à des graphiques et des outils interactifs, Sportiz permet   d'explorer facilement les tendances et l'évolution de la pratique sportive en France.</p>
-            <a href="#graph" class="link" aria-label="Visualiser les données">Visualiser les données</a>
-          </div>
-        </section>
-          <div class="container" id="graph">
-            <div id="chart-container"></div>
-            <div class="bar">
-              <div id="controls">
-                <button aria-label="Mettre en pause ou en marche la vidéo" id="start-button">
-                  <img src="boutonpause.svg" alt="Pause Button" width="15" height="auto">
-                </button>
-              </div>
-              <div class="slider-container">
-                <input id="timeline-slider" type="range" min="0" max="100" value="0"/>
-            </div>
-            </div>
-          </div>  
-          <div id="preview-container" style="position: absolute; display: none; z-index: 10; pointer-events: none;">
-            <img id="preview-image" src="" alt="Preview" style="width: 100px; height: auto; border-radius: 5px;">
-          </div>
-          <!-- Barre de défilement sous le graphique -->
-          
-      </div>
-    </header>
-  <div class="image">
-      <section class="section" id="football"></section>
-      <section class="section" id="tennis"></section>
-      <section class="section" id="equitation"></section>
-      <section class="section" id="judo"></section>
-      <section class="section" id="basketball"></section>
-      <section class="section" id="handball"></section>
-      <section class="section" id="golf"></section>
-      <section class="section" id="rugby"></section>
-      <section class="section" id="natation"></section>
-      <section class="section" id="athletisme"></section>
-      <section class="section" id="gymnastique"></section>
-    </div>
-
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-left">
-          <a href="#accueil" class="footer-title" title="retour à l'accueil"><h3>Sport<span class="iz">iz</span></h3></a>
+<body>
+  <header>
+    <div class="container-all">
+      <section class="accueil" id="accueil">
+        <h1>Sport<span class="iz">iz</span></h1>
+        <div class="content-sportiz">
+          <p class="explication">SportIz est une plateforme de visualisation de données dédiée au sport en France. Elle
+            recense le nombre de licenciés pour chaque fédération sportive entre 2001 et 2023. Grâce à des graphiques et
+            des outils interactifs, Sportiz permet d'explorer facilement les tendances et l'évolution de la pratique
+            sportive en France.</p>
+          <a href="#graph" class="link" aria-label="Visualiser les données">Visualiser les données</a>
         </div>
+      </section>
+      <div class="container" id="graph">
+        <div id="chart-container"></div>
+        <div class="bar">
+          <div id="controls">
+            <button aria-label="Mettre en pause ou en marche la vidéo" id="start-button">
+              <img src="boutonpause.svg" alt="Pause Button" width="15" height="auto">
+            </button>
+          </div>
+          <div class="slider-container">
+            <input id="timeline-slider" type="range" min="0" max="100" value="0" />
+          </div>
+        </div>
+      </div>
+      <div id="preview-container" style="position: absolute; display: none; z-index: 10; pointer-events: none;">
+        <img id="preview-image" src="" alt="Preview" style="width: 100px; height: auto; border-radius: 5px;">
+      </div>
+      <!-- Barre de défilement sous le graphique -->
+
+    </div>
+  </header>
+
+  <section class="section" id="football">
+    <div class="doughnut">
+      <canvas id="doughnutChartFootball"></canvas>
+    </div>
+  </section>
+
+  <section class="section" id="tennis">
+    <div class="doughnut">
+      <canvas id="doughnutChartTennis"></canvas>
+    </div>
+  </section>
+
+  <section class="section" id="equitation">
+    <div class="doughnut">
+      <canvas id="doughnutChartEquitation"></canvas>
+    </div>
+  </section>
+
+  <section class="section" id="judo">
+    <div class="doughnut">
+      <canvas id="doughnutChartJudo"></canvas>
+    </div>
+  </section>
+
+  <section class="section" id="basketball">
+    <div class="doughnut">
+      <canvas id="doughnutChartBasketball"></canvas>
+    </div>
+  </section>
+
+  <section class="section" id="handball">
+    <div class="doughnut">
+      <canvas id="doughnutChartHandball"></canvas>
+    </div>
+  </section>
+
+  <section class="section" id="golf">
+    <div class="doughnut">
+      <canvas id="doughnutChartGolf"></canvas>
+    </div>
+  </section>
+
+  <section class="section" id="rugby">
+    <div class="doughnut">
+      <canvas id="doughnutChartRugby"></canvas>
+    </div>
+  </section>
+
+  <section class="section" id="natation">
+    <div class="doughnut">
+      <canvas id="doughnutChartNatation"></canvas>
+    </div>
+  </section>
+
+  <section class="section" id="athletisme">
+    <div class="doughnut">
+      <canvas id="doughnutChartAthletisme"></canvas>
+    </div>
+  </section>
+
+  <section class="section" id="gymnastique">
+    <div class="doughnut">
+      <canvas id="doughnutChartGymnastique"></canvas>
+    </div>
+  </section>
+  
+  </div>
+  <div class="doughnut">
+    <div id="chartContainer">
+      <canvas id="doughnutChart"></canvas>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <a href="#accueil" class="footer-title" title="retour à l'accueil">
+          <h3>Sport<span class="iz">iz</span></h3>
+        </a>
+      </div>
 
       <div class="footer-right">
         <div class="popupstyle">
-        <a href="#" id="openPopupContact">Contacts </a>
+          <a href="#" id="openPopupContact">Contacts </a>
         </div>
         <div id="popupContact" class="popup">
-            <div class="popup-content popup-contact">
-                <span class="close" aria-label="Fermer" >&times;</span>
-                <h3 class="h3">Contacts</h3>
-                <p>Vous pouvez nous contacter via les informations suivantes :</p>
-                <h4>Mila Duperrier, développeuse : </h4>
-                <ul>
-                    <li><strong>Email : </strong><a href="mailto:miladuperrier@gmail.com">miladuperrier@gmail.com</a></li>
-                      <li><strong>LinkedIn : </strong><a href="https://www.linkedin.com/in/mila-duperrier/">LinkedIn-Mila-Duperrier</a></li>
-                    <li><strong>GitHub : </strong><a href="https://github.com/miladup/">GitHub-Mila-Duperrier</a></li>
-                </ul>
-                <h4>Elias Zerar, développeur : </h4>
-                <ul>
-                    <li><strong>Email : </strong><a href="mailto:zerarelias@gmail.com">zerarelias@gmail.com</a></li>
-                    <li><strong>LinkedIn : </strong><a href="https://www.linkedin.com/in/elias-zerar-1412a8297">LinkedIn-Elias-Zerar</a></li>
-                    <li><strong>GitHub : </strong><a href="https://github.com/EliasZerar">GitHub-Elias-Zerar</a></li>
-                </ul>
-                <h4>Thomas Veber, designer graphique : </h4>
-                <ul>
-                    <li><strong>Email : </strong><a href="mailto:thomasveber8@gmail.com">thomasveber8@gmail.com</a></li>
-                    <li><strong>LinkedIn : </strong><a href="https://www.linkedin.com/in/thomas-veber-a57a9a299/">LinkedIn-Thomas-Veber</a></li>
-                    <li><strong>GitHub : </strong><a href="https://github.com/thomasveber/">GitHub-Thomas-Veber</a></li>
-                </ul>
-            </div>
+          <div class="popup-content popup-contact">
+            <span class="close" aria-label="Fermer">&times;</span>
+            <h3 class="h3">Contacts</h3>
+            <p>Vous pouvez nous contacter via les informations suivantes :</p>
+            <h4>Mila Duperrier, développeuse : </h4>
+            <ul>
+              <li><strong>Email : </strong><a href="mailto:miladuperrier@gmail.com">miladuperrier@gmail.com</a></li>
+              <li><strong>LinkedIn : </strong><a
+                  href="https://www.linkedin.com/in/mila-duperrier/">LinkedIn-Mila-Duperrier</a></li>
+              <li><strong>GitHub : </strong><a href="https://github.com/miladup/">GitHub-Mila-Duperrier</a></li>
+            </ul>
+            <h4>Elias Zerar, développeur : </h4>
+            <ul>
+              <li><strong>Email : </strong><a href="mailto:zerarelias@gmail.com">zerarelias@gmail.com</a></li>
+              <li><strong>LinkedIn : </strong><a
+                  href="https://www.linkedin.com/in/elias-zerar-1412a8297">LinkedIn-Elias-Zerar</a></li>
+              <li><strong>GitHub : </strong><a href="https://github.com/EliasZerar">GitHub-Elias-Zerar</a></li>
+            </ul>
+            <h4>Thomas Veber, designer graphique : </h4>
+            <ul>
+              <li><strong>Email : </strong><a href="mailto:thomasveber8@gmail.com">thomasveber8@gmail.com</a></li>
+              <li><strong>LinkedIn : </strong><a
+                  href="https://www.linkedin.com/in/thomas-veber-a57a9a299/">LinkedIn-Thomas-Veber</a></li>
+              <li><strong>GitHub : </strong><a href="https://github.com/thomasveber/">GitHub-Thomas-Veber</a></li>
+            </ul>
+          </div>
         </div>
-  
+
         <span class="separator">|</span>
 
-    <div class="footer-section">  
-     
-       <div class="popupstyle">
-      <a href="#" id="openPopupLegal">Mentions légales</a>
-    </div>
-      <div id="popupLegal" class="popup">
-          <div class="popup-content">
-          <span class="close" aria-label="Fermer">&times;</span>
-       
-          <h3 class="h3">Mentions Légales</h3>
-     
-          <h4>Éditeur :</h4>
-          <p>Le site est conçu au sein de l’Université Gustave Eiffel :</p>
-          <ul>
-              <li>Adresse : 5 Boulevard Descartes, 77420 Champs-sur-Marne, France</li>
-              <li>Numéro de téléphone : +33 1 60 95 75 00</li>
-              <li>Page de contact : <a href="https://www.univ-gustave-eiffel.fr//contacts">Contacts en ligne</a></li>
-              <li>Numéro SIREN : 130 026 123</li>
-              <li>Code APE : 8542Z</li>
-              <li>Représentant de l’éditeur : Gilles Roussel</li>
-              <li>DPO : Véronique Juge, mail : <a href="mailto:vjuge@univ-gustave-eiffel.fr">vjuge@univ-gustave-eiffel.fr</a>, adresse : 5 Boulevard Descartes, 77420 Champs-sur-Marne, France</li>
-          </ul>
-      
-          <h4>Hébergeur :</h4>
-          <p>Le projet est hébergé par GitHub :</p>
-          <ul>
-              <li>Adresse : PRIUS BERNHARDPLEIN 200 PAYS-BAS</li>
-              <li>Numéro de contact : +1 877 448 4820</li>
-              <li>Email pour la confidentialité : <a href="mailto:privacy@github.com">privacy@github.com</a></li>
-              <li>Site officiel : <a href="https://www.github.com">www.github.com</a></li>
-          </ul>
-      
-          <h4>Ce projet a été conçu et développé par :</h4> 
-          <p>Elias Zerar, Mila Duperrier, et Thomas Veber, étudiants inscrits en BUT Métiers du Multimédia et de l'Internet (MMI).</p>
-          <ul>
-              <li>Illustrations et Design : Thomas Veber</li>
-              <li>Développement Web : Mila Duperrier et Elias Zerar</li>
-              <li>Textes : Mila Duperrier, Elias Zerar et Thomas Veber</li>
-          </ul>
-      
-          <h4>Politique de confidentialité :</h4>
-          <p>Dans le cadre de ce projet, aucune donnée personnelle ou information sur les utilisateurs n’est collectée ni partagée. Notre approche se fonde uniquement sur l’utilisation de données issues de sources officielles, dans le but de concevoir des graphiques et analyses informatifs. Nous nous engageons à utiliser exclusivement des données provenant de sources externes fiables, telles que celles fournies par l'INJEP, pour la création de contenus à visée pédagogique. Aucune information individuelle ou donnée additionnelle n’est donc ni collectée ni exploitée.</p>
+        <div class="footer-section">
 
-          <h4>Collecte de données :</h4>
+          <div class="popupstyle">
+            <a href="#" id="openPopupLegal">Mentions légales</a>
+          </div>
+          <div id="popupLegal" class="popup">
+            <div class="popup-content">
+              <span class="close" aria-label="Fermer">&times;</span>
 
-          <p>Ce site est hébergé sur GitHub Pages, un service fourni par GitHub. GitHub peut collecter certaines données personnelles des visiteurs, telles que l'adresse IP, le type de navigateur, le système d'exploitation, et les interactions avec le site. Ces données sont utilisées par GitHub pour assurer le fonctionnement du service et améliorer ses performances.
+              <h3 class="h3">Mentions Légales</h3>
 
-          Pour plus d'informations sur les pratiques de collecte et d'utilisation des données par GitHub, veuillez consulter leur <a href="https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement#personal-data-we-collect">Déclaration de confidentialité</a>.</a></p>
-          <p>Le présent site ne traitant aucunes données personnalisées, le RGPD ne s'applique pas.</p>
+              <h4>Éditeur :</h4>
+              <p>Le site est conçu au sein de l’Université Gustave Eiffel :</p>
+              <ul>
+                <li>Adresse : 5 Boulevard Descartes, 77420 Champs-sur-Marne, France</li>
+                <li>Numéro de téléphone : +33 1 60 95 75 00</li>
+                <li>Page de contact : <a href="https://www.univ-gustave-eiffel.fr//contacts">Contacts en ligne</a></li>
+                <li>Numéro SIREN : 130 026 123</li>
+                <li>Code APE : 8542Z</li>
+                <li>Représentant de l’éditeur : Gilles Roussel</li>
+                <li>DPO : Véronique Juge, mail : <a
+                    href="mailto:vjuge@univ-gustave-eiffel.fr">vjuge@univ-gustave-eiffel.fr</a>, adresse : 5 Boulevard
+                  Descartes, 77420 Champs-sur-Marne, France</li>
+              </ul>
 
-          <h4>Sportiz :</h4>
-          <p>L'INPI a vérifié les antériorités pour le nom "Sportiz" : celui-ci est disponible et d’utilisation, une marque ayant été déposée, mais expirée en 2011 et non renouvelée.</p>
+              <h4>Hébergeur :</h4>
+              <p>Le projet est hébergé par GitHub :</p>
+              <ul>
+                <li>Adresse : PRIUS BERNHARDPLEIN 200 PAYS-BAS</li>
+                <li>Numéro de contact : +1 877 448 4820</li>
+                <li>Email pour la confidentialité : <a href="mailto:privacy@github.com">privacy@github.com</a></li>
+                <li>Site officiel : <a href="https://www.github.com">www.github.com</a></li>
+              </ul>
 
-      
-          <h4>Sources :</h4>
-          <p>Les données utilisées dans ce projet proviennent exclusivement de sources fiables, notamment le site de l’INJEP. Elles sont employées uniquement dans un but éducatif et informatif, dans le cadre d’un projet étudiant réalisé à l’IUT de l'Université Gustave Eiffel à Champs-sur-Marne. Ces informations sont strictement réservées à un usage pédagogique et ne sont pas destinées à des fins commerciales.</p>
-      
-          <p>Tous les éléments graphiques de ce projet ont été conçus par Thomas Veber. Les polices d’écritures “Navada” (par SabrCreative) et Helvetica Neue sont des polices libres d’utilisation pour des usages personnels.</p>
+              <h4>Ce projet a été conçu et développé par :</h4>
+              <p>Elias Zerar, Mila Duperrier, et Thomas Veber, étudiants inscrits en BUT Métiers du Multimédia et de
+                l'Internet (MMI).</p>
+              <ul>
+                <li>Illustrations et Design : Thomas Veber</li>
+                <li>Développement Web : Mila Duperrier et Elias Zerar</li>
+                <li>Textes : Mila Duperrier, Elias Zerar et Thomas Veber</li>
+              </ul>
 
-          <h4>Données et graphiques :</h4>
+              <h4>Politique de confidentialité :</h4>
+              <p>Dans le cadre de ce projet, aucune donnée personnelle ou information sur les utilisateurs n’est
+                collectée ni partagée. Notre approche se fonde uniquement sur l’utilisation de données issues de sources
+                officielles, dans le but de concevoir des graphiques et analyses informatifs. Nous nous engageons à
+                utiliser exclusivement des données provenant de sources externes fiables, telles que celles fournies par
+                l'INJEP, pour la création de contenus à visée pédagogique. Aucune information individuelle ou donnée
+                additionnelle n’est donc ni collectée ni exploitée.</p>
 
-        <p>Les données que nous utilisons sont disponibles à cette adresse : <a href="https://injep.fr/donnee/recensement-des-licences-et-clubs-sportifs-2023/#tab03">Données des recensements des licences</a></p> 
+              <h4>Collecte de données :</h4>
 
-        <p>Le graphique que nous utilisons est issu de la bibliothèque D3.js, et est trouvable à cette adresse : <a href="https://observablehq.com/@d3/bar-chart-race">Graphique d3.js</a></p> 
+              <p>Ce site est hébergé sur GitHub Pages, un service fourni par GitHub. GitHub peut collecter certaines
+                données personnelles des visiteurs, telles que l'adresse IP, le type de navigateur, le système
+                d'exploitation, et les interactions avec le site. Ces données sont utilisées par GitHub pour assurer le
+                fonctionnement du service et améliorer ses performances.
 
-      
-          <h4>Images :</h4>
-          <ul>
-            <li>La photographie utilisée sur la page d’accueil provient de harutmovsisyan sur Pixabay :
-                <a href="https://pixabay.com/photos/box-sport-men-training-male-1514845/">Image de boxeur</a>
-            </li><br>
-            <li>L'image pour le football est prise par D. Vojinovic pour L’équipe : <a href="https://www.lequipe.fr/Football/Article/Un-but-un-trophee-et-des-attentes-mbappe-des-debuts-marquants-avec-le-real-madrid/1501458">Article sur Kylian Mbappé</a><br>
-              Le stade Santiago Bernabéu a été conçu par les architectes Luis Alemany Soler et Manuel Muñoz Monasterio :
-                <a href="https://www.barcelo.com/guia-turismo/en/spain/madrid/things-to-do/santiago-bernabeu-stadium/">Stade Santiago Bernabéu</a>
-            </li><br>
-            <li>L'image pour le tennis provient de Fengshui Tips sur Kindpng : <a href="https://www.kindpng.com/imgv/imiTobi_roger-federer-png-transparent-png/">Image de Roger Federer</a><br>
-              La seconde photo vient de Cynthiamcastro sur Pixabay :
-                <a href="https://pixabay.com/photos/tennis-sport-tennis-ball-1671852/">Image de Tennis</a>
-            </li><br>
-            <li>L'image pour l'équitation, prise par Elodie MULLER pour Cheval Magazine :
-                <a href="https://www.chevalmag.com/sports/isabell-werth-reste-la-reine-a-lyon/">Article de Cheval Mag</a><br>
-                Jardins de Versaille par André Le Nôtre : 
-                <a href="https://www.leparisien.fr/sports/JO/paris-2024/paris-2024-a-deux-ans-des-jeux-olympiques-versailles-devient-un-stade-multisports-a-ciel-ouvert-27-07-2022-USBNWDQ5CRFD7HRRJZSVYITIHA.php">Le Parisien sur Versailles</a>
-            </li><br>
-            <li>L'image pour le basketball, par Harry How sur Getty Images : <a href="https://www.sfgate.com/warriors/article/lebron-james-probably-not-joining-warriors-18121630.php">SFGate Article</a><br>
-              Une seconde par KaiPilger sur Pixabay : <a href="https://pixabay.com/photos/basketball-court-basketball-sport-4158462/">Image de basketball</a>
-            </li><br>
-            <li>L'image pour le handball, par Odd Andersen pour l'AFP : <a href="https://www.lalsace.fr/sport/2019/01/19/place-aux-grands-hommes">Article L'Alsace</a><br>
-              Une seconde par Maxppp : <a href="https://www.francebleu.fr/sports/basket-handball-volley/mondial-2017-de-handball-les-huit-salles-qui-accueillent-la-competition-aux-quatre-coins-de-la-france-1484056389">France Bleu sur le Mondial de Handball</a>
-            </li><br>
-            <li>L'image pour le judo, par Arlette Bashizi pour Courrier International : <a href="https://www.courrierinternational.com/article/a-quoi-reve-teddy-riner_220934">Courrier International Article</a> <br>
-              Les détails architecturaux de l'arena du Champs de Mars, par Jean-Michel Wilemotte :
-                <a href="https://www.leparisien.fr/jo-paris-2024/judo/jo-2024-judo-tatamis-cheap-logistique-a-revoir-la-colere-de-la-fede-internationale-contre-larena-champ-de-mars-24-07-2024-RYDCSC7S2ZELTKCDI3ZN75UCRM.php">Le Parisien Article</a>
-            </li><br>
-            <li>L'image pour le golf, par Abacai pour PurePeople : <a href="https://www.purepeople.com/media/united-states-team-members-tiger-woods_m1260143">PurePeople Image</a> <br>
-              Des détails du Golf National, par l'architecte Hubert Chesneau :
-                <a href="https://olympics.com/fr/paris-2024/sites/le-golf-national">Le Golf National sur le site des JO</a>
-            </li><br>
-            <li>L'image pour la natation, par Ashley Landis pour Vosgesmatin :  <a href="https://www.vosgesmatin.fr/sport/2024/08/01/leon-marchand-une-polyvalence-rarissime-en-natation">Vosges Matin Article</a><br>
-              Des détails architecturaux de Paris La Défense Arena, par Christian de Portzamparc :
-                <a href="https://www.ouest-france.fr/jeux-olympiques/reportage-jo-2024-une-ambiance-de-folie-a-paris-les-decibels-montent-pour-la-natation-6a5c493a-4cdc-11ef-a622-0126aa35ae01">Ouest-France Article</a>
-            </li><br>
-            <li>L'image pour le rugby, par Patrick T. Fallon pour l'AFP, publiée sur Challenges.fr : <a href="https://www.challenges.fr/entreprise/sports/rugby-a-vii-les-bleus-de-dupont-triomphent-a-los-angeles-l-objectif-olympique-est-bien-lance_885590">Challenges Article</a><br>
-              Des détails architecturaux du Stade De France, par Claude Constantini, Michel Macary, Michel Regembal, et Aymeric Zublena :
-                <a href="https://www.sortiraparis.com/loisirs/sport/articles/315330-le-stade-de-france-le-lieu-d-accueil-de-concerts-et-evenements-sportifs-a-saint-denis-93">Sortir à Paris Article</a>
-            </li><br>
-            <li>L'image pour la gymnastique par Francisco Seco pour Libération : <a href="https://www.liberation.fr/idees-et-debats/editorial/jo-de-paris-2024-simone-biles-un-mental-dacier-20240804_CFWKRYNP5JDOJEM3F6MMXHFMX4/">Libération Article</a><br>
-              Des détails architecturaux de l'Accor Arena, par Michel Andrault, Gauvan, Pierre Parat, et Jean Prouvé :
-                <a href="https://presse.paris2024.org/diffusis/actualites-1/paris-2024-dernier-jeudi-billetterie-1440-e0190.html">Paris 2024 Press Site</a>
-            </li><br>
-            <li>L'image pour l'athlétisme, par Ian Walton pour Vanity Fair : <a href="https://www.vanityfair.fr/actualites/article/usain-bolt-veut-deposer-une-marque-pour-sa-celebre-pose-de-la-victoire">Vanity Fair Article</a> <br>
-              Une seconde par Maja Hitij trouvée sur le site des Jeux Olympiques :
-                <a href="https://olympics.com/fr/infos/jeux-olympiques-paralympiques-paris-2024-pourquoi-piste-athletisme-stade-de-france-violette">Jeux Olympiques Info</a>
-            </li>
-        </ul>
-      
-          <h4>Polices :</h4>
-          <ul>
-              <li>Navada: <a href="https://www.1001fonts.com/navada-font.html#license">Navada Font License</a></li>
-              <li>Helvetica Neue: <a href="https://www.cufonfonts.com/font/helvetica-neue-5">Helvetica Neue Font</a></li>
-          </ul>
+                Pour plus d'informations sur les pratiques de collecte et d'utilisation des données par GitHub, veuillez
+                consulter leur <a
+                  href="https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement#personal-data-we-collect">Déclaration
+                  de confidentialité</a>.</a></p>
+              <p>Le présent site ne traitant aucunes données personnalisées, le RGPD ne s'applique pas.</p>
+
+              <h4>Sportiz :</h4>
+              <p>L'INPI a vérifié les antériorités pour le nom "Sportiz" : celui-ci est disponible et d’utilisation, une
+                marque ayant été déposée, mais expirée en 2011 et non renouvelée.</p>
+
+
+              <h4>Sources :</h4>
+              <p>Les données utilisées dans ce projet proviennent exclusivement de sources fiables, notamment le site de
+                l’INJEP. Elles sont employées uniquement dans un but éducatif et informatif, dans le cadre d’un projet
+                étudiant réalisé à l’IUT de l'Université Gustave Eiffel à Champs-sur-Marne. Ces informations sont
+                strictement réservées à un usage pédagogique et ne sont pas destinées à des fins commerciales.</p>
+
+              <p>Tous les éléments graphiques de ce projet ont été conçus par Thomas Veber. Les polices d’écritures
+                “Navada” (par SabrCreative) et Helvetica Neue sont des polices libres d’utilisation pour des usages
+                personnels.</p>
+
+              <h4>Données et graphiques :</h4>
+
+              <p>Les données que nous utilisons sont disponibles à cette adresse : <a
+                  href="https://injep.fr/donnee/recensement-des-licences-et-clubs-sportifs-2023/#tab03">Données des
+                  recensements des licences</a></p>
+
+              <p>Le graphique que nous utilisons est issu de la bibliothèque D3.js, et est trouvable à cette adresse :
+                <a href="https://observablehq.com/@d3/bar-chart-race">Graphique d3.js</a>
+              </p>
+
+
+              <h4>Images :</h4>
+              <ul>
+                <li>La photographie utilisée sur la page d’accueil provient de harutmovsisyan sur Pixabay :
+                  <a href="https://pixabay.com/photos/box-sport-men-training-male-1514845/">Image de boxeur</a>
+                </li><br>
+                <li>L'image pour le football est prise par D. Vojinovic pour L’équipe : <a
+                    href="https://www.lequipe.fr/Football/Article/Un-but-un-trophee-et-des-attentes-mbappe-des-debuts-marquants-avec-le-real-madrid/1501458">Article
+                    sur Kylian Mbappé</a><br>
+                  Le stade Santiago Bernabéu a été conçu par les architectes Luis Alemany Soler et Manuel Muñoz
+                  Monasterio :
+                  <a
+                    href="https://www.barcelo.com/guia-turismo/en/spain/madrid/things-to-do/santiago-bernabeu-stadium/">Stade
+                    Santiago Bernabéu</a>
+                </li><br>
+                <li>L'image pour le tennis provient de Fengshui Tips sur Kindpng : <a
+                    href="https://www.kindpng.com/imgv/imiTobi_roger-federer-png-transparent-png/">Image de Roger
+                    Federer</a><br>
+                  La seconde photo vient de Cynthiamcastro sur Pixabay :
+                  <a href="https://pixabay.com/photos/tennis-sport-tennis-ball-1671852/">Image de Tennis</a>
+                </li><br>
+                <li>L'image pour l'équitation, prise par Elodie MULLER pour Cheval Magazine :
+                  <a href="https://www.chevalmag.com/sports/isabell-werth-reste-la-reine-a-lyon/">Article de Cheval
+                    Mag</a><br>
+                  Jardins de Versaille par André Le Nôtre :
+                  <a
+                    href="https://www.leparisien.fr/sports/JO/paris-2024/paris-2024-a-deux-ans-des-jeux-olympiques-versailles-devient-un-stade-multisports-a-ciel-ouvert-27-07-2022-USBNWDQ5CRFD7HRRJZSVYITIHA.php">Le
+                    Parisien sur Versailles</a>
+                </li><br>
+                <li>L'image pour le basketball, par Harry How sur Getty Images : <a
+                    href="https://www.sfgate.com/warriors/article/lebron-james-probably-not-joining-warriors-18121630.php">SFGate
+                    Article</a><br>
+                  Une seconde par KaiPilger sur Pixabay : <a
+                    href="https://pixabay.com/photos/basketball-court-basketball-sport-4158462/">Image de basketball</a>
+                </li><br>
+                <li>L'image pour le handball, par Odd Andersen pour l'AFP : <a
+                    href="https://www.lalsace.fr/sport/2019/01/19/place-aux-grands-hommes">Article L'Alsace</a><br>
+                  Une seconde par Maxppp : <a
+                    href="https://www.francebleu.fr/sports/basket-handball-volley/mondial-2017-de-handball-les-huit-salles-qui-accueillent-la-competition-aux-quatre-coins-de-la-france-1484056389">France
+                    Bleu sur le Mondial de Handball</a>
+                </li><br>
+                <li>L'image pour le judo, par Arlette Bashizi pour Courrier International : <a
+                    href="https://www.courrierinternational.com/article/a-quoi-reve-teddy-riner_220934">Courrier
+                    International Article</a> <br>
+                  Les détails architecturaux de l'arena du Champs de Mars, par Jean-Michel Wilemotte :
+                  <a
+                    href="https://www.leparisien.fr/jo-paris-2024/judo/jo-2024-judo-tatamis-cheap-logistique-a-revoir-la-colere-de-la-fede-internationale-contre-larena-champ-de-mars-24-07-2024-RYDCSC7S2ZELTKCDI3ZN75UCRM.php">Le
+                    Parisien Article</a>
+                </li><br>
+                <li>L'image pour le golf, par Abacai pour PurePeople : <a
+                    href="https://www.purepeople.com/media/united-states-team-members-tiger-woods_m1260143">PurePeople
+                    Image</a> <br>
+                  Des détails du Golf National, par l'architecte Hubert Chesneau :
+                  <a href="https://olympics.com/fr/paris-2024/sites/le-golf-national">Le Golf National sur le site des
+                    JO</a>
+                </li><br>
+                <li>L'image pour la natation, par Ashley Landis pour Vosgesmatin : <a
+                    href="https://www.vosgesmatin.fr/sport/2024/08/01/leon-marchand-une-polyvalence-rarissime-en-natation">Vosges
+                    Matin Article</a><br>
+                  Des détails architecturaux de Paris La Défense Arena, par Christian de Portzamparc :
+                  <a
+                    href="https://www.ouest-france.fr/jeux-olympiques/reportage-jo-2024-une-ambiance-de-folie-a-paris-les-decibels-montent-pour-la-natation-6a5c493a-4cdc-11ef-a622-0126aa35ae01">Ouest-France
+                    Article</a>
+                </li><br>
+                <li>L'image pour le rugby, par Patrick T. Fallon pour l'AFP, publiée sur Challenges.fr : <a
+                    href="https://www.challenges.fr/entreprise/sports/rugby-a-vii-les-bleus-de-dupont-triomphent-a-los-angeles-l-objectif-olympique-est-bien-lance_885590">Challenges
+                    Article</a><br>
+                  Des détails architecturaux du Stade De France, par Claude Constantini, Michel Macary, Michel Regembal,
+                  et Aymeric Zublena :
+                  <a
+                    href="https://www.sortiraparis.com/loisirs/sport/articles/315330-le-stade-de-france-le-lieu-d-accueil-de-concerts-et-evenements-sportifs-a-saint-denis-93">Sortir
+                    à Paris Article</a>
+                </li><br>
+                <li>L'image pour la gymnastique par Francisco Seco pour Libération : <a
+                    href="https://www.liberation.fr/idees-et-debats/editorial/jo-de-paris-2024-simone-biles-un-mental-dacier-20240804_CFWKRYNP5JDOJEM3F6MMXHFMX4/">Libération
+                    Article</a><br>
+                  Des détails architecturaux de l'Accor Arena, par Michel Andrault, Gauvan, Pierre Parat, et Jean Prouvé
+                  :
+                  <a
+                    href="https://presse.paris2024.org/diffusis/actualites-1/paris-2024-dernier-jeudi-billetterie-1440-e0190.html">Paris
+                    2024 Press Site</a>
+                </li><br>
+                <li>L'image pour l'athlétisme, par Ian Walton pour Vanity Fair : <a
+                    href="https://www.vanityfair.fr/actualites/article/usain-bolt-veut-deposer-une-marque-pour-sa-celebre-pose-de-la-victoire">Vanity
+                    Fair Article</a> <br>
+                  Une seconde par Maja Hitij trouvée sur le site des Jeux Olympiques :
+                  <a
+                    href="https://olympics.com/fr/infos/jeux-olympiques-paralympiques-paris-2024-pourquoi-piste-athletisme-stade-de-france-violette">Jeux
+                    Olympiques Info</a>
+                </li>
+              </ul>
+
+              <h4>Polices :</h4>
+              <ul>
+                <li>Navada: <a href="https://www.1001fonts.com/navada-font.html#license">Navada Font License</a></li>
+                <li>Helvetica Neue: <a href="https://www.cufonfonts.com/font/helvetica-neue-5">Helvetica Neue Font</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-    </footer>
-<script type="module" src="graphique.js"></script>
-<script src="script.js"></script>
-<script src="script3.js"></script>
+  </footer>
+  <script type="module" src="graphique.js"></script>
+  <script src="script.js"></script>
+  <script src="script3.js"></script>
+  <script src="doughout.js"></script>
 </body>
 
 </html>

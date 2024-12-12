@@ -19,7 +19,11 @@ body {
     color: white;
     margin: 0;
 }
-
+.doughnut {
+    display: block;
+    width: 30%;
+    height: auto;
+}
 .accueil {
     min-height: 100vh;
     background-image: url(media/accueil_DTZ.png);
