@@ -75,16 +75,12 @@ function createChart(chartId, labels, values, percentages, sport, years) {
                 },
                 title: {
                     display: true,
-<<<<<<< HEAD
                     text: `Saison : ${years.join(', ')}`,
                     font: {
                         family: '"HelveticaNeue", sans-serif', // Police du titre du graphique
                         size: 16, // Taille de la police
                         style: 'italic', // Style de la police (italique)
                     }
-=======
-                    text: `Nombre de licenciés lors de la saison : ${years.join(', ')}`
->>>>>>> 44dd97d9a126dd712efb002b5e85c5e48cdf177b
                 }
             }
         }
