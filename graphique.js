@@ -301,9 +301,17 @@ function bars(svg) {
             .attr("fill", color)
             .attr("id", (d) => d.name)
             .on("mouseover", function (event, d) {
-              // Change la couleur au survol
-              d3.select(this).attr("fill", hoverColorScale(d.name))
-              .style("cursor", "pointer");
+              // Appliquer une nouvelle couleur à la barre en surbrillance
+              d3.select(this)
+                .attr("fill", hoverColorScale(d.name)) // Met à jour la couleur directement
+                .style("cursor", "pointer");
+            
+              // Diminue l'opacité des autres barres sans interrompre leurs transitions
+              bar.style("opacity", function (b) {
+                return b.name === d.name ? 1 : 0.3;
+              });
+            
+              // Gérer l'affichage de l'image d'aperçu
               const idBar = d3
                 .select(this)
                 .attr("id")
@@ -314,10 +322,18 @@ function bars(svg) {
               showImage(imgSrc, event);
             })
             .on("mouseout", function (event, d) {
-              // Restaure la couleur initiale
+              // Restaurer la couleur initiale de la barre
               d3.select(this).attr("fill", color(d));
+            
+              // Restaurer l'opacité des autres barres
+              bar.style("opacity", 1);
+            
+              // Cacher l'image d'aperçu
               hideImage();
             })
+            
+            
+            
             .on("mousemove", updateImagePosition)
             .on("click", function (event, d) {
               const sectionId = normalizeString(d.name);
