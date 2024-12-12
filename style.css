@@ -265,7 +265,8 @@ input[type="range"] {
 
 .content {
     width: 100%; /* Assurez-vous que le contenu utilise toute la largeur */
-    padding: 20px; /* Ajoute un peu d'espace */
+    margin-left: 25vh;
+    margin-top: 10vh;/* Ajoute un peu d'espace */
 }
 
 /* @media (max-width: 1200px) {
@@ -277,7 +278,8 @@ input[type="range"] {
 
 .doughnut {
     width: 100%;
-    margin-top: auto;
+    margin-top: 3vh;
+    margin-left: 20vh;
 }
 
 .sport-name {
@@ -430,3 +432,14 @@ p {
     min-width: 600px;
 }
 
+canvas {
+    width: 350px !important;
+    height: auto !important;
+}
+
+@media (max-width: 1200px) {
+
+    .content {
+        margin-left: 15vh;
+    }
+} 

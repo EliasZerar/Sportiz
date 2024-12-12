@@ -14,17 +14,17 @@ function getSportData(sportsData, sportIndex) {
 
 
 const colors = {
-    "Football": ['rgba(255, 99, 132, 0.6)', 'rgba(206, 189, 96, 0.6)'],
-    "Tennis": ['rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)'],
-    "Equitation": ['rgba(255, 159, 64, 0.6)', 'rgba(255, 205, 86, 0.6)'],
-    "Judo": ['rgba(201, 203, 207, 0.6)', 'rgba(54, 162, 235, 0.6)'],
-    "Basketball": ['rgba(255, 99, 132, 0.6)', 'rgba(75, 192, 192, 0.6)'],
-    "Handball": ['rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)'],
-    "Golf": ['rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)'],
-    "Rugby": ['rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)'],
-    "Gymnastique": ['rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)'],
-    "Natation": ['rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)'],
-    "Athletisme": ['rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)'],
+    "Football": ['rgba(255, 255, 255, 0.9)', 'rgba(206, 189, 96, 1)'],
+    "Tennis": ['rgba(255, 255, 255, 0.8)', 'rgba(143, 41, 41, 0.9)'],
+    "Equitation": ['rgba(111, 75, 56, 0.9)', 'rgba(255, 255, 255, 0.8)'],
+    "Judo": ['rgba(255, 255, 255, 0.8)', 'rgba(28, 57, 149, 0.9)'],
+    "Basketball": ['rgba(255, 255, 255, 0.8)', 'rgba(83, 60, 128, 0.9)'],
+    "Handball": ['rgba(255, 255, 255, 0.8)', 'rgba(164, 98, 62, 0.9)'],
+    "Golf": ['rgba(255, 255, 255, 0.8)', 'rgba(154, 40, 40, 0.9)'],
+    "Rugby": ['rgba(255, 255, 255, 0.8)', 'rgba(154, 40, 40, 0.9)'],
+    "Gymnastique": ['rgba(165, 107, 129, 0.9)', 'rgba(255, 255, 255, 0.8)'],
+    "Natation": ['rgba(57, 75, 119, 0.9)', 'rgba(255, 255, 255, 0.8)'],
+    "Athletisme": ['rgba(255, 255, 255, 0.8)', 'rgba(78, 135, 106, 0.9)'],
 };
 
 function createChart(chartId, labels, values, percentages, sport, years) {
@@ -59,13 +59,12 @@ function createChart(chartId, labels, values, percentages, sport, years) {
                 },
                 title: {
                     display: true,
-                    text: `Saison : ${years.join(', ')}`
+                    text: `Nombre de licenciés lors de la saison : ${years.join(', ')}`
                 }
             }
         }
     });
 }
-
 
 async function createCharts() {
     const sportsData = await fetchJSONData('stats-sexe.json');
