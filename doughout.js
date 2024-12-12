@@ -17,8 +17,26 @@ function getSportData(sportsData, sportIndex) {
     return { labels: reversedLabels, values: reversedValues, sport: sportData.sport, total }; // Ajouter le total
 }
 
+
+const colors = {
+    "Football": ['rgba(255, 99, 132, 0.6)', 'rgba(206, 189, 96, 0.6)'],
+    "Tennis": ['rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)'],
+    "Equitation": ['rgba(255, 159, 64, 0.6)', 'rgba(255, 205, 86, 0.6)'],
+    "Judo": ['rgba(201, 203, 207, 0.6)', 'rgba(54, 162, 235, 0.6)'],
+    "Basketball": ['rgba(255, 99, 132, 0.6)', 'rgba(75, 192, 192, 0.6)'],
+    "Handball": ['rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)'],
+    "Golf": ['rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)'],
+    "Rugby": ['rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)'],
+    "Gymnastique": ['rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)'],
+    "Natation": ['rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)'],
+    "Athletisme": ['rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)'],
+};
+
+
 function createChart(chartId, labels, values, years, total) {
     const ctx = document.getElementById(chartId).getContext('2d');
+    const sportColors = colors[sport] || ['rgba(201, 203, 207, 0.6)', 'rgba(54, 162, 235, 0.6)']; // Couleurs par défaut si le sport n'est pas trouvé
+
     new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -26,14 +44,9 @@ function createChart(chartId, labels, values, years, total) {
             datasets: [{
                 label: 'Distribution des genres',
                 data: values,
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.6)', // Bleu pour Hommes (gauche)
-                    'rgba(255, 99, 132, 0.6)'  // Rose pour Femmes (droite)
-                ],
-                borderColor: [
-                    'rgba(54, 162, 235, 1)',  // Bleu pour Hommes
-                    'rgba(255, 99, 132, 1)'   // Rose pour Femmes
-                ],
+
+                backgroundColor: sportColors,
+                borderColor: sportColors.map(color => color.replace('0.6', '1')), // Assombrir les couleurs pour les bordures
                 borderWidth: 1
             }]
         },
@@ -65,14 +78,13 @@ function createChart(chartId, labels, values, years, total) {
 
 
 async function createCharts() {
-    const sportsData = await fetchJSONData('statistique.json');
+    const sportsData = await fetchJSONData('stats-sexe.json');
 
     sportsData.forEach((sportData, index) => {
         const { labels, values, sport, total } = getSportData(sportsData, index);
         const years = sportData.annees; // Récupère les années depuis les données
-        const chartId = `doughnutChart${sport}`; // Génère l'ID dynamiquement à partir du sport
+        const chartId = `doughnutChart${sport.replace(/\s/g, '')}`; // Supprime les espaces pour l'ID
 
-        // Vérifiez si un élément HTML avec cet ID existe
         if (document.getElementById(chartId)) {
             createChart(chartId, labels, values, years, total);
         } else {

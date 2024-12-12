@@ -57,7 +57,12 @@ body {
 }
 
 .section {
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Éloigne le contenu et le graphique */
+    min-height: 100vh; /* Ou la hauteur souhaitée */
+    align-items: center; /* Centrer les éléments horizontalement si nécessaire */
+    padding: 20px 0;
 }
 
 .container {
@@ -259,16 +264,21 @@ input[type="range"] {
 }
 
 .content {
-    transform: translate(25%, 65%);
-    width: fit-content;
+    width: 100%; /* Assurez-vous que le contenu utilise toute la largeur */
+    padding: 20px; /* Ajoute un peu d'espace */
 }
 
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
 
     .content {
         transform: translate(15%, 70%);
     }
-} 
+}  */
+
+.doughnut {
+    width: 100%;
+    margin-top: auto;
+}
 
 .sport-name {
     font-size: 9em;
