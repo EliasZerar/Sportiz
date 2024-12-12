@@ -49,11 +49,16 @@ function createChart(chartId, labels, values, percentages, sport, years) {
                 legend: {
                     position: 'top',
                     labels: {
+                        color: '#fff' ,
                         font: {
-                            family: '"HelveticaNeue", sans-serif', // Changer la police du texte de la légende
-                            size: 14, // Taille de la police
-                            style: 'bold', // Style de la police (gras)
-                        }
+                            family: '"HelveticaNeue", sans-serif',  // Police de la légende
+                            size: 14,  // Taille de la police
+                            style: 'bold',  // Style de la police (gras)
+                           // Couleur du texte de la légende (blanc)
+                        },
+                        // Ajouter `usePointStyle` et `boxWidth` pour éviter d'autres styles conflictuels
+                        usePointStyle: true, // Permet de contrôler le style du point
+                        boxWidth: 20,  // Largeur de la case du point dans la légende
                     }
                 },
                 tooltip: {
@@ -65,28 +70,29 @@ function createChart(chartId, labels, values, percentages, sport, years) {
                         }
                     },
                     titleFont: {
-                        family: '"HelveticaNeue", sans-serif', // Police du titre du tooltip
-                        size: 12, // Taille de la police
+                        family: '"HelveticaNeue", sans-serif', 
+                        size: 12,
+                        color: '#fff'  // Couleur du titre du tooltip (blanc)
                     },
                     bodyFont: {
-                        family: '"HelveticaNeue", sans-serif', // Police du corps du tooltip
-                        size: 14, // Taille du texte du corps du tooltip
+                        family: '"HelveticaNeue", sans-serif', 
+                        size: 14,
+                        color: '#fff'  // Couleur du corps du tooltip (blanc)
                     }
                 },
                 title: {
                     display: true,
-                    text: `Saison : ${years.join(', ')}`,
+                    text: `Nombre de licenciés : saison ${years.join(', ')}`,
                     font: {
-                        family: '"HelveticaNeue", sans-serif', // Police du titre du graphique
-                        size: 16, // Taille de la police
-                       
-                    }
+                        family: '"HelveticaNeue", sans-serif',
+                        size: 14
+                    },
+                    color: "#fff"  // Couleur du titre du graphique (blanc)
                 }
             }
         }
     });
 }
-
 async function createCharts() {
     const sportsData = await fetchJSONData('stats-sexe.json');
 
