@@ -13,7 +13,6 @@ function getSportData(sportsData, sportIndex) {
     return { labels, values, percentages, sport: sportData.sport };
 }
 
-
 const colors = {
     "Football": ['rgba(255, 99, 132, 0.6)', 'rgba(206, 189, 96, 0.6)'],
     "Tennis": ['rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)'],
@@ -38,7 +37,6 @@ function createChart(chartId, labels, values, percentages, sport, years) {
             labels: labels,
             datasets: [{
                 data: values,
-
                 backgroundColor: sportColors,
                 borderColor: sportColors.map(color => color.replace('0.6', '1')),
                 borderWidth: 1
@@ -50,6 +48,13 @@ function createChart(chartId, labels, values, percentages, sport, years) {
             plugins: {
                 legend: {
                     position: 'top',
+                    labels: {
+                        font: {
+                            family: '"HelveticaNeue", sans-serif', // Changer la police du texte de la légende
+                            size: 14, // Taille de la police
+                            style: 'bold', // Style de la police (gras)
+                        }
+                    }
                 },
                 tooltip: {
                     enabled: true,
@@ -58,17 +63,29 @@ function createChart(chartId, labels, values, percentages, sport, years) {
                             const percentage = percentages[tooltipItem.dataIndex];
                             return ` ${percentage}%`;
                         }
+                    },
+                    titleFont: {
+                        family: '"HelveticaNeue", sans-serif', // Police du titre du tooltip
+                        size: 12, // Taille de la police
+                    },
+                    bodyFont: {
+                        family: '"HelveticaNeue", sans-serif', // Police du corps du tooltip
+                        size: 14, // Taille du texte du corps du tooltip
                     }
                 },
                 title: {
                     display: true,
-                    text: `Saison : ${years.join(', ')}`
+                    text: `Saison : ${years.join(', ')}`,
+                    font: {
+                        family: '"HelveticaNeue", sans-serif', // Police du titre du graphique
+                        size: 16, // Taille de la police
+                        style: 'italic', // Style de la police (italique)
+                    }
                 }
             }
         }
     });
 }
-
 
 async function createCharts() {
     const sportsData = await fetchJSONData('stats-sexe.json');
@@ -81,8 +98,6 @@ async function createCharts() {
             createChart(chartId, labels, values, percentages, sport, years);
         }
     });
-    
 }
 
 createCharts();
-
