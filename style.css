@@ -256,7 +256,7 @@ input[type="range"] {
 
 .content {
     transform: translate(25%, 65%);
-    width: 50%;
+    width: fit-content;
 }
 
 @media (max-width: 1200px) {
