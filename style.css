@@ -264,7 +264,7 @@ input[type="range"] {
 }
 
 .content {
-    width: 100%; /* Assurez-vous que le contenu utilise toute la largeur */
+    width: 80%; /* Assurez-vous que le contenu utilise toute la largeur */
     margin-left: 25vh;
     margin-top: 10vh;/* Ajoute un peu d'espace */
 }
@@ -277,7 +277,7 @@ input[type="range"] {
 }  */
 
 .doughnut {
-    width: 100%;
+    width: 80%;
     margin-top: 3vh;
     margin-left: 20vh;
 }
@@ -441,5 +441,9 @@ canvas {
 
     .content {
         margin-left: 15vh;
+    }
+
+    .doughnut {
+        margin-left: 10vh;
     }
 } 

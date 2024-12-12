@@ -47,7 +47,7 @@ function createChart(chartId, labels, values, percentages, sport, years) {
             animation: false, // Désactiver l'animation
             plugins: {
                 legend: {
-                    position: 'top',
+                    position: 'bottom',
                     labels: {
                         color: '#fff' ,
                         font: {
@@ -82,7 +82,7 @@ function createChart(chartId, labels, values, percentages, sport, years) {
                 },
                 title: {
                     display: true,
-                    text: `Nombre de licenciés : saison ${years.join(', ')}`,
+                    text: `Pourcentage de licenciés (${years.join(', ')})`,
                     font: {
                         family: '"HelveticaNeue", sans-serif',
                         size: 14
