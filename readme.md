@@ -3,6 +3,7 @@ SportIz est une plateforme de visualisation de données dédiée au sport en Fra
 
 Lien pour accéder a notre site : https://eliaszerar.github.io/Sportiz/
 Lien pour accéder a notre github : https://github.com/EliasZerar/Sportiz/
+Lien de l'audit : https://ara.numerique.gouv.fr/rapports/uuKF9fg8ddkndg0CKfQMd
 
 Fonctionnalités
 Graphiques interactifs : Visualisez les tendances de la pratique sportive en France à travers des graphiques dynamiques.

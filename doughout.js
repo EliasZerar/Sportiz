@@ -79,7 +79,7 @@ function createChart(chartId, labels, values, percentages, sport, years) {
                     font: {
                         family: '"HelveticaNeue", sans-serif', // Police du titre du graphique
                         size: 16, // Taille de la police
-                        style: 'italic', // Style de la police (italique)
+                       
                     }
                 }
             }
