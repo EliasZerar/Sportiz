@@ -14,17 +14,17 @@ function getSportData(sportsData, sportIndex) {
 }
 
 const colors = {
-    "Football": ['rgba(255, 255, 255, 0.9)', 'rgba(206, 189, 96, 1)'],
-    "Tennis": ['rgba(255, 255, 255, 0.8)', 'rgba(143, 41, 41, 0.9)'],
-    "Equitation": ['rgba(111, 75, 56, 0.9)', 'rgba(255, 255, 255, 0.8)'],
-    "Judo": ['rgba(255, 255, 255, 0.8)', 'rgba(28, 57, 149, 0.9)'],
-    "Basketball": ['rgba(255, 255, 255, 0.8)', 'rgba(83, 60, 128, 0.9)'],
-    "Handball": ['rgba(255, 255, 255, 0.8)', 'rgba(164, 98, 62, 0.9)'],
-    "Golf": ['rgba(255, 255, 255, 0.8)', 'rgba(154, 40, 40, 0.9)'],
-    "Rugby": ['rgba(255, 255, 255, 0.8)', 'rgba(154, 40, 40, 0.9)'],
-    "Gymnastique": ['rgba(165, 107, 129, 0.9)', 'rgba(255, 255, 255, 0.8)'],
-    "Natation": ['rgba(57, 75, 119, 0.9)', 'rgba(255, 255, 255, 0.8)'],
-    "Athletisme": ['rgba(255, 255, 255, 0.8)', 'rgba(78, 135, 106, 0.9)'],
+    "Football": ['rgba(206, 189, 96, 1)', 'rgba(255, 255, 255, 0.9)'],
+    "Tennis": ['rgba(143, 41, 41, 0.9)', 'rgba(255, 255, 255, 0.8)'],
+    "Equitation": ['rgba(255, 255, 255, 0.8)', 'rgba(111, 75, 56, 0.9)'],
+    "Judo": ['rgba(28, 57, 149, 0.9)', 'rgba(255, 255, 255, 0.8)'],
+    "Basketball": ['rgba(83, 60, 128, 0.9)', 'rgba(255, 255, 255, 0.8)'],
+    "Handball": ['rgba(164, 98, 62, 0.9)', 'rgba(255, 255, 255, 0.8)'],
+    "Golf": ['rgba(154, 40, 40, 0.9)', 'rgba(255, 255, 255, 0.8)'],
+    "Rugby": ['rgba(154, 40, 40, 0.9)', 'rgba(255, 255, 255, 0.8)'],
+    "Gymnastique": ['rgba(255, 255, 255, 0.8)', 'rgba(165, 107, 129, 0.9)'],
+    "Natation": ['rgba(255, 255, 255, 0.8)', 'rgba(57, 75, 119, 0.9)'],
+    "Athletisme": ['rgba(78, 135, 106, 0.9)', 'rgba(255, 255, 255, 0.8)'],
 };
 
 function createChart(chartId, labels, values, percentages, sport, years) {
@@ -58,7 +58,8 @@ function createChart(chartId, labels, values, percentages, sport, years) {
                         },
                         // Ajouter `usePointStyle` et `boxWidth` pour éviter d'autres styles conflictuels
                         usePointStyle: true, // Permet de contrôler le style du point
-                        boxWidth: 20,  // Largeur de la case du point dans la légende
+                        boxWidth: 30,  // Largeur de la case du point dans la légende
+                        borderRadius: 30,
                     }
                 },
                 tooltip: {

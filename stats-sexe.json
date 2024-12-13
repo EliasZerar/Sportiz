@@ -3,88 +3,88 @@
         {
             "sport": "Football",
             "distribution": [
-                { "label": "Femmes", "value": 173440, "percentage": 9.8 },
-                { "label": "Hommes", "value": 1597335, "percentage": 90.2 }
+                { "label": "Hommes", "value": 1597335, "percentage": 90.2 },
+                { "label": "Femmes", "value": 173440, "percentage": 9.8 }
             ],
             "annees": ["2022/2023"]
         },
         {
             "sport": "Tennis",
             "distribution": [
-                { "label": "Femmes", "value": 314524, "percentage": 30.1 },
-                { "label": "Hommes", "value": 730050, "percentage": 69.9 }
+                { "label": "Hommes", "value": 730050, "percentage": 69.9 },
+                { "label": "Femmes", "value": 314524, "percentage": 30.1 }
             ],
             "annees": ["2022/2023"]
         },
         {
             "sport": "Equitation",
             "distribution": [
-                { "label": "Femmes", "value": 582690, "percentage": 84.7 },
-                { "label": "Hommes", "value": 105456, "percentage": 15.3 }
+                { "label": "Hommes", "value": 105456, "percentage": 15.3 },
+                { "label": "Femmes", "value": 582690, "percentage": 84.7 }
             ],
             "annees": ["2022/2023"]
         },
         {
             "sport": "Judo",
             "distribution": [
-                { "label": "Femmes", "value": 180200, "percentage": 34.0 },
-                { "label": "Hommes", "value": 349800, "percentage": 66.0 }
+                { "label": "Hommes", "value": 349800, "percentage": 66.0 },
+                { "label": "Femmes", "value": 180200, "percentage": 34.0 }
             ],
             "annees": ["2023/2024"]
         },
         {
             "sport": "Basketball",
             "distribution": [
-                { "label": "Femmes", "value": 237469, "percentage": 35.0 },
-                { "label": "Hommes", "value": 441013, "percentage": 65.0 }
+                { "label": "Hommes", "value": 441013, "percentage": 65.0 },
+                { "label": "Femmes", "value": 237469, "percentage": 35.0 }
             ],
             "annees": ["2021/2022"]
         },
         {
             "sport": "Handball",
             "distribution": [
-                { "label": "Femmes", "value": 172693, "percentage": 38.0 },
-                { "label": "Hommes", "value": 281393, "percentage": 62.0 }
+                { "label": "Hommes", "value": 281393, "percentage": 62.0 },
+                { "label": "Femmes", "value": 172693, "percentage": 38.0 }
             ],
             "annees": ["2022/2023"]
         },
         {
             "sport": "Golf",
             "distribution": [
-                { "label": "Femmes", "value": 118717, "percentage": 26.7 },
-                { "label": "Hommes", "value": 326589, "percentage": 73.3 }
+                { "label": "Hommes", "value": 326589, "percentage": 73.3 },
+                { "label": "Femmes", "value": 118717, "percentage": 26.7 }
             ],
             "annees": ["2023/2024"]
         },
         {
             "sport": "Gymnastique",
             "distribution": [
-                { "label": "Femmes", "value": 205010, "percentage": 83.0 },
-                { "label": "Hommes", "value": 41990, "percentage": 17.0 }
+                { "label": "Hommes", "value": 41990, "percentage": 17.0 },
+                { "label": "Femmes", "value": 205010, "percentage": 83.0 }
             ],
             "annees": ["2021/2022"]
         },
         {
             "sport": "Natation",
             "distribution": [
-                { "label": "Femmes", "value": 153000, "percentage": 53.4 },
-                { "label": "Hommes", "value": 133516, "percentage": 46.6 }
+                { "label": "Hommes", "value": 133516, "percentage": 46.6 },
+                { "label": "Femmes", "value": 153000, "percentage": 53.4 }
             ],
             "annees": ["2021/2022"]
         },
         {
             "sport": "Athletisme",
             "distribution": [
-                { "label": "Femmes", "value": 142439, "percentage": 47.0 },
-                { "label": "Hommes", "value": 160429, "percentage": 53.0 }
+                { "label": "Hommes", "value": 160429, "percentage": 53.0 },
+                { "label": "Femmes", "value": 142439, "percentage": 47.0 }
             ],
             "annees": ["2021/2022"]
         },
         {
             "sport": "Rugby",
             "distribution": [
-                { "label": "Femmes", "value": 34641, "percentage": 11.0 },
-                { "label": "Hommes", "value": 280279, "percentage": 89.0 }
+                { "label": "Hommes", "value": 280279, "percentage": 89.0 },
+                { "label": "Femmes", "value": 34641, "percentage": 11.0 }
             ],
             "annees": ["2021/2022"]
         }
