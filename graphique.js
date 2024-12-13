@@ -318,7 +318,7 @@ function bars(svg) {
                 .toLowerCase()
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "");
-              const imgSrc = "media/" + idBar + ".png";
+              const imgSrc = "media/" + idBar + "-section.jpg";
               showImage(imgSrc, event);
             })
             .on("mouseout", function (event, d) {

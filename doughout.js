@@ -54,9 +54,7 @@ function createChart(chartId, labels, values, percentages, sport, years) {
                             family: '"HelveticaNeue", sans-serif',  // Police de la légende
                             size: 14,  // Taille de la police
                             style: 'bold',  // Style de la police (gras)
-                           // Couleur du texte de la légende (blanc)
                         },
-                        // Ajouter `usePointStyle` et `boxWidth` pour éviter d'autres styles conflictuels
                         usePointStyle: true, // Permet de contrôler le style du point
                         boxWidth: 30,  // Largeur de la case du point dans la légende
                         borderRadius: 30,
@@ -72,7 +70,7 @@ function createChart(chartId, labels, values, percentages, sport, years) {
                     },
                     titleFont: {
                         family: '"HelveticaNeue", sans-serif', 
-                        size: 12,
+                        size: 14,
                         color: '#fff'  // Couleur du titre du tooltip (blanc)
                     },
                     bodyFont: {
