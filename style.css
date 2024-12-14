@@ -435,15 +435,16 @@ canvas {
     height: auto !important;
 }
 
-@media (max-width: 1200px) {
-
-    
-} 
-
 .content-container {
     width: 1000px;
     margin-left: 20vh;
 }
+
+@media (max-width: 1200px) {
+    .content-container {
+        margin-left: 10vh;
+    }
+} 
 
 .doughnut {
     margin-top: 15px;
