@@ -1,4 +1,4 @@
-SportIz
+SportIz : 
 SportIz est une plateforme de visualisation de données dédiée au sport en France. Elle recense le nombre de licenciés pour chaque fédération sportive entre 2001 et 2023. Grâce à des graphiques interactifs et des outils d'analyse visuelle, SportIz permet d'explorer facilement les tendances et l'évolution de la pratique sportive en France.
 
 Lien pour accéder a notre site : https://eliaszerar.github.io/Sportiz/
