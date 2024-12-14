@@ -57,12 +57,14 @@ body {
 }
 
 .section {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Éloigne le contenu et le graphique */
+    display: none;
     min-height: 100vh; /* Ou la hauteur souhaitée */
-    align-items: center; /* Centrer les éléments horizontalement si nécessaire */
-    padding: 20px 0;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section.active {
+    display: flex !important;
 }
 
 .container {
@@ -265,8 +267,6 @@ input[type="range"] {
 
 .content {
     width: 80%; /* Assurez-vous que le contenu utilise toute la largeur */
-    margin-left: 25vh;
-    margin-top: 10vh;/* Ajoute un peu d'espace */
 }
 
 /* @media (max-width: 1200px) {
@@ -278,8 +278,6 @@ input[type="range"] {
 
 .doughnut {
     width: 80%;
-    margin-top: 3vh;
-    margin-left: 20vh;
 }
 
 .sport-name {
@@ -439,11 +437,19 @@ canvas {
 
 @media (max-width: 1200px) {
 
-    .content {
-        margin-left: 15vh;
-    }
-
-    .doughnut {
-        margin-left: 10vh;
-    }
+    
 } 
+
+.content-container {
+    width: 1000px;
+    margin-left: 20vh;
+}
+
+.doughnut {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.content {
+    margin-left: 35px;
+}
